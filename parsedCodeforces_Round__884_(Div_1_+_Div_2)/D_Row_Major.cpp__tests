@@ -5,14 +5,5 @@
 			"that\nis\na\ntomato"
 		],
 		"test": "4\n4\n2\n1\n6\n"
-	},
-	{
-		"test": "3\n26\n27\n28\n"
-	},
-	{
-		"test": "1\n100\n"
-	},
-	{
-		"test": "1\n877\n"
 	}
 ]
