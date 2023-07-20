@@ -1,7 +1,7 @@
 /**
  * @Author KAZE_mae
  * @Website cloudfall.top
- * @DateTime
+ * @DateTime 2023-07-19 15:58:19
  */
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,38 +9,44 @@ typedef long long ll;
 typedef pair<int, int> PII;
 #define endl "\n"
 
-// #define int long long
+//#define int long long
 const int N = 1000005; // 1e6 + 5
-const int MOD = 998244353;
 
-ll qmi(ll m, ll k, ll p)
-{
-    ll res = 1 % p, t = m;
-    while (k)
-    {
-        if (k&1) res = res * t % p;
-        t = t * t % p;
-        k >>= 1;
-    }
-    return res;
-}
 signed main () {
-    std::ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-    ll n, m;
-    cin>> n >> m, m += n;
-    ll inv = 1ll * qmi(2, MOD - 2, MOD) % MOD;
-    int k = 1;
-    // 最大能输
-    while ((int)pow(2, k) - 1 <= n) ++ k;
-    ll res = 1;
-    while (n < m) {
-        // n为当前的左边界,r为当前的最大右边界
-        ll r =  min((1ll << k) - 1, m);
-        // 赢的概率 (1 - 输的概率)
-        ll p = (1 - qmi(inv, k - 1, MOD) +  MOD) % MOD;
-        res = (res * qmi(p, r - n, MOD)) % MOD;
-        n = r;
-        k ++;
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    int n;
+    cin>> n;
+    vector<int> v(n);
+    vector<bool> st(n);
+    for(int i = 0; i < n; i++) {
+        cin>> v[i];
+        // cout<< v[i] << " ";
     }
-    cout<< res <<endl;
+    int now = 0, ding = 0, ll = 0, lr = 0;
+    for(int i = 0; i < n; i ++) {
+        if(now > 0) {
+            now --;
+            if(!st[i]) {
+                st[i] = 1;
+                ll ++;
+            }
+        }
+        if(v[i] > now) {
+            now = v[i];
+        }
+    }
+    now = 0;
+    for(int i = n - 1; i >= 0; i--) {
+        if(now > 0) {
+            now --;
+            if(!st[i]) {
+                st[i] = 1;
+                lr ++;
+            }
+        }
+        if(v[i] > now) {
+            now = v[i];
+        }
+    }
+    cout<< lr + ll <<endl;
 }
