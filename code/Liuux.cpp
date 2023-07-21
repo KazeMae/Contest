@@ -5,20 +5,17 @@
  */
 #include <bits/stdc++.h>
 using namespace std;
-
-#define endl "\n"
-//#define int long long
-
 typedef long long ll;
 typedef pair<int, int> PII;
+#define endl "\n"
 
+//#define int long long
 const int N = 1000005; // 1e6 + 5
 
-void solve() {
-
-}
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int t; cin>> t; while(t --)
-        solve();
+    cout<< 10000 <<endl;
+    for(int i = 0; i < 10000; i++) {
+        cout<< i + 1 <<endl;
+    }
 }

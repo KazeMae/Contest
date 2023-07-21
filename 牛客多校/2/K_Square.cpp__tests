@@ -1,0 +1,47 @@
+[
+	{
+		"correct_answers":
+		[
+			"1\n111\n2795127871"
+		],
+		"test": "3\n1\n123\n781273981\n"
+	},
+	{
+		"correct_answers":
+		[
+			"0"
+		],
+		"test": "1\n0\n"
+	},
+	{
+		"correct_answers":
+		[
+			"100000"
+		],
+		"test": "1\n1000000000\n"
+	},
+	{
+		"correct_answers":
+		[
+			"32"
+		],
+		"test": "1\n10\n"
+	},
+	{
+		"correct_answers":
+		[
+			"15"
+		],
+		"test": "1\n2\n"
+	},
+	{
+		"correct_answers":
+		[
+			"316227766"
+		],
+		"test": "1\n999999999\n"
+	},
+	{
+		"test": "1\n0\n"
+	}
+]
