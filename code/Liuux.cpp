@@ -1,7 +1,8 @@
 /**
- * @Author KAZE_mae
- * @Website cloudfall.top
- * @DateTime
+ * @Author      KAZE_mae
+ * @Website     https://cloudfall.top/
+ * @Url         
+ * @DateTime    
  */
 #include <bits/stdc++.h>
 using namespace std;
@@ -14,8 +15,10 @@ const int N = 1000005; // 1e6 + 5
 
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    cout<< 10000 <<endl;
-    for(int i = 0; i < 10000; i++) {
-        cout<< i + 1 <<endl;
+    int n = 2e5;
+    cout<< n <<endl;
+    for(int i = 0; i < n; i++) {
+        cout<< 1 <<endl;
+        cout<< 1 <<endl;
     }
 }
