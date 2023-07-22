@@ -1,0 +1,861 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"be",
+				"beginend\t$1.begin(), $1.end()"
+			],
+			[
+				"r",
+				"return"
+			],
+			[
+				"C",
+				"Codeforces"
+			],
+			[
+				"ans",
+				"ansi"
+			],
+			[
+				"se",
+				"second"
+			],
+			[
+				"ba",
+				"back"
+			],
+			[
+				"fa",
+				"flag"
+			],
+			[
+				"cha",
+				"cheak"
+			],
+			[
+				"f",
+				"find"
+			],
+			[
+				"s",
+				"size"
+			],
+			[
+				"v",
+				"vector"
+			],
+			[
+				"c",
+				"continue"
+			],
+			[
+				"str",
+				"struct\tstruct"
+			],
+			[
+				"b",
+				"beginend\t$1.begin(), $1.end()"
+			],
+			[
+				"so",
+				"sort"
+			],
+			[
+				"si",
+				"size"
+			],
+			[
+				"co",
+				"continue"
+			],
+			[
+				"e",
+				"empty"
+			],
+			[
+				"p",
+				"push_back"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"pu",
+				"push_back"
+			],
+			[
+				"is",
+				"is_prime"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "code/Liangy.cpp",
+			"settings":
+			{
+				"buffer_size": 474,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "code/Liuux.cpp",
+			"settings":
+			{
+				"buffer_size": 501,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/cpp.sublime-build",
+					""
+				],
+				[
+					"Packages/User/cpp.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/cpp.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/cpp.sublime-build",
+					""
+				],
+				[
+					"Packages/User/cpp.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/CppBuild.sublime-build",
+					""
+				],
+				[
+					"Packages/User/CppBuild.sublime-build",
+					"Run In Terminus"
+				],
+				[
+					"Packages/User/CppBuild.sublime-build",
+					"Run in CMD"
+				],
+				[
+					"Packages/User/CppBuild.sublime-build",
+					"Run in Sublime"
+				]
+			],
+			[
+				"Packages/User/cpp.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/cpp.sublime-build",
+					""
+				],
+				[
+					"Packages/User/cpp.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/cpp.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"buildwcpp-r",
+				"Build With: cpp - Run"
+			],
+			[
+				"",
+				"Build With: cpp - Run"
+			],
+			[
+				"pcrp",
+				"Package Control: Remove Package"
+			],
+			[
+				"pcip",
+				"Package Control: Install Package"
+			],
+			[
+				"vi",
+				"View: Toggle Menu"
+			],
+			[
+				"gc",
+				"Git: Commit"
+			],
+			[
+				"git add all",
+				"Git: Add All"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"Git:add",
+				"Git: Add..."
+			],
+			[
+				"Git:c",
+				"Git: Commit"
+			],
+			[
+				"Git:adda",
+				"Git: Add All"
+			],
+			[
+				" Git:c",
+				"Git: Commit"
+			],
+			[
+				" Git:addc",
+				"Git: Add Current File"
+			],
+			[
+				" Git:p",
+				"Git: Push"
+			],
+			[
+				" Git Push",
+				"Git: Push"
+			],
+			[
+				" Git P",
+				"Git: Push"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"git com",
+				"Set Syntax: Git Commit"
+			],
+			[
+				"sublimelinter settings",
+				"Preferences: SublimeLinter Settings"
+			],
+			[
+				"pclp",
+				"Package Control: List Packages"
+			],
+			[
+				"pcr",
+				"Package Control: Remove Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"Snippet: new",
+				"Snippet: Do While Loop"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"ipc",
+				"Package Control: Install Package"
+			],
+			[
+				"pc",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/风前絮/OneDrive/Code/Contest",
+		"/C/Users/风前絮/OneDrive/Code/Contest/code",
+		"/C/Users/风前絮/OneDrive/Code/Contest/Data"
+	],
+	"file_history":
+	[
+		"/C/Users/风前絮/OneDrive/Code/Contest/AllContest.sublime-workspace",
+		"/C/Users/风前絮/OneDrive/Code/Contest/Data/out.txt",
+		"/C/Users/风前絮/OneDrive/Code/Contest/code/Liangy.cpp",
+		"/C/Users/风前絮/OneDrive/Code/Contest/code/Liuux.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/cpp.sublime-build",
+		"/C/Users/风前絮/OneDrive/Code/Contest/Train/AtCoder_-_Toyota_Programming_Contest_2023#4AtCoder_Beginner_Contest_311/C_-_Find_it!.cpp",
+		"/C/Users/风前絮/OneDrive/Code/Contest/code/test.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/FastOlympicCodingHook/FastOlympicCodingHook.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/acm.sublime-snippet",
+		"/D/Code/Contest/code/Liuux.cpp",
+		"/D/Code/Contest/Train/Luogu/P2024_[NOI2001]_食物链.cpp",
+		"/D/Code/Contest/code/Liangy.cpp",
+		"/D/Code/Contest/Train/AtCoder_-_Toyota_Programming_Contest_2023#4AtCoder_Beginner_Contest_311/C_-_Find_it!.cpp",
+		"/D/Code/Contest/Train/AtCoder_-_Toyota_Programming_Contest_2023#4AtCoder_Beginner_Contest_311/B_-_Vacation_Together.cpp",
+		"/D/Code/Contest/Train/AtCoder_-_Toyota_Programming_Contest_2023#4AtCoder_Beginner_Contest_311/A_-_First_ABC.cpp",
+		"/D/Code/Contest/Train/Codeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/Train/NowCoder/Box.cpp",
+		"/D/Code/Contest/Codeforces/Codeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/牛客多校/2/K_Boxs.cpp",
+		"/D/Code/Contest/Data/in.txt",
+		"/D/Code/Contest/Data/out.txt",
+		"/D/Code/Contest/code/awa",
+		"/D/Code/Contest/Codeforces/Codeforces_-_Codeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/Codeforces_-_Codeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/CodeforcesCodeforces_-_Codeforces_Round_886_(Div_4)/H_The_Third_Letter.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/E_Cardboard_for_Pictures.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/G_The_Morning_Star.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/F_We_Were_Both_Children.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/D_Balanced_Round.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/C_Word_on_the_Paper.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/B_Ten_Words_of_Wisdom.cpp",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_886_(Div_4)/A_To_My_Critics.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/cf.sublime-snippet",
+		"/D/Code/Contest/Study/dp/3_最长公共子序列.cpp",
+		"/D/Code/Contest/Study/动态规划/3_最长公共子序列.cpp",
+		"/D/Code/Contest/Study/动态规划/1_走楼梯.cpp",
+		"/D/Code/Contest/Study/动态规划/2_最长上升子序列.cpp",
+		"/D/Code/Contest/Codeforces/parsedNowCoder/Box.cpp",
+		"/D/Code/Contest/牛客多校/2/D_The_Game_of_Eating.cpp",
+		"/D/Code/Contest/牛客多校/2/Box.cpp",
+		"/D/Code/Contest/data/in.txt",
+		"/D/Code/Contest/data/out.txt",
+		"/D/Code/Contest/Codeforces/parsedNowCoder/Box.cpp__tests",
+		"/D/Code/Contest/牛客多校/2/F_Link_with_Chess_Game.cpp",
+		"/D/Code/Contest/牛客多校/2/K_Square.cpp",
+		"/D/Code/Contest/牛客多校/2/I_Link_with_Gomoku.cpp",
+		"/D/Code/Contest/code/test.cpp",
+		"/D/Code/Contest/杭电多校/20230720/1004_Card_Game.cpp",
+		"/D/Code/Contest/杭电多校/20230720/1002_Binary_Number.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/CppFastOlympicCoding/FastOlympicCoding (Windows).sublime-settings",
+		"/D/Code/Contest/杭电多校/20230720/1009_String_Problem.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/FastOlympicCoding.sublime-settings",
+		"/D/Code/Contest/Codeforces/parsedCodeforces_Round_882_(Div_2)/B_Hamon_Odyssey.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/Base File.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/DocBlockr/Base File.sublime-settings",
+		"/D/Code/Contest/code/Kinnc.cpp",
+		"/D/Code/Contest/code/Zhenen.cpp",
+		"/D/Code/Contest/牛客多校1/K_Subdivision.cpp",
+		"/D/Code/Contest/牛客多校1/M_water.cpp",
+		"/D/Code/Contest/杭电多校1/1005_Cyclically Isomorphic.cpp",
+		"/D/Code/Contest/杭电多校1/1009_Assertion.cpp",
+		"/D/Code/Contest/牛客多校1/J_Roulette.cpp",
+		"/D/Code/Contest/牛客多校1/H_Matches.cpp",
+		"/D/Code/Contest/牛客多校1/D_Chocolate.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_885_(Div_2)/B_for.cpp",
+		"/D/Code/Contest/牛客多校1/1.cpp",
+		"/D/Code/Contest/牛客多校1/1",
+		"/D/Code/Contest/parsedCodeforces_Round_885_(Div_2)/B_Vika_and_the_Bridge.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_885_(Div_2)/A_Vika_and_Her_Friends.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_860_(Div_2)/B_Three_Sevens.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_860_(Div_2)/A_Showstopper.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_853_(Div_2)/A_Serval_and_Mochas_Array.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_853_(Div_2)/B_Serval_and_Inversion_Magic.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_837_(Div_2)/B_Hossam_and_Friends.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_882_(Div_2)/A_The_Man_who_became_a_God_.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_837_(Div_2)/A_Hossam_and_Combinatorics.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round__884_(Div_1_+_Div_2)/C_Particles.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round__884_(Div_1_+_Div_2)/D_Row_Major.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round__884_(Div_1_+_Div_2)/B_Permutations_&amp;_Primes.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round__884_(Div_1_+_Div_2)/A_Subtraction_Game.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/Git.sublime-settings",
+		"/D/Code/Contest/paredCodeforces_Round_883_(Div_3)/A_Rudolph_and_Cut_the_Rope_.cpp",
+		"/D/Code/Contest/code/gittest.cpp",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/Git/Git.sublime-settings",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/C_Rudolf_and_the_Another_Competition.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/A_Rudolph_and_Cut_the_Rope_.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/F_Rudolph_and_Mimic.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/E1_Rudolf_and_Snowflakes_(simple_version).cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/D_Rudolph_and_Christmas_Tree.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/B_Rudolph_and_Tic-Tac-Toe.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/G_Rudolf_and_CodeVid-23.cpp",
+		"/C/Code/parsedCodeforces_Round_883_(Div_3)/A_Rudolph_and_Cut_the_Rope_.cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/E2_Rudolf_and_Snowflakes_(hard_version).cpp",
+		"/D/Code/Contest/parsedCodeforces_Round_883_(Div_3)/.cpp",
+		"/D/Code/Contest/parsed/A_Rudolph_and_Cut_the_Rope_.cpp",
+		"/D/Code/Contest/code/Codeforces_Round_883_(Div_3)/A_Rudolph_and_Cut_the_Rope_.cpp",
+		"/D/Code/Contest/parsedCodeforces_-_Codeforces_Round_883_(Div_3)/A_Rudolph_and_Cut_the_Rope.cpp",
+		"/D/Code/Contest/parsedCodeforces_-_Codeforces_Round_883_(Div_3)/B_Rudolph_and_Tic-Tac-Toe.cpp",
+		"/C/Users/风前絮/AppData/Local/Temp/Temp1_FastOlympicCodingHook.zip/FastOlympicCodingHook.sublime-settings",
+		"/D/GAME/Steam/steamapps/workshop/content/431960/1851524277/scene.pkg",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Installed Packages/LSP.sublime-package",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Installed Packages/LSP-clangd.sublime-package",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/SublimeAStyleFormatter/SublimeAStyleFormatter.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/SublimeAStyleFormatter/Default (Windows).sublime-keymap",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/CppFastOlympicCoding/Default (Windows).sublime-keymap",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/Color Schemes/RainbowBrackets/auto",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/insert_date.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/wam.sublime-snippet",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/addCurrentTime.py",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/InsertDate/insert_date.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/User/Color Schemes/RainbowBrackets/ayu-light.sublime-color-scheme",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/Status Bar Time/StatusBarTime.sublime-settings"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 130.4,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "C:\\Users\\风前絮\\OneDrive\\Code\\Contest"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "code/Liangy.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive/Code/Contest/code/Liangy.cpp",
+							"origin_encoding": "ASCII",
+							"rainbowth.lispy": false,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "code/Liuux.cpp",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive/Code/Contest/code/Liuux.cpp",
+							"origin_encoding": "ASCII",
+							"rainbowth.lispy": false,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 54.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.68,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 46.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 164.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/cpp.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Code\\awa.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 252.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
