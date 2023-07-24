@@ -12,15 +12,16 @@ typedef pair<int, int> PII;
 
 //#define int long long
 const int N = 1000005; // 1e6 + 5
-
+long long dp[1005][5];
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int n;
     cin>> n;
-    vector<ll> dp(n + 5);
-    dp[0] = 1, dp[1] = 1;
+    dp[0][0] = 1, dp[0][1] = 1, dp[1][0] = 1, dp[1][1] = 1;
     for(int i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
+        for(int j = 0; j < 2; j++) {
+            dp[i][j] = dp[i - 1]
+        }
     }
     cout<< dp[n];
 }
