@@ -19,10 +19,22 @@ typedef pair<int, int> PII;
 const int N = 1000005; // 1e6 + 5
 
 void solve() {
-
+    string x, y;
+    ll a = 0, b = 0;
+    cin>> x >> y;
+    reverse(x.begin(), x.end());
+    reverse(y.begin(), y.end());
+    for(int i = 0; i < x.size(); i++) {
+        a += (x[i] == '1' ? (ll)pow(2ll, i) : 0);
+    }
+    for(int i = 0; i < y.size(); i++) {
+        b += (y[i] == '1' ? (ll)pow(2ll, i) : 0);
+    }
+    if(a == 0 && a != b) cout<< -1;
+    else cout<< abs(a - b);
 }
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int t; cin>> t; while(t --)
+    // int t; cin>> t; while(t --)
         solve();
 }
