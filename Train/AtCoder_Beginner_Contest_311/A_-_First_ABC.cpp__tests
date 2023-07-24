@@ -1,0 +1,30 @@
+[
+	{
+		"correct_answers":
+		[
+			"4"
+		],
+		"test": "5\nACABB\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "4\nCABC\n"
+	},
+	{
+		"correct_answers":
+		[
+			"17"
+		],
+		"test": "30\nAABABBBABABBABABCABACAABCBACCA\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "3\nABC\n"
+	}
+]

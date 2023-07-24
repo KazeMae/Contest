@@ -1,0 +1,37 @@
+[
+	{
+		"correct_answers":
+		[
+			"2"
+		],
+		"test": "3 5\nxooox\noooxx\noooxo\n"
+	},
+	{
+		"correct_answers":
+		[
+			"1"
+		],
+		"test": "3 3\noxo\noxo\noxo\n"
+	},
+	{
+		"correct_answers":
+		[
+			"0"
+		],
+		"test": "3 3\noox\noxo\nxoo\n"
+	},
+	{
+		"correct_answers":
+		[
+			"7"
+		],
+		"test": "1 7\nooooooo\n"
+	},
+	{
+		"correct_answers":
+		[
+			"5"
+		],
+		"test": "5 15\noxooooooooooooo\noxooxooooooooox\noxoooooooooooox\noxxxooooooxooox\noxooooooooxooox\n"
+	}
+]
