@@ -1,1 +1,0 @@
-[{"test": "3\n100\n010\n001\n", "correct_answers": ["-1"]}, {"test": "5\n00100\n00100\n11011\n00100\n00100\n", "correct_answers": ["2"]}]

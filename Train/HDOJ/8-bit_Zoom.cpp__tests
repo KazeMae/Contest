@@ -1,0 +1,1 @@
+[{"test": "5\n2 100\nab\ncd\n2 200\nab\ncd\n2 125\naa\naa\n4 125\naaab\naaaa\naaaa\naaaa\n4 125\naaaa\naaaa\naaaa\naaaa\n", "correct_answers": ["ab\ncd\naabb\naabb\nccdd\nccdd\nerror\nerror\naaaaa\naaaaa\naaaaa\naaaaa\naaaaa"]}]

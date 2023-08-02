@@ -1,0 +1,9 @@
+[
+	{
+		"correct_answers":
+		[
+			"xx(a.b)c,d"
+		],
+		"test": "10\nxx(a,b)c,d\n"
+	}
+]

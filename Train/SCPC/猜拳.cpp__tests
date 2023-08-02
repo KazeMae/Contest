@@ -1,0 +1,23 @@
+[
+	{
+		"correct_answers":
+		[
+			"Joyous festival be!"
+		],
+		"test": "shitou\njiandao\n"
+	},
+	{
+		"correct_answers":
+		[
+			"Black chicken be!"
+		],
+		"test": "bu\njiandao\n"
+	},
+	{
+		"correct_answers":
+		[
+			"Wish you AC fun!"
+		],
+		"test": "bu\nbu\n"
+	}
+]

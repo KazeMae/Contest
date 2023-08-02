@@ -2,7 +2,7 @@
  * @Author      KAZE_mae
  * @Website     https://cloudfall.top/
  * @Url         
- * @DateTime    
+ * @DateTime    2023-07-24 19:22:03
  */
 #include <bits/stdc++.h>
 using namespace std;
@@ -10,44 +10,34 @@ typedef long long ll;
 typedef pair<int, int> PII;
 #define endl "\n"
 
-//#define int long long
+#define int long long
 const int N = 1000005; // 1e6 + 5
-int n, m, beg, ed;
-bool st[N];
-vector<int> v[N], ans;
-bool flag = 0, huan = 0;
-void dsf(int x) {
-    if(st[x]) {
-        ed = x;
-        huan = 1;
+int f[1010];
+void exgcd(int a, int b, int &x, int &y) {
+    if (!b) {
+        x = 1, y = 0;
         return;
     }
-    st[x] = 1;
-    for(auto i:v[x]) {
-        dsf(i);
-    }
-    st[x] = 0;
+    if (b > a) return exgcd(b, a, y, x);
+    exgcd(b, a % b, y, x);
+    y -= a / b * x;
 }
-void dfs(int x) {
-    if(st[x]) return;
-    st[x] = 1;
-    ans.push_back(x);
-    for(auto i:v[x]) {
-        if(i == beg) {
-            flag = 1;
-            return;
-        }else dfs(i);
-    }
-    st[x] = 0;
-}
-
-
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int n = 2e5;
-    cout<< n <<endl;
-    for(int i = 0; i < n; i++) {
-        cout<< 1 <<endl;
-        cout<< 1 <<endl;
+    int n, k, x, y, s;
+    f[0] = f[1] = 1;
+    for (int i = 2; i < 98; ++i) f[i] = f[i - 1] + f[i - 2];
+    cin>> n >> k;
+    if (k > 88) {
+        cout<< 0 <<endl;
+    }else {
+        exgcd(f[k - 3], f[k - 2], x, y);
+        x *= n, y *= n;
+        if (x < 0) s = (x + 1) / f[k - 2] - 1;
+        else s = x / f[k - 2];
+        x -= s * f[k - 2], y += s * f[k - 3];
+        if (x <= y) cout<< max((y - x) / f[k - 1] + 1, 0ll) <<endl;
+        else cout<< 0 <<endl;
     }
+    return 0;
 }
