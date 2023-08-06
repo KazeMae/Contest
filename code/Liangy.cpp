@@ -14,6 +14,9 @@ typedef pair<int, int> PII;
 const int N = 1000005; // 1e6 + 5
 
 signed main () {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    printf("%2.1e", 21.29);
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    srand(time(0));
+    for(int i = 0; i < 33333; ++ i) {
+        cout<< (rand() % 2 ? "acc" : "cac");
+    }
 }

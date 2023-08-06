@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. To Become Max
+| Contest: Codeforces Round 890 (Div. 2) supported by Constructor Institute
+| URL:     https://codeforces.com/contest/1856/problem/C
+| When:    2023-08-06 14:48:48
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 #include <bits/stdc++.h>
 using namespace std;
