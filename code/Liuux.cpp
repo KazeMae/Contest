@@ -2,7 +2,7 @@
  * @Author      KAZE_mae
  * @Website     https://cloudfall.top/
  * @Url         
- * @DateTime    2023-08-06 14:27:56
+ * @DateTime    
  */
 #include <bits/stdc++.h>
 using namespace std;
@@ -16,9 +16,9 @@ typedef pair<int, int> PII;
 const int N = 1000005; // 1e6 + 5
 
 void solve() {
-    int a, b;
-    cin >> a >> b;
-    cout<< a + b <<endl;
+    double a, b;
+    cin>> a >> b;
+    cout<< fixed << setprecision(6) << a - b <<endl;
 }
 signed main () {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
