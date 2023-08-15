@@ -20,17 +20,16 @@ const int N = 1000005; // 1e6 + 5
 const int MOD = 998244353;
 
 void solve() {
-    int n, m, unmic = 0, unmxc = 0, mic = 0, mxc = 0;
+    int n, m, unmic = 0, unmxc = 0;
     cin>> n >> m;
     vector<int> a(n);
-    for(int i = 0; i < n; ++ i) cin>> a[i];
+    for(int i = 0; i < n; ++ i) 
+        cin>> a[i];
     int mi = *min_element(a.begin(), a.end());
     int mx = *max_element(a.begin(), a.end());
     for(auto i:a) {
         if(i != mi) unmic ++;
-        else mic ++;
         if(i != mx) unmxc ++;
-        else mxc ++;
     }
     sort(a.begin(), a.end());
     if(unmic <= m || unmxc <= m) cout<< 0 <<endl;
@@ -39,8 +38,16 @@ void solve() {
         for(int i = 0; i < n; i++) {
             int k = m - i * 2;
             if(k < 0) break;
-            else if(k == 0) ans = min(ans, a.back() - a[i]);
+            else if(k == 0) ans = min(ans, a[n - 1] - a[i]);
             else ans = min(ans, a[n - i - k] - a[i]);
+            // cout<< "+ " << i << " " << k << " " << ans << " " << a[n - i - k] - a[i] << endl;
+        }
+        for(int i = n - 1; i >= 0; -- i) {
+            int k = m - (n - i - 1) * 2;
+            if(k < 0) break;
+            else if(k == 0) ans = min(ans, a[i] - a[0]);
+            else ans = min(ans, a[i] - a[k]);
+            // cout<< "- " << i << " " << k << " " << ans << " " << a[i] - a[k] << endl;
         }
         cout<< ans <<endl;
     }

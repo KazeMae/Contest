@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: Semi-Puzzle: Brain Storm
+| Contest: NowCoder
+| URL:     https://ac.nowcoder.com/acm/contest/57363/B
+| When:    2023-08-14 12:07:31
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  524288 MB
+| Time:    4000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -74,8 +74,21 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
-void solve() {
+ll qmi(ll m, ll k, ll p) {
+    ll res = 1 % p, t = m;
+    while (k)
+    {
+        if (k&1) res = res * t % p;
+        t = t * t % p;
+        k >>= 1;
+    }
+    return res;
+}
 
+void solve() {
+    ll a, m;
+    cin>> a >> m;
+    
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
