@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Fancy Coins
+| Contest: Educational Codeforces Round 153 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1860/problem/B
+| When:    2023-08-17 23:00:16
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -37,7 +37,7 @@
 #include <vector>
 using namespace std;
 
-// #define int long long
+#define int long long
 
 using ll = long long;
 using ld = long double;
@@ -67,7 +67,7 @@ ll myRand(ll B) { return (ull)rng() % B; }
 #define fi first
 #define se second
 
-const int N = 1000005; // 1e6 + 5
+const int MAXN = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -75,7 +75,9 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    int m, k, a, ak;
+    cin>> m >> k >> a >> ak;
+    cout << ((m < ak) ? max(m - a, 0ll) : max(min((m - a - k * ak) / k + (m - a - k * ak) % k, (a >= (k - (m - a - k * ak) % k) && (k - (m - a - k * ak) % k) < k ? ((m - a - k * ak) + k - (m - a - k * ak) % k) / k : (m - a - k * ak) / k + (m - a - k * ak) % k)), 0ll)) <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

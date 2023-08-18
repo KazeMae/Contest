@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Game on Permutation
+| Contest: Educational Codeforces Round 153 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1860/problem/C
+| When:    2023-08-17 23:38:19
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -75,7 +75,24 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
+    int n, ans = 0;
+    cin>> n;
+    vector<int> a(n + 1), st(n + 1), dp(n + 1);
+    vector<pii> t;
+    for(int i = 0; i < n; i ++) 
+        cin>> a[i + 1];
 
+    int len = 0;
+    dp[len] = 2e9;
+    dp[ ++ len] = a[1];
+    for (int i = 2; i <= n; i ++ )
+    {
+        if(a[i] > dp[len]) dp[++ len] = a[i];
+        else *lower_bound(dp.begin() + 1, dp.begin() + len + 1, a[i]) = a[i];
+        if(dp[2] == 0) continue;
+        if(st[dp[2]] == 0) st[dp[2]] = 1, ans ++;
+    }
+    cout<< ans <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

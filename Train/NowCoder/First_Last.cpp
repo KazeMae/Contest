@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: First Last
+| Contest: NowCoder
+| URL:     https://ac.nowcoder.com/acm/contest/57364/K
+| When:    2023-08-18 14:09:23
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  2097152 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -75,11 +75,13 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    int n, m;
+    cin>> n >> m;
+    printf("%.15lf", (n == 1 ? 1 : pow(2, m) / pow(n, m)));
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }

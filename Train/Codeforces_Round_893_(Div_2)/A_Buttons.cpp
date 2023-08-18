@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Buttons
+| Contest: Codeforces Round 893 (Div. 2)
+| URL:     https://codeforces.com/contest/1858/problem/A
+| When:    2023-08-15 22:36:44
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -67,7 +67,7 @@ ll myRand(ll B) { return (ull)rng() % B; }
 #define fi first
 #define se second
 
-const int N = 1000005; // 1e6 + 5
+const int MAXN = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -75,7 +75,10 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    ll a, b, c;
+    cin>> a >> b >> c;
+    ll an = a + c / 2 + c % 2, ka = b + c / 2;
+    cout<< (an > ka ? "First" : "Second") <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

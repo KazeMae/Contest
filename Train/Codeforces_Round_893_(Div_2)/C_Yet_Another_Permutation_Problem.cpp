@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Yet Another Permutation Problem
+| Contest: Codeforces Round 893 (Div. 2)
+| URL:     https://codeforces.com/contest/1858/problem/C
+| When:    2023-08-15 22:47:44
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -74,8 +74,32 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
-void solve() {
+// void get_primes(int n)
+// {
+//     for (int i = 2; i <= n; i ++ )
+//     {
+//         if (!st[i]) primes[cnt ++ ] = i;
+//         for (int j = 0; primes[j] <= n / i; j ++ )
+//         {
+//             st[primes[j] * i] = true;
+//             if (i % primes[j] == 0) break;
+//         }
+//     }
+// }
 
+void solve() {
+    int n;
+    cin>> n;
+    vector<int> ans;
+    vector<bool> st(n + 5);
+    for(int i = 1; i <= n; ++ i) {
+        int k = i;
+        while(k <= n) {
+            if(st[k] == 0) ans.push_back(k), st[k] = 1;
+            k *= 2;
+        }
+    }
+    for(auto i:ans) cout<< i << " "; cout<<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

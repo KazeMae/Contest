@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: Equalize the Array
+| Contest: HDOJ
+| URL:     https://acm.hdu.edu.cn/contest/problem?cid=1103&pid=1012
+| When:    2023-08-17 13:34:35
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  524288 MB
+| Time:    1000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -67,7 +67,7 @@ ll myRand(ll B) { return (ull)rng() % B; }
 #define fi first
 #define se second
 
-const int N = 1000005; // 1e6 + 5
+const int MAXN = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -75,7 +75,21 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    int n, ct = 0, mx = 0;
+    cin>> n;
+    vector<int> a(n), cnt(n + 2);
+    rep(i, 0, n - 1) {
+        cin>> a[i];
+    }
+    sort(all(a));
+    for(auto i:a) {
+        cnt[i] ++;
+        if(cnt[i] > ct) {
+            ct = cnt[i];
+            mx = i;
+        }
+    }
+    cerr << (mx == a[0] ? "YES" : "NO") <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

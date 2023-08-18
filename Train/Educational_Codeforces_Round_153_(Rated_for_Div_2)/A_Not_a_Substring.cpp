@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Not a Substring
+| Contest: Educational Codeforces Round 153 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1860/problem/A
+| When:    2023-08-17 22:41:43
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -67,7 +67,7 @@ ll myRand(ll B) { return (ull)rng() % B; }
 #define fi first
 #define se second
 
-const int N = 1000005; // 1e6 + 5
+const int MAXN = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -75,7 +75,23 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    string s;
+    cin>> s;
+    int n = sz(s);
+    string ans1, ans2;
+    for(int i = 0; i < n; ++ i) {
+        ans1 += "()";
+    }
+    for(int i = 0; i < n; ++ i) {
+        ans2 += "(";
+    }
+    for(int i = 0; i < n; ++ i) {
+        ans2 += ")";
+    }
+    if(ans1.find(s) != -1 && ans2.find(s) != -1) cout<< "NO" <<endl;
+    else if(ans1.find(s) == -1) cout<< "YES" << endl << ans1 <<endl;
+    else if(ans2.find(s) == -1) cout<< "YES" << endl << ans2 <<endl;
+    else cout<< "NO" <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

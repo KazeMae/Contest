@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: Fair Equation
+| Contest: NowCoder
+| URL:     https://ac.nowcoder.com/acm/contest/57364/M
+| When:    2023-08-18 14:33:54
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  524288 MB
+| Time:    2000 ms
 *******************************/
 // #include <bits/stdc++.h>
 #include <algorithm>
@@ -74,12 +74,45 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
-void solve() {
+bool is_ok(string y, string x) {
+    if(y.size() + 1 != x.size()) return false;
+    int cnt = 0;
+    for(int i = 0, j = 0; i < y.size(), j < x.size(); ++ i, ++ j) {
+        if(y[i] != x[j]) cnt ++, ++ j;
+    }
+    return cnt == 1;
+}
 
+void solve() {
+    int a, b, c;
+    string p, e, y, x;
+    cin>> a >> p >> b >> e >> c;
+    y = to_string(a);
+    x = to_string(c - b);
+    if(is_ok(y, x)) {
+        cout<< "Yes" <<endl;
+        cout<< x << " " << p << " " << b << " " << e << " " << c <<endl;
+        return;
+    }
+    y = to_string(b);
+    x = to_string(c - a);
+    if(is_ok(y, x)) {
+        cout<< "Yes" <<endl;
+        cout<< a << " " << p << " " << x << " " << e << " " << c <<endl;
+        return;
+    }
+    y = to_string(c);
+    x = to_string(a + b);
+    if(is_ok(y, x)) {
+        cout<< "Yes" <<endl;
+        cout<< a << " " << p << " " << b << " " << e << " " << x <<endl;
+        return;
+    }
+    cout<< "No" <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }

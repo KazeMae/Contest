@@ -1,14 +1,9 @@
-/*******************************
-| Author:  KAZE_mae
-| Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
-| 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
-*******************************/
+/**
+ * @Author      KAZE_mae
+ * @Website     https://cloudfall.top/
+ * @Url         
+ * @DateTime    
+ */
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -67,7 +62,7 @@ ll myRand(ll B) { return (ull)rng() % B; }
 #define fi first
 #define se second
 
-const int N = 1000005; // 1e6 + 5
+const int MAXN = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -75,11 +70,13 @@ const double PI = acos(-1.0);
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    int n;
+    cin>> n;
+    vector<int> 
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
