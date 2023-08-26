@@ -1,9 +1,15 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: B. Sequence Game
+| Contest: Codeforces Round 894 (Div. 3)
+| URL:     https://codeforces.com/contest/1862/problem/B
+| When:    2023-08-24 22:58:15
+| 
+| Memory:  256 MB
+| Time:    2000 ms
+*******************************/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -45,9 +51,7 @@ using PLI = pair<ll, int>;
 using PLL = pair<ll, ll>;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
-}
+ll myRand(ll B){ return (ull)rng() % B; }
 
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
@@ -55,15 +59,15 @@ ll myRand(ll B) {
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
+// #define max(a, b) ((a) > (b) ? (a) : (b))
+// #define min(a, b) ((a) < (b) ? (a) : (b))
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
 #define mp make_pair
 #define fi first
 #define se second
-#define lowbit(x) ((x) & (-x))
+#define lowbit(x) x&(-x)
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -72,7 +76,7 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-long long qmi(long long m, long long k, long long p = 2e18) {
+long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
@@ -80,51 +84,35 @@ long long qmi(long long m, long long k, long long p = 2e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
     y -= (a/b) * x;  
     return d;
 }
-double R5(double x) {
-    x *= 1000, x += 0.5;
-    return (int)x * 1.0 / 1000;
-}
 
-double Sqrt(int x) {
-    if(x == 0) return 0;
-    double l = 1, r = x, mid;
-    while(r - l < 1e-6) {
-        mid = (l + r) / 2;
-        if(mid * mid > x) r = mid;
-        else l = mid;
-    }
-    return l;
-}
 void solve() {
-    int n, x, y, i, j, k;
-    cin >> n >> x >> y >> i >> j >> k;
-    int p = x / 3;
-    y /= p;
-    int res = p * p - y;
-    int d = (int)Sqrt(res);
-    printf("%.6lf %.6lf\n",Sqrt(res), sqrt(res));
-    // cout<< Sqrt(res) <<" " << sqrt(res) <<endl;
-    d /= (j - i);
-//  cout<<d<<endl;
-    int a1 = p - (j - 1) * d;
-    int an = a1 + (n - 1) * d;
-    int sum = (a1 + an) * n / 2;
-    int ans = n * a1 + (n - 1) * n * d / 2;
-//  cout<<a1<<" "<<an<<endl;
-    cout << sum << endl;
+    int n, k;
+    cin>> n;
+    vector<int> a(n), ans;
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+    }
+    ans.push_back(a[0]);
+    for(int i = 1; i < n; ++ i) {
+        if(a[i - 1] <= a[i]) ans.push_back(a[i]);
+        else { 
+            ans.push_back(a[i]);
+            ans.push_back(a[i]);
+        }
+    }
+    cout<< ans.size() <<endl;
+    for(auto i:ans) cout<< i << " "; cout<<endl;
 }
 signed main() {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // int _ = 1; cin>> _; while(_ --)
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }

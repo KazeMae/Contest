@@ -1,9 +1,15 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: A1. Dual (Easy Version)
+| Contest: Codeforces Round 889 (Div. 1)
+| URL:     https://codeforces.com/contest/1854/problem/A1
+| When:    2023-08-24 17:51:49
+| 
+| Memory:  256 MB
+| Time:    1000 ms
+*******************************/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -45,9 +51,7 @@ using PLI = pair<ll, int>;
 using PLL = pair<ll, ll>;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
-}
+ll myRand(ll B){ return (ull)rng() % B; }
 
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
@@ -55,15 +59,15 @@ ll myRand(ll B) {
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
+// #define max(a, b) ((a) > (b) ? (a) : (b))
+// #define min(a, b) ((a) < (b) ? (a) : (b))
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
 #define mp make_pair
 #define fi first
 #define se second
-#define lowbit(x) ((x) & (-x))
+#define lowbit(x) x&(-x)
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -72,7 +76,7 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-long long qmi(long long m, long long k, long long p = 2e18) {
+long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
@@ -80,51 +84,52 @@ long long qmi(long long m, long long k, long long p = 2e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
     y -= (a/b) * x;  
     return d;
 }
-double R5(double x) {
-    x *= 1000, x += 0.5;
-    return (int)x * 1.0 / 1000;
-}
 
-double Sqrt(int x) {
-    if(x == 0) return 0;
-    double l = 1, r = x, mid;
-    while(r - l < 1e-6) {
-        mid = (l + r) / 2;
-        if(mid * mid > x) r = mid;
-        else l = mid;
-    }
-    return l;
-}
 void solve() {
-    int n, x, y, i, j, k;
-    cin >> n >> x >> y >> i >> j >> k;
-    int p = x / 3;
-    y /= p;
-    int res = p * p - y;
-    int d = (int)Sqrt(res);
-    printf("%.6lf %.6lf\n",Sqrt(res), sqrt(res));
-    // cout<< Sqrt(res) <<" " << sqrt(res) <<endl;
-    d /= (j - i);
-//  cout<<d<<endl;
-    int a1 = p - (j - 1) * d;
-    int an = a1 + (n - 1) * d;
-    int sum = (a1 + an) * n / 2;
-    int ans = n * a1 + (n - 1) * n * d / 2;
-//  cout<<a1<<" "<<an<<endl;
-    cout << sum << endl;
+    int n, k = 0, f = 0, mx = -40, mi = 0;
+    cin>> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        if(a[i] > 0) ++ k;
+        else ++ f;
+        if(a[i] > mx) mx = a[i], mi = i + 1;
+    }
+    if(k == n) {
+        cout<< n - 1 <<endl;
+        for(int i = 0; i < n - 1; ++ i) {
+            cout<< i + 2 << " " << i + 1 <<endl;
+        }
+    }else if(f == n) {
+         cout<< n - 1 <<endl;
+        for(int i = n - 2; i >= 0; -- i) {
+            cout<< i + 2 << " " << i + 1 <<endl;
+        }
+    }else {
+        vector<PII> ans;
+        while(a[mi - 1] <= 20) {
+            ans.push_back({mi, mi});
+            a[mi - 1] *= 2;
+        }
+        if(mi != 1) ans.push_back({1, mi});
+        for(int i = 0; i < n - 1; ++ i) ans.push_back({i + 2, i + 1});
+        cout<< ans.size() <<endl;
+        for(auto i:ans) {
+            cout<< i.first << " " << i.second <<endl;
+        }
+    }
+
 }
 signed main() {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // int _ = 1; cin>> _; while(_ --)
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }

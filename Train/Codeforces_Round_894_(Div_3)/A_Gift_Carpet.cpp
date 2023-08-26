@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Gift Carpet
+| Contest: Codeforces Round 894 (Div. 3)
+| URL:     https://codeforces.com/contest/1862/problem/A
+| When:    2023-08-24 22:37:41
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -37,6 +37,8 @@
 #include <utility>
 #include <vector>
 using namespace std;
+
+// #define int long long
 
 using ll = long long;
 using Ld = long double;
@@ -74,8 +76,6 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-// #define int long long
-
 long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
@@ -93,7 +93,47 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
 }
 
 void solve() {
-
+    int n, m, flag = 0;
+    cin>> n >> m;
+    vector<string> s(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> s[i];
+    }
+    vector<int> v, k, ii, a;
+    for(int i = 0; i < m; ++ i) {
+        for(int j = 0; j < n; ++ j) {
+            if(s[j][i] == 'v') v.push_back(i);
+            if(s[j][i] == 'i') ii.push_back(i);
+            if(s[j][i] == 'k') k.push_back(i);
+            if(s[j][i] == 'a') a.push_back(i);
+        }
+    }
+    if(m < 4) {
+        cout<< "NO" <<endl;
+        return;
+    }
+    if(v.empty() || ii.empty() || k.empty() || a.empty()) {
+        cout<< "NO" <<endl;
+        return;
+    }
+    v.erase(unique(v.begin(), v.end()), v.end());
+    ii.erase(unique(ii.begin(), ii.end()), ii.end());
+    k.erase(unique(k.begin(), k.end()), k.end());
+    a.erase(unique(a.begin(), a.end()), a.end());
+    
+    for(auto i1:v) {
+        for(auto i2:ii) {
+            for(auto i3:k){
+                for(auto i4:a){
+                    if(i1 < i2 && i2 < i3 && i3 < i4){
+                        cout<< "YES" <<endl;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    cout<< "NO" <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

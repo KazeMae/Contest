@@ -77,7 +77,7 @@ const int MOD = 1e9 + 7;
 bool is_ok(string y, string x) {
     if(y.size() + 1 != x.size()) return false;
     int cnt = 0;
-    for(int i = 0, j = 0; i < y.size(), j < x.size(); ++ i, ++ j) {
+    for(int i = 0, j = 0; i < y.size() && j < x.size(); ++ i, ++ j) {
         if(y[i] != x[j]) cnt ++, ++ j;
     }
     return cnt == 1;

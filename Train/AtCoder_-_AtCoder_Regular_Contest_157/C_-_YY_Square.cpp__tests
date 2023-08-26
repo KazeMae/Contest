@@ -1,0 +1,29 @@
+[
+	{
+		"correct_answers":
+		[
+			"4"
+		],
+		"test": "2 2\nYY\nXY\n"
+	},
+	{
+		"correct_answers":
+		[
+			"2"
+		],
+		"test": "2 2\nXY\nYY\n"
+	},
+	{
+		"correct_answers":
+		[
+			"8"
+		],
+		"test": "2 2\nYY\nYY\n"
+	},
+	{
+		"test": "3 3\nYYY\nYYY\nYYY\n"
+	},
+	{
+		"test": "10 20\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\n"
+	}
+]
