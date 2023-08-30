@@ -19,45 +19,32 @@ typedef pair<int, int> PII;
 const int N = 1000005; // 1e6 + 5
 
 void solve() {
-    int n, k = 0;
+    int n, x = 0, y = 0, k = 0, e = 0, w = 0;
     cin>> n;
-    map<int, int> mp;
-    vector<ll> a(n), b, c;
-    for(int i = 0; i < n - 1; i++) {
+    map<long long, int> mp;
+    vector<long long> a(n), v(n);
+    for(int i = 1; i < n; ++ i) {
         cin>> a[i];
-        if(i != 0) b.push_back(a[i] - a[i - 1]);
-        else b.push_back(a[i]);
     }
-    int x = 0, y = 0;
-    sort(b.begin(), b.end());
-    for(int i = 1; i <= n; i++) {
-        if(i != *--upper_bound(b.begin(), b.end(), i)) {
-            if(x == 0) {
-                x = i;
-            }else {
-                y = i;
-                break;
-            }
-        }
+    for(int i = 1; i < n; ++ i) {
+        v[i] = a[i] - a[i - 1];
+        mp[v[i]] ++;
+        if(v[i] > n) w = v[i], k ++;
     }
-    for(auto i:b) {
-        mp[i] ++;
-        if(mp[i] > 1 || i >= n) c.push_back(i);
+    if(n == 2 && a[1] >= 1 && a[1] <= 3) {
+        cout << "YES" <<endl;
+        return;
     }
-    // if(x + y == b.back()) k = 1;
-    for(auto i:c) {
-        // cout<< i << " ";
-        if(x + y == i) k = 1;
+    for(int i = 1; i <= n; ++ i) {
+        if(mp[i] > 1) k ++, w = i;
+        if(mp[i] == 0) e ++, (x == 0 ? x = i : y = i);
     }
-    // cout<<endl;
-    // cout<< x << " " << y << " " << k <<endl;
-    if(y == 0 && k == 0) cout<< "YES" <<endl;
-    else if(k >= 1) cout<< "YES" <<endl;
-    else cout<< "NO" <<endl;
-
+    if((w == 0 && x == n && y == 0) || (y == 0 && x >= 1 && x <= n)) cout << "YES" <<endl;
+    else if(e > 2 || k > 1 || x + y != w) cout<< "NO" <<endl;
+    else cout<< "YES" <<endl;
 }
 signed main () {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int t; cin>> t; while(t --)
         solve();
 }

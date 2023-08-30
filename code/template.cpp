@@ -65,7 +65,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define mp make_pair
 #define fi first
 #define se second
-#define lowbit(x) x&(-x)
+#define lowbit(x) (x&(-x))
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;

@@ -45,17 +45,15 @@ struct BIT {
         if(r < l) swap(l, r);
         return sum(r) - sum(l - 1);
     }
-    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k, 配合权值树状数组实现查询第 k 小
+    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k
     int find(T k) {
-        int pos = 0;
-        // 
-        for(int j = 30; j >= 0; -- j) {
-            if(pos + (1 << j) <= n && c[pos + (1 << j)] <= k) {
-                pos += (1 << j);
-                k -= c[pos];
-            }
+        int l = 0, r = n;
+        while(l < r) {
+            int mid = l + r >> 1;
+            if(sum(mid) >= k) r = mid;
+            else l = mid + 1;
         }
-        return pos;
+        return l;
     }
 };
 

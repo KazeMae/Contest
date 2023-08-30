@@ -9,7 +9,7 @@
 | Memory:  %$MemoryL$% MB
 | Time:    %$TimeL$% ms
 *******************************/
-// #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -79,7 +79,7 @@ void solve() {
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }

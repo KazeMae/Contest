@@ -1,0 +1,16 @@
+[
+	{
+		"correct_answers":
+		[
+			"aimn\naandp\nceefhorst\naafmirr\ndnorsu"
+		],
+		"test": "5\n4 2\nnima\n5 3\npanda\n9 2\ntheforces\n7 3\namirfar\n6 4\nrounds\n"
+	},
+	{
+		"correct_answers":
+		[
+			"aba"
+		],
+		"test": "1\n3 3\naba\n\n"
+	}
+]

@@ -93,39 +93,37 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
 }
 
 void solve() {
-    int n, k = 0, f = 0, mx = -40, mi = 0;
+    int n, m = 0;
     cin>> n;
-    vector<int> a(n);
+    vector<int> a(n), f, k;
     for(int i = 0; i < n; ++ i) {
         cin>> a[i];
-        if(a[i] > 0) ++ k;
-        else ++ f;
-        if(a[i] > mx) mx = a[i], mi = i + 1;
+        if(a[i] < 0) f.push_back(i);
+        if(a[i] > 0) k.push_back(i);
+        if(abs(a[i]) > abs(a[m])) m = i;
     }
-    if(k == n) {
-        cout<< n - 1 <<endl;
-        for(int i = 0; i < n - 1; ++ i) {
-            cout<< i + 2 << " " << i + 1 <<endl;
-        }
-    }else if(f == n) {
-         cout<< n - 1 <<endl;
-        for(int i = n - 2; i >= 0; -- i) {
-            cout<< i + 2 << " " << i + 1 <<endl;
-        }
+    if(a[m] == 0) {
+        cout<< 0 << endl;
+        return;
+    }
+    vector<PII> ans;
+    while(abs(a[m]) < 20) {
+        a[m] *= 2;
+        ans.emplace_back(m + 1, m + 1);
+    }
+    if(a[m] > 0) {
+        for(auto i:f) 
+            ans.emplace_back(i + 1, m + 1);
+        for(int i = 0; i < n - 1; ++ i)
+            ans.emplace_back(i + 2, i + 1);
     }else {
-        vector<PII> ans;
-        while(a[mi - 1] <= 20) {
-            ans.push_back({mi, mi});
-            a[mi - 1] *= 2;
-        }
-        if(mi != 1) ans.push_back({1, mi});
-        for(int i = 0; i < n - 1; ++ i) ans.push_back({i + 2, i + 1});
-        cout<< ans.size() <<endl;
-        for(auto i:ans) {
-            cout<< i.first << " " << i.second <<endl;
-        }
+        for(auto i:k) 
+            ans.emplace_back(i + 1, m + 1);
+        for(int i = n - 2; i >= 0; -- i)
+            ans.emplace_back(i + 1, i + 2);
     }
-
+    cout<< ans.size() <<endl;
+    for(auto i:ans) cout<< i.first << " " << i.second <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

@@ -1,9 +1,15 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: C. Divisor Chain
+| Contest: Harbour.Space Scholarship Contest 2023-2024 (Div. 1 + Div. 2)
+| URL:     https://codeforces.com/contest/1864/problem/C
+| When:    2023-08-26 22:50:22
+| 
+| Memory:  256 MB
+| Time:    1000 ms
+*******************************/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -43,9 +49,7 @@ using PLI = pair<ll, int>;
 using PLL = pair<ll, ll>;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
-}
+ll myRand(ll B){ return (ull)rng() % B; }
 
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
@@ -53,15 +57,15 @@ ll myRand(ll B) {
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
+// #define max(a, b) ((a) > (b) ? (a) : (b))
+// #define min(a, b) ((a) < (b) ? (a) : (b))
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
 #define mp make_pair
 #define fi first
 #define se second
-#define lowbit(x) ((x) & (-x))
+#define lowbit(x) (x&(-x))
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -72,7 +76,7 @@ const int MOD = 998244353;
 
 // #define int long long
 
-long long qmi(long long m, long long k, long long p = 2e18) {
+long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
@@ -80,21 +84,45 @@ long long qmi(long long m, long long k, long long p = 2e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
     y -= (a/b) * x;  
     return d;
 }
-
+bool is_prime(int x){
+    if (x < 2) return false;
+    for (int i = 2; i <= x / i; i ++ )
+        if (x % i == 0)
+            return false;
+    return true;
+}
 void solve() {
-
+    int x, n;
+    cin>> x;
+    n = x;
+    vector<int> ans;
+    vector<bool> a;
+    while(n > 0) {
+        a.push_back(n % 2);
+        n /= 2;
+    }
+    ans.push_back(x);
+    while(lowbit(x) != x) {
+        ans.push_back(x - lowbit(x));
+        x -= lowbit(x);
+    }
+    while(x) {
+        ans.push_back(x >> 1);
+        x >>= 1;
+    }
+    ans.erase(ans.end() - 1);
+    cout<< ans.size() <<endl;
+    for(auto i:ans) cout<< i << " "; cout <<endl;
 }
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
