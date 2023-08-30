@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: C. MEX Repetition
+| Problem: B. Split Sort
 | Contest: Pinely Round 2 (Div. 1 + Div. 2)
-| URL:     https://codeforces.com/contest/1863/problem/C
-| When:    2023-08-30 22:52:54
+| URL:     https://codeforces.com/contest/1863/problem/B
+| When:    2023-08-30 22:44:22
 | 
 | Memory:  256 MB
-| Time:    2000 ms
+| Time:    1000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -92,73 +92,21 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-template<class T>
-struct BIT {
-    int n;
-    vector<T> c;
-    // 定义树状数组
-    BIT(int len) : n(len), c(n + 1) {}
-    // 初始化
-    void init(vector<int> &a) {
-        for(int i = 1, j = 0; i <= n; ++ i) {
-            c[i] += a[i], j = i + ((i) & (-i));
-            if(j <= n) c[j] += c[i];
-        }
-    }
-    // 修改 a[x] += s
-    void add(int x, T s) {
-        assert(x != 0);
-        for(; x <= n; x += ((x) & (- x)))
-            c[x] += s;
-    }
-    // 查询 a[1]...a[x] 的和
-    T sum(int x) {
-        assert(x <= n);
-        T sum = 0;
-        for(; x; x -= ((x) & (- x))) 
-            sum += c[x];
-        return sum;
-    }
-    // 查询 a[l]...a[r] 的和
-    T getsum(int l, int r) {
-        if(r < l) swap(l, r);
-        return sum(r) - sum(l - 1);
-    }
-    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k, 配合权值树状数组实现查询第 k 小
-    int find() {
-        int l = 0, r = n;
-        while(l < r) {
-            int mid = l + r >> 1;
-            if(sum(mid) <= mid - 1) r = mid;
-            else l = mid + 1;
-        }
-        return l;
-    }
-};
-
 void solve() {
-    int n, k, res, idx = 0;
-    cin>> n >> k;
-    vector<int> a(n), b(n + 1);
-    BIT<int> tree(n + 5);
-    for(int i = 0; i < n; ++ i) {
+    int n;
+    cin>> n;
+    vector<int> a(n + 1);
+    map<int, int> mp;
+    for(int i = 1; i <= n; ++ i) {
         cin>> a[i];
-        tree.add(a[i] + 1, 1);
+        mp[a[i]] = i;
     }
-    res = tree.find() - 1;
+    int ans = 0;
+    for(int i = 1; i < n; ++ i) {
+        if(mp[i] > mp[i + 1]) ans ++;
+    }
+    cout<< ans <<endl;
 
-    // 循环节 1 = n + 1
-    k %= (n + 1);
-    b[k] = res;
-    for(int i = k + 1; i <= n; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
-    }
-    for(int i = 0; i < k; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
-    }
-    for(int i = 1; i <= n; ++ i) cout << b[i] << " "; cout <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

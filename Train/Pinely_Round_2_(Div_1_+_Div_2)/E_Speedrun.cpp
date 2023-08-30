@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: C. MEX Repetition
+| Problem: E. Speedrun
 | Contest: Pinely Round 2 (Div. 1 + Div. 2)
-| URL:     https://codeforces.com/contest/1863/problem/C
-| When:    2023-08-30 22:52:54
+| URL:     https://codeforces.com/contest/1863/problem/E
+| When:    2023-08-31 01:09:50
 | 
 | Memory:  256 MB
 | Time:    2000 ms
@@ -92,76 +92,67 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-template<class T>
-struct BIT {
-    int n;
-    vector<T> c;
-    // 定义树状数组
-    BIT(int len) : n(len), c(n + 1) {}
-    // 初始化
-    void init(vector<int> &a) {
-        for(int i = 1, j = 0; i <= n; ++ i) {
-            c[i] += a[i], j = i + ((i) & (-i));
-            if(j <= n) c[j] += c[i];
+vector<int> e[N], ue[N];
+vector<int> w(N);
+int n, m, k;
+int dist[N];        // 存储每个点到1号点的最短距离
+bool st[N];     // 存储每个点是否在队列中
+
+
+int spfa()
+{
+    memset(dist, 0, sizeof dist);
+    dist[0] = 0;
+
+    queue<int> q;
+    q.push(0);
+    st[0] = true;
+
+    for(auto i:e[0]) cout<< i << " "; cout << endl;
+    while (q.size()) {
+        auto t = q.front();
+        q.pop();
+
+        st[t] = false;
+
+        for (auto i:e[t]) {
+            int j = i;
+            if (dist[j] < (w[j] > w[i] ? (dist[t] / 24 + 1) * 24 + w[j] : dist[t] + w[j])) {
+                dist[j] = dist[t] + w[i];
+                if (!st[j])     // 如果队列中已存在j，则不需要将j重复插入
+                {
+                    q.push(j);
+                    st[j] = true;
+                }
+            }
         }
     }
-    // 修改 a[x] += s
-    void add(int x, T s) {
-        assert(x != 0);
-        for(; x <= n; x += ((x) & (- x)))
-            c[x] += s;
-    }
-    // 查询 a[1]...a[x] 的和
-    T sum(int x) {
-        assert(x <= n);
-        T sum = 0;
-        for(; x; x -= ((x) & (- x))) 
-            sum += c[x];
-        return sum;
-    }
-    // 查询 a[l]...a[r] 的和
-    T getsum(int l, int r) {
-        if(r < l) swap(l, r);
-        return sum(r) - sum(l - 1);
-    }
-    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k, 配合权值树状数组实现查询第 k 小
-    int find() {
-        int l = 0, r = n;
-        while(l < r) {
-            int mid = l + r >> 1;
-            if(sum(mid) <= mid - 1) r = mid;
-            else l = mid + 1;
-        }
-        return l;
-    }
-};
+
+    if (dist[n] == 0x3f3f3f3f) return -1;
+    return dist[n];
+}
 
 void solve() {
-    int n, k, res, idx = 0;
-    cin>> n >> k;
-    vector<int> a(n), b(n + 1);
-    BIT<int> tree(n + 5);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
-        tree.add(a[i] + 1, 1);
-    }
-    res = tree.find() - 1;
+    for(int i = 1; i <= n; ++ i) 
+        cin>> w[i];
 
-    // 循环节 1 = n + 1
-    k %= (n + 1);
-    b[k] = res;
-    for(int i = k + 1; i <= n; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
+    for(int i = 0; i < m; ++ i) {
+        int u, v;
+        cin>> u >> v;
+        e[u].push_back(v);
+        ue[v].push_back(u);
     }
-    for(int i = 0; i < k; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
+
+    for(int i = 1; i <= n; ++ i) {
+        if(ue[i].empty()) e[0].push_back(i);
+        sort(e[i].begin(), e[i].end());
     }
-    for(int i = 1; i <= n; ++ i) cout << b[i] << " "; cout <<endl;
+    sort(e[0].begin(), e[0].end());
+    cout<< spfa() <<endl;
+
 }
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;

@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: C. MEX Repetition
+| Problem: D. Two-Colored Dominoes
 | Contest: Pinely Round 2 (Div. 1 + Div. 2)
-| URL:     https://codeforces.com/contest/1863/problem/C
-| When:    2023-08-30 22:52:54
+| URL:     https://codeforces.com/contest/1863/problem/D
+| When:    2023-08-30 23:55:20
 | 
 | Memory:  256 MB
-| Time:    2000 ms
+| Time:    1000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -62,7 +62,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-#define mp make_pair
+#define mkp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
@@ -92,77 +92,89 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-template<class T>
-struct BIT {
-    int n;
-    vector<T> c;
-    // 定义树状数组
-    BIT(int len) : n(len), c(n + 1) {}
-    // 初始化
-    void init(vector<int> &a) {
-        for(int i = 1, j = 0; i <= n; ++ i) {
-            c[i] += a[i], j = i + ((i) & (-i));
-            if(j <= n) c[j] += c[i];
-        }
-    }
-    // 修改 a[x] += s
-    void add(int x, T s) {
-        assert(x != 0);
-        for(; x <= n; x += ((x) & (- x)))
-            c[x] += s;
-    }
-    // 查询 a[1]...a[x] 的和
-    T sum(int x) {
-        assert(x <= n);
-        T sum = 0;
-        for(; x; x -= ((x) & (- x))) 
-            sum += c[x];
-        return sum;
-    }
-    // 查询 a[l]...a[r] 的和
-    T getsum(int l, int r) {
-        if(r < l) swap(l, r);
-        return sum(r) - sum(l - 1);
-    }
-    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k, 配合权值树状数组实现查询第 k 小
-    int find() {
-        int l = 0, r = n;
-        while(l < r) {
-            int mid = l + r >> 1;
-            if(sum(mid) <= mid - 1) r = mid;
-            else l = mid + 1;
-        }
-        return l;
-    }
-};
+char mp[505][505], mp1[505][505];
 
 void solve() {
-    int n, k, res, idx = 0;
-    cin>> n >> k;
-    vector<int> a(n), b(n + 1);
-    BIT<int> tree(n + 5);
+    int n, m, w = 0, b = 0;
+    cin>> n >> m;
+    string s;
     for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
-        tree.add(a[i] + 1, 1);
+        cin>> s;
+        for(int j = 0; j < m; ++ j) mp[i][j] = mp1[i][j] = s[j];
     }
-    res = tree.find() - 1;
-
-    // 循环节 1 = n + 1
-    k %= (n + 1);
-    b[k] = res;
-    for(int i = k + 1; i <= n; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < m; ++ j) {
+            if(mp[i][j] == 'U') {
+                mp[i][j] = 'B';
+                mp[i + 1][j] = 'W';
+            }else if(mp[i][j] == 'L') {
+                mp[i][j] = 'B';
+                mp[i][j + 1] = 'W';
+            }
+        }
     }
-    for(int i = 0; i < k; ++ i) {
-        if(i == k) i ++;
-        b[i] = a[idx], idx ++;
+    for(int i = 0; i < n; ++ i) {
+        w = 0, b = 0;
+        for(int j = 0; j < m; ++ j) {
+            if(mp[i][j] == 'W') w ++;
+            if(mp[i][j] == 'B') b ++;
+        }
+        if(w != b) {
+            int k = abs(w - b) / 2;
+            for(int j = 0; j < m; ++ j) {
+                if(mp1[i][j] == 'U') swap(mp[i][j], mp[i + 1][j]), -- k;
+                if(k == 0) break;
+            }
+        }
     }
-    for(int i = 1; i <= n; ++ i) cout << b[i] << " "; cout <<endl;
+    for(int j = 0; j < m; ++ j) {
+        w = 0, b = 0;
+        for(int i = 0; i < n; ++ i) {
+            if(mp[i][j] == 'W') w ++;
+            if(mp[i][j] == 'B') b ++;
+        }
+        if(w != b) {
+            int k = abs(w - b) / 2;
+            for(int i = 0; i < n; ++ i) {
+                if(mp1[i][j] == 'L') swap(mp[i][j], mp[i][j + 1]), -- k;
+                if(k == 0) break;
+            }
+        }
+    }
+    for(int i = 0; i < n; ++ i) {
+        w = 0, b = 0;
+        for(int j = 0; j < m; ++ j) {
+            if(mp[i][j] == 'W') w ++;
+            if(mp[i][j] == 'B') b ++;
+        }
+        if(w != b) {
+            cout << -1 <<endl;
+            return;
+        }
+    }
+    for(int j = 0; j < m; ++ j) {
+        w = 0, b = 0;
+        for(int i = 0; i < n; ++ i) {
+            if(mp[i][j] == 'W') w ++;
+            if(mp[i][j] == 'B') b ++;
+        }
+        if(w != b) {
+            cout << -1 <<endl;
+            return;
+        }
+    }
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < m; ++ j) cout<< mp[i][j]; cout << endl;
+    }
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --) {
         solve();
+        // for(int i = 0; i < n; ++ i) {
+        //     for(int j = 0; j < m; ++ j) cout<< mp[i][j]; cout <<endl;
+        // }
+        // cout <<endl;
+    }
   return 0;
 }
