@@ -32,8 +32,6 @@
 #include <vector>
 using namespace std;
 
-// #define int long long
-
 using ll = long long;
 using Ld = long double;
 using uint = unsigned int;
@@ -72,6 +70,8 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
+// #define int long long
+
 long long qmi(long long m, long long k, long long p = 2e18) {
     int res = 1 % p, t = m;
     while (k) {
@@ -90,10 +90,30 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
+int R9(long long k) {
+    int cnt = 0;
+    while(k != 0) {
+        cnt += k % 9;
+        k /= 9;
+    }
+    return cnt;
+}
+
 void solve() {
-    int n;
-    cin>> n;
-    cout<< ((n % 4 == 1 || n % 4 == 2) ? "odd" : "even") <<endl; 
+    int n, q;
+    cin>> n >> q;
+    vector<ll> a(n + 1);
+    vector<int> cnt(n + 1), pre(n + 1);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i + 1];
+        cnt[i + 1] = R9(a[i + 1]);
+        pre[i + 1] = pre[i] + cnt[i + 1];
+    }
+    while(q --) {
+        int l, r;
+        cin>> l >> r;
+        cout<< pre[r] - pre[l - 1] <<endl;
+    }
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

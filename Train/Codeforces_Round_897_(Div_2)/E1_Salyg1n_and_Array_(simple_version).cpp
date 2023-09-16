@@ -1,9 +1,15 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: E1. Salyg1n and Array (simple version)
+| Contest: Codeforces Round 897 (Div. 2)
+| URL:     https://codeforces.com/contest/1867/problem/E1
+| When:    2023-09-11 23:59:31
+| 
+| Memory:  256 MB
+| Time:    1000 ms
+*******************************/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -43,9 +49,7 @@ using PLI = pair<ll, int>;
 using PLL = pair<ll, ll>;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
-}
+ll myRand(ll B){ return (ull)rng() % B; }
 
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
@@ -53,15 +57,15 @@ ll myRand(ll B) {
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
+// #define max(a, b) ((a) > (b) ? (a) : (b))
+// #define min(a, b) ((a) < (b) ? (a) : (b))
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
 #define mp make_pair
 #define fi first
 #define se second
-#define lowbit(x) ((x) & (-x))
+#define lowbit(x) (x&(-x))
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -72,7 +76,7 @@ const int MOD = 998244353;
 
 // #define int long long
 
-long long qmi(long long m, long long k, long long p = 2e18) {
+long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
@@ -80,9 +84,7 @@ long long qmi(long long m, long long k, long long p = 2e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -91,17 +93,26 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
 }
 
 void solve() {
-    int n, k;
+    int i = 1, n, k;
+    long long a = 0, ans = 0, ans1 = 0;
     cin>> n >> k;
-    int i = 1;
-    while(i < 100) {
-        cout<< i << " " << i + k - 1 <<endl;
-        i += k;
+    for(i = 1; i <= n - k + 1; i += k) {
+        cout<< "? " << i << endl;
+        cin>> a;
+        if(a == -1) break;
+        ans ^= a;
     }
+    cout<< "? " << (i + n) / 2 - k + 1 <<endl;
+    cin>> a;
+    ans1 ^= a;
+    cout<< "? " << n - k + 1 <<endl;
+    cin>> a;
+    ans1 ^= a;
+    cout<< "! " << (ans ^ ans1) <<endl;
 }
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // int _ = 1; cin>> _; while(_ --)
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
