@@ -4,14 +4,14 @@
 		[
 			"5"
 		],
-		"test": "5 2\n2 2 4 4 4\n"
+		"test": "5 2\n2 2 4 4 4\n\n"
 	},
 	{
 		"correct_answers":
 		[
 			"6"
 		],
-		"test": "7 1\n3 2 3 2 2 2 3\n"
+		"test": "7 1\n3 2 3 2 2 2 3\n\n"
 	},
 	{
 		"correct_answers":
