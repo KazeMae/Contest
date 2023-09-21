@@ -53,7 +53,7 @@ ll myRand(ll B) {
 #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
+// #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
@@ -91,12 +91,10 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
 }
 
 void solve() {
-    int n, k, mx = 0;;
+    int n, k, mx = 0, cnt = 1;
     cin>> n >> k;
     vector<int> a(n);
-    map<int, int> mp;
-    map<int, int> sum;
-    int cnt = 1;
+    map<int, int> mp, sum, ct;
     for(int i = 0; i < n; ++ i) {
         cin>> a[i];
         sum[a[i]] ++;
@@ -107,10 +105,24 @@ void solve() {
         }
     }
     mp[a[n - 1]] = max(cnt, mp[a[n - 1]]);
-    for(auto i : mp) {
-        mx = max(i.second + sum[i.first + k], mx);
-        mx = max(sum[i.first], mx);
-    }
+    if(k != 0) {
+        for(auto i : mp) {
+            mx = max(i.second + sum[i.first + k], mx);
+            mx = max(sum[i.first], mx);
+        }
+        cnt = 1;
+        for(int i = 0; i < n; ++ i) {
+            if(i != 0)if(a[i] != a[i - 1]) {
+                mx = max({mx, 
+                    (sum[a[i - 1]] - ct[a[i - 1]] + cnt) + ct[a[i - 1] - k], 
+                    ct[a[i - 1]] + (sum[a[i - 1] - k] - ct[a[i - 1] - k])});
+                // cout<< i << " " << cnt <<endl;
+                cnt = 1;
+            }else ++ cnt;
+            ct[a[i]] ++;
+        }
+        mx = max({mx, (sum[a[n - 1]] - ct[a[n - 1]] + cnt) + ct[a[n - 1] - k], ct[a[n - 1]] + (sum[a[n - 1] - k] - ct[a[n - 1] - k])});
+    }else for(auto i : mp) mx = max(sum[i.first], mx);
     cout<< mx <<endl;
 }
 signed main() {

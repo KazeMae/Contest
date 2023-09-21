@@ -1,0 +1,16 @@
+[
+	{
+		"correct_answers":
+		[
+			"RRDD"
+		],
+		"test": "3 3 3\n"
+	},
+	{
+		"correct_answers":
+		[
+			"LLLDDDUR"
+		],
+		"test": "4 3 2\n"
+	}
+]

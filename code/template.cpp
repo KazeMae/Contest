@@ -92,6 +92,12 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
+long long Sqrt(long long N) {
+    __int128 sqrtN = sqrtl(N) - 1;
+    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
+    return sqrtN;
+}
+
 void solve() {
 
 }

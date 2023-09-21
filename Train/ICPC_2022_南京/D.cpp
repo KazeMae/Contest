@@ -90,28 +90,52 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-void solve() {
-    int n, k, mx = 0;;
-    cin>> n >> k;
-    vector<int> a(n);
-    map<int, int> mp;
-    map<int, int> sum;
-    int cnt = 1;
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
-        sum[a[i]] ++;
-        if(i != 0) if(a[i] == a[i - 1]) ++ cnt;
-        else {
-            mp[a[i - 1]] = max(cnt, mp[a[i - 1]]);
-            cnt = 1;
+long long n, k, m, c, d;
+
+bool check(long long mid, vector<long long> &a) {
+    int cnt = 0;
+    for(int i = 1; i <= n; ++ i) {
+        cnt += (a[i] >= mid);
+    }
+    if(cnt >= k) return true;
+
+    vector<int> f(n + 5);
+    for(int i = 1; i <= n; ++ i) {
+        if(a[i] < mid) {
+            int ut = min(m - 1, i - 1);
+            if(a[i] + c + d * ut < mid) continue;
+            else f[max(m, i)] ++;
+
+            if(a[i] + c >= mid) f[min(n + 1, i + m)] --;
+            else {
+                long long t = mid - a[i] - c;
+                int pos = t / d - (t % d == 0);
+                f[min(n + 1, i + m - pos - 1)] --;
+            }
         }
     }
-    mp[a[n - 1]] = max(cnt, mp[a[n - 1]]);
-    for(auto i : mp) {
-        mx = max(i.second + sum[i.first + k], mx);
-        mx = max(sum[i.first], mx);
+
+    for(int i = m; i <= n; ++ i) {
+        cnt += f[i];
+        if(cnt >= k) return true;
     }
-    cout<< mx <<endl;
+    return false;
+}   
+
+
+void solve() {
+    cin>> n >> k >> m >> c >> d;
+    vector<long long> a(n + 1);
+    for(int i = 1; i <= n; ++ i) {
+        cin>> a[i];
+    }
+    long long l = 0, r = 1e15;
+    while(l < r) {
+        long long mid = l + r + 1 >> 1;
+        if(check(mid, a)) l = mid;
+        else r = mid - 1;
+    }
+    cout<< l <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
