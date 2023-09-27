@@ -90,34 +90,17 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-int R9(long long k) {
-    int cnt = 0;
-    while(k != 0) {
-        cnt += k % 9;
-        k /= 9;
-    }
-    return cnt;
-}
-
 void solve() {
-    int n, q;
-    cin>> n >> q;
-    vector<ll> a(n + 1);
-    vector<int> cnt(n + 1), pre(n + 1);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i + 1];
-        cnt[i + 1] = R9(a[i + 1]);
-        pre[i + 1] = pre[i] + cnt[i + 1];
-    }
-    while(q --) {
-        int l, r;
-        cin>> l >> r;
-        cout<< pre[r] - pre[l - 1] <<endl;
-    }
+
 }
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int _ = 1; cin>> _; while(_ --)
-        solve();
-  return 0;
+    int n;
+    scanf("%d", &n);
+    while(n --) {
+        char b1;
+        scanf("%c", &b1);
+        scanf("%c", &b1);
+        printf("%c\n", b1 - 32);
+    }
+    return 0;
 }

@@ -146,6 +146,7 @@ void solve() {
     cin>> n;
     BIT<int> tree(N);
     vector<int> rank(n + 1);
+    unordered_map<int, int> 
     for(int i = 1; i <= n; ++ i) {
         cin>> a[i].data;
         a[i].id = i;
@@ -158,6 +159,7 @@ void solve() {
         tree.add(rank[i], 1);
         if(i & 1) cout<< a[tree.find((i + 1) / 2)].data <<endl;
     }
+    cout<< a[tree.find(n - 1)].data <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
