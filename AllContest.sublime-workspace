@@ -257,18 +257,10 @@
 			{
 				"buffer_size": 3070,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "/*******************************\n| Author:  KAZE_mae\n| Website: https://cloudfall.top\n| Problem: A. Goals of Victory\n| Contest: Codeforces Round 902 (Div. 2, based on COMPFEST 15 - Final Round)\n| URL:     https://codeforces.com/contest/1877/problem/A\n| When:    2023-10-10 17:06:54\n| \n| Memory:  256 MB\n| Time:    1000 ms\n*******************************/\n\n// #include <bits/stdc++.h>\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include <chrono>\n#include <cmath>\n#include <complex>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <ctime>\n#include <deque>\n#include <iomanip>\n#include <iostream>\n#include <map>\n#include <queue>\n#include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include <string>\n#include <unordered_map>\n#include <unordered_set>\n#include <utility>\n#include <vector>\nusing namespace std;\n\nusing ll = long long;\nusing Ld = long double;\nusing uint = unsigned int;\nusing ull = unsigned long long;\ntemplate <typename T>\nusing pair2 = pair<T, T>;\nusing PII = pair<int, int>;\nusing PLI = pair<ll, int>;\nusing PLL = pair<ll, ll>;\n\nmt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\nll myRand(ll B){ return (ull)rng() % B; }\n\n#define endl '\\n'\n#define debug(x) cout << #x << \" = \" << (x) << endl\n#define abs(a) ((a) >= 0 ? (a) : -(a))\n#define sz(x) ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define mem(a, b) memset(a, b, sizeof(a))\n// #define max(a, b) ((a) > (b) ? (a) : (b))\n// #define min(a, b) ((a) < (b) ? (a) : (b))\n#define rep(i, a, n) for (int i = a; i <= n; ++i)\n#define per(i, n, a) for (int i = n; i >= a; --i)\n#define pb push_back\n#define mp make_pair\n#define fi first\n#define se second\n#define lowbit(x) (x&(-x))\n\nconst int N = 1000005; // 1e6 + 5\nconst int INF = 0x3f3f3f3f;\nconst long long LNF = 0x3f3f3f3f3f3f3f3f;\nconst double EPS = 1e-7;\nconst double PI = acos(-1.0);\nconst int MOD = 998244353;\n\n// #define int long long\n\ntemplate<class T>\nconstexpr T power(T a, long long b) {\n    T res = 1;\n    for (; b; b /= 2, a *= a) {\n        if (b % 2) {\n            res *= a;\n        }\n    }\n    return res;\n}\n\nconstexpr long long mul(long long a, long long b, long long p) {\n    long long res = a * b - long long(1.L * a * b / p) * p;\n    res %= p;\n    if (res < 0) {\n        res += p;\n    }\n    return res;\n}\n\nlong long qmi(long long m, long long k, long long p = 9e18) {\n    int res = 1 % p, t = m;\n    while (k) {\n        if (k&1) res = res * t % p;\n        t = t * t % p, k >>= 1;\n    }\n    return res;\n}\ninline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}\nlong long exgcd(long long a, long long b, long long &x, long long &y) {  \n    if (!b) { x = 1; y = 0; return a; }  \n    int d = exgcd(b, a % b, y, x);\n    y -= (a/b) * x;  \n    return d;\n}\n\nlong long Sqrt(long long N) {\n    __int128 sqrtN = sqrtl(N) - 1;\n    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;\n    return sqrtN;\n}\n\nvoid solve() {\n\n}\nsigned main() {\n    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);\n    // cout<< setiosflags(ios::fixed) << setprecision(10);\n    int _ = 1; cin>> _; while(_ --)\n        solve();\n  return 0;\n}\n",
-			"file": "Train/Codeforces_Round_902_(Div_2,_based_on_COMPFEST_15_-_Final_Round)/A_Goals_of_Victory.cpp",
-			"file_size": 3298,
-			"file_write_time": 133414024790450378,
-			"settings":
-			{
-				"buffer_size": 3168,
-				"line_ending": "Windows"
-			}
+			},
+			"undo_stack":
+			[
+			]
 		}
 	],
 	"build_system": "",
@@ -523,18 +515,40 @@
 	"expanded_folders":
 	[
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest",
-		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/code",
-		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train"
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Data",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Study",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/NowCoder"
 	],
 	"file_history":
 	[
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/FastOlympicCodingHook/FastOlympicCodingHook.sublime-settings",
+		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/FastOlympicCodingHook/Context.sublime-menu",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/gym/104128/D_Chat_Program.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/nowcoder/57359/D_Cirnos_Perfect_Equation_Class.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/nowcoder/57359/Cirnos_Perfect_Equation_Class.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/Luogu/P1002_[NOIP2002_普及组]_过河卒.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1886/C_Decreasing_String.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1886/F_Diamond_Theft.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/atcoder/arc166/A_-_Replace_C_or_Swap_AB.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/vjudge/576636/I_-_Montys_Hall.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/acwing/A_+_B.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Data/in.txt",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/A_Goals_of_Victory.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/B_Helmets_in_Night_Light.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/C_Joyboard.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/D_Effects_of_Anti_Pimples.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/E_Autosynthesis.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/F_Lexichromatography.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/1877/G_Ball-Stackable.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/codeforces/A_Goals_of_Victory.cpp",
+		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/1877/A_Goals_of_Victory.cpp",
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/Codeforces_Round_902_(Div_2,_based_on_COMPFEST_15_-_Final_Round)/A_Goals_of_Victory.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/code/template.cpp",
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/code/Kinnc.cpp",
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/code/Liangy.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_156_(Rated_for_Div_2)/C_Decreasing_String.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_156_(Rated_for_Div_2)/B_Fear_of_the_Dark.cpp",
-		"/C/Users/风前絮/AppData/Roaming/Sublime Text/Packages/FastOlympicCodingHook/FastOlympicCodingHook.sublime-settings",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Data/in.txt",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_156_(Rated_for_Div_2)/A_Sum_of_Three.cpp",
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/code/Liuux.cpp",
@@ -542,7 +556,6 @@
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Train/Codeforces_Round_900_(Div_3)/E_Iva_&amp;_Pav.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Study/数据结构/线段树_最小值个数.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Data/out.txt",
-		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Data/in.txt",
 		"/C/Users/风前絮/OneDrive - Southwest University of Science and Technology/Code/Contest/Data/out.txt",
 		"/C/Users/风前絮/OneDrive/Code/Contest/code/Zhenen.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_900_(Div_3)/D_Reverse_Madness.cpp",
@@ -636,26 +649,7 @@
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_153_(Rated_for_Div_2)/A_Not_a_Substring.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_153_(Rated_for_Div_2)/B_Fancy_Coins.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Educational_Codeforces_Round_153_(Rated_for_Div_2)/C_Game_on_Permutation.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/HDOJ/Equalize_the_Array.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_893_(Div_2)/B_The_Walkway.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/SCPC/爬台阶.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_893_(Div_2)/A_Buttons.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_893_(Div_2)/C_Yet_Another_Permutation_Problem.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_892_(Div_2)/C_Another_Permutation_Problem.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/NowCoder/Puzzle_Square_Jam.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/NowCoder/Semi-Puzzle_Brain_Storm.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/code/.cph/.test.cpp_864bc1e38d68a3150c4a66e84246ea0c.prob",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/NowCoder/Permutation_and_Primes.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/NowCoder/Insert_1,_Insert_2,_Insert_3,_.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Study/合并石子2.cpp",
-		"/D/Code/Sublime Merge/Packages/C++.sublime-package",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/NowCoder/Alive_Fossils.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Luogu/P8872_[传智杯_#5_初赛]_D-莲子的物理热力学.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Study/dp/合并石子.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_891_(Div_3)/D_Strong_Vertices.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_891_(Div_3)/F_Sum_and_Product.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_891_(Div_3)/C_Assembly_via_Minimums.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_891_(Div_3)/A_Array_Coloring.cpp"
+		"/C/Users/风前絮/OneDrive/Code/Contest/Train/HDOJ/Equalize_the_Array.cpp"
 	],
 	"find":
 	{
@@ -737,26 +731,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -767,11 +751,16 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -782,17 +771,23 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
-								"bh_round_content"
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
+							"is_init_dirty_state": false,
 							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive%20-%20Southwest%20University%20of%20Science%20and%20Technology/Code/Contest/code/Kinnc.cpp",
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/C++/C++.sublime-syntax",
@@ -803,7 +798,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"stack_multiselect": false,
 					"type": "text"
 				},
@@ -900,6 +895,7 @@
 								"bh_round_close",
 								"bh_round_content"
 							],
+							"is_init_dirty_state": false,
 							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive%20-%20Southwest%20University%20of%20Science%20and%20Technology/Code/Contest/code/Liangy.cpp",
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/C++/C++.sublime-syntax",
@@ -910,7 +906,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"stack_multiselect": false,
 					"type": "text"
 				},
@@ -951,51 +947,6 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -1005,8 +956,54 @@
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
-								"bh_round_content"
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
+							"is_init_dirty_state": false,
 							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive%20-%20Southwest%20University%20of%20Science%20and%20Technology/Code/Contest/code/Liuux.cpp",
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/C++/C++.sublime-syntax",
@@ -1024,6 +1021,7 @@
 				{
 					"buffer": 3,
 					"file": "code/template.cpp",
+					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1034,8 +1032,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								1906,
+								1906
 							]
 						],
 						"settings":
@@ -1045,12 +1043,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										2029,
+										2030
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										1905,
+										1906
+									]
 								},
 								"unmatched":
 								{
@@ -1058,51 +1071,6 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -1112,8 +1080,55 @@
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
-								"bh_round_content"
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
 							],
+							"color_scheme": "Packages/Monokai++/themes/Monokai++.tmTheme",
+							"is_init_dirty_state": false,
 							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive%20-%20Southwest%20University%20of%20Science%20and%20Technology/Code/Contest/code/template.cpp",
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/C++/C++.sublime-syntax",
@@ -1121,115 +1136,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Train/Codeforces_Round_902_(Div_2,_based_on_COMPFEST_15_-_Final_Round)/A_Goals_of_Victory.cpp",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3168,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive%20-%20Southwest%20University%20of%20Science%20and%20Technology/Code/Contest/Train/Codeforces_Round_902_%28Div_2%2C_based_on_COMPFEST_15_-_Final_Round%29/A_Goals_of_Victory.cpp",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 396.0,
+						"translation.y": 1344.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1348,7 +1255,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 369.0,
+	"side_bar_width": 268.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -1,12 +1,12 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: A. Goals of Victory
-| Contest: Codeforces Round 902 (Div. 2, based on COMPFEST 15 - Final Round)
-| URL:     https://codeforces.com/contest/1877/problem/A
-| When:    2023-10-10 17:50:37
+| Problem: I - Monty's Hall
+| Contest: Virtual Judge - Namomo Summer Camp 23 Day 1
+| URL:     https://vjudge.net/contest/576636#problem/I
+| When:    2023-10-10 22:30:55
 | 
-| Memory:  256 MB
+| Memory:  2028 MB
 | Time:    1000 ms
 *******************************/
 
