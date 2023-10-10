@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Sum of Three
+| Contest: Educational Codeforces Round 156 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1886/problem/A
+| When:    2023-10-09 22:35:38
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -76,26 +76,6 @@ const int MOD = 998244353;
 
 // #define int long long
 
-template<class T>
-constexpr T power(T a, long long b) {
-    T res = 1;
-    for (; b; b /= 2, a *= a) {
-        if (b % 2) {
-            res *= a;
-        }
-    }
-    return res;
-}
-
-constexpr long long mul(long long a, long long b, long long p) {
-    long long res = a * b - long long(1.L * a * b / p) * p;
-    res %= p;
-    if (res < 0) {
-        res += p;
-    }
-    return res;
-}
-
 long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
@@ -119,11 +99,17 @@ long long Sqrt(long long N) {
 }
 
 void solve() {
-
+    int n;
+    cin>> n;
+    if(n < 7) cout<< "NO" <<endl;
+    else {
+        if((n - 5) % 3 != 0 && n - 5 != 4 && n - 5 != 1) cout << "YES\n1 4 " << n - 5 <<endl;
+        else if( (n - 3) % 3 != 0 && n - 3 != 2 && n - 3 != 1) cout<< "YES\n1 2 " << n - 3 <<endl;
+        else cout<< "NO" <<endl;
+    }
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;

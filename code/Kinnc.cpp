@@ -94,13 +94,15 @@ void solve() {
 
 }
 signed main() {
-    int n;
-    scanf("%d", &n);
-    while(n --) {
-        char b1;
-        scanf("%c", &b1);
-        scanf("%c", &b1);
-        printf("%c\n", b1 - 32);
+    int n, x = 1;
+    cin>> n;
+    map<int, int> mp;
+    for(int i = 2; i <= n; ++ i) {
+        x ^= i;
+        mp[x] ++;
+    }
+    for(auto [a, b] : mp) {
+        cout<< a << " " << a % 4 <<endl;
     }
     return 0;
 }

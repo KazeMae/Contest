@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Goals of Victory
+| Contest: Codeforces Round 902 (Div. 2, based on COMPFEST 15 - Final Round)
+| URL:     https://codeforces.com/contest/1877/problem/A
+| When:    2023-10-10 17:50:37
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 // #include <bits/stdc++.h>

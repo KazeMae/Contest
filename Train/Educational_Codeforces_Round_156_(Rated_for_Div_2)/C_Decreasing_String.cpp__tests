@@ -1,0 +1,58 @@
+[
+	{
+		"correct_answers":
+		[
+			"abx"
+		],
+		"test": "3\ncab\n6\nabcd\n9\nx\n1\n"
+	},
+	{
+		"correct_answers":
+		[
+			"dc"
+		],
+		"test": "2\ndcba\n1\ndcba\n5\n"
+	},
+	{
+		"correct_answers":
+		[
+			"a"
+		],
+		"test": "1\nbdcba\n14\n"
+	},
+	{
+		"correct_answers":
+		[
+			"a"
+		],
+		"test": "1\ndcbaa\n15\n"
+	},
+	{
+		"correct_answers":
+		[
+			"b"
+		],
+		"test": "1\nabcdabcaba\n9\n"
+	},
+	{
+		"correct_answers":
+		[
+			"a"
+		],
+		"test": "1\nccaba\n10\n"
+	},
+	{
+		"correct_answers":
+		[
+			"a"
+		],
+		"test": "1\ndahsda\n20\n"
+	},
+	{
+		"correct_answers":
+		[
+			"a"
+		],
+		"test": "1\nabc\n6\n"
+	}
+]

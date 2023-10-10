@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Fear of the Dark
+| Contest: Educational Codeforces Round 156 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1886/problem/B
+| When:    2023-10-09 22:43:13
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -76,26 +76,6 @@ const int MOD = 998244353;
 
 // #define int long long
 
-template<class T>
-constexpr T power(T a, long long b) {
-    T res = 1;
-    for (; b; b /= 2, a *= a) {
-        if (b % 2) {
-            res *= a;
-        }
-    }
-    return res;
-}
-
-constexpr long long mul(long long a, long long b, long long p) {
-    long long res = a * b - long long(1.L * a * b / p) * p;
-    res %= p;
-    if (res < 0) {
-        res += p;
-    }
-    return res;
-}
-
 long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
@@ -119,11 +99,22 @@ long long Sqrt(long long N) {
 }
 
 void solve() {
-
+    int px, py, ax, ay, bx, by;
+    cin>> px >> py >> ax >> ay >> bx >> by;
+    double ao = sqrt(abs(ax - 0) * abs(ax - 0) + abs(ay - 0) * abs(ay - 0));
+    double bo = sqrt(abs(bx - 0) * abs(bx - 0) + abs(by - 0) * abs(by - 0));
+    double bp = sqrt(abs(bx - px) * abs(bx - px) + abs(by - py) * abs(by - py));
+    double ap = sqrt(abs(ax - px) * abs(ax - px) + abs(ay - py) * abs(ay - py));
+    double ab = sqrt(abs(ax - bx) * abs(ax - bx) + abs(ay - by) * abs(ay - by));
+    if(ao <= bo && ap <= bp) cout<< max(ao, ap) <<endl;
+    else if(bo <= ao && bp <= ap) cout<< max(bo, bp) <<endl;
+    else if(ao <= ab / 2 && bp <= ab / 2) cout<< ab / 2 <<endl;
+    else if(bo <= ab / 2 && ap <= ab / 2) cout<< ab / 2 <<endl;
+    else  cout<< min(max(ao, bp), max(bo, ap)) <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
+    cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;

@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Decreasing String
+| Contest: Educational Codeforces Round 156 (Rated for Div. 2)
+| URL:     https://codeforces.com/contest/1886/problem/C
+| When:    2023-10-09 23:07:18
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -74,27 +74,7 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-// #define int long long
-
-template<class T>
-constexpr T power(T a, long long b) {
-    T res = 1;
-    for (; b; b /= 2, a *= a) {
-        if (b % 2) {
-            res *= a;
-        }
-    }
-    return res;
-}
-
-constexpr long long mul(long long a, long long b, long long p) {
-    long long res = a * b - long long(1.L * a * b / p) * p;
-    res %= p;
-    if (res < 0) {
-        res += p;
-    }
-    return res;
-}
+#define int long long
 
 long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
@@ -119,11 +99,36 @@ long long Sqrt(long long N) {
 }
 
 void solve() {
-
+    string s;
+    cin>> s;
+    int pos, n = s.size(), sum = 0;
+    cin>> pos;
+    priority_queue<pair<char, int> > q;
+    for(int i = 0; i < n; ++ i) {
+        q.push({s[i], i});
+    }
+    for(int i = n; i >= 1; -- i) {
+        sum += i;
+        if(sum >= pos) {
+            sum -= i;
+            break;
+        }else {
+            s[q.top().second] = '.';
+            q.pop();
+        }
+    }
+    // cout<< s <<endl;
+    for(int i = 0, k = 0; i < n; ++ i) {
+        if(s[i] != '.') ++ k;
+        if(k == pos - sum) {
+            cout<< s[i];
+            // cout<<endl;
+            return;
+        }
+    }
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
