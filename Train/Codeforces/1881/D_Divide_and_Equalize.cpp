@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D. Divide and Equalize
+| Contest: Codeforces Round 903 (Div. 3)
+| URL:     https://codeforces.com/contest/1881/problem/D
+| When:    2023-10-12 23:18:39
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -70,7 +70,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
-const double EPS = 1e-7;
+const double EPS = 1e-3;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
@@ -101,7 +101,24 @@ long long Sqrt(long long N) {
 // #define int long long
 
 void solve() {
-
+    int n;
+    double ans = 1;
+    cin>> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        ans *= pow(a[i], 1.0 / n);
+    }
+    int as = ans;
+    bool flag1 = 1, flag2 = 1;
+    if(abs(as - ans) > EPS){
+        flag1 = 0;
+    }
+    as ++;
+    if(abs(as - ans) > EPS) {
+        flag2 = 0;
+    }
+    cout<< (flag1 || flag2 ? "YES" : "NO") <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

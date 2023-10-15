@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Don't Try to Count
+| Contest: Codeforces Round 903 (Div. 3)
+| URL:     https://codeforces.com/contest/1881/problem/A
+| When:    2023-10-12 22:36:44
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -76,32 +76,21 @@ const int MOD = 998244353;
 
 // #define int long long
 
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
-    }
-    return res;
-}
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
-
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
-
 // #define int long long
 
 void solve() {
-
+    int n, m;
+    cin>> n >> m;
+    string x, s;
+    cin>> x >> s;
+    for(int i = 0; x.size() < 1000 * m; ++ i) {
+        if(x.find(s) != -1) {
+            cout<< i <<endl;
+            return;
+        }
+        x += x;
+    }
+    cout<< -1 <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

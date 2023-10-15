@@ -1,106 +1,53 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
-// #include <bits/stdc++.h>
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-
-using ll = long long;
-using Ld = long double;
-using uint = unsigned int;
-using ull = unsigned long long;
-template <typename T>
-using pair2 = pair<T, T>;
-using PII = pair<int, int>;
-using PLI = pair<ll, int>;
-using PLL = pair<ll, ll>;
-
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
+using namespace std::chrono;
+mt19937_64 rng(steady_clock::now().time_since_epoch().count());
+long long myRand(long long B) {
+    return (unsigned long long)rng() % B + 1; 
 }
 
-#define endl '\n'
-#define debug(x) cout << #x << " = " << (x) << endl
-#define abs(a) ((a) >= 0 ? (a) : -(a))
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-#define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
-#define rep(i, a, n) for (int i = a; i <= n; ++i)
-#define per(i, n, a) for (int i = n; i >= a; --i)
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
-#define lowbit(x) ((x) & (-x))
-
-const int N = 1000005; // 1e6 + 5
-const int INF = 0x3f3f3f3f;
-const long long LNF = 0x3f3f3f3f3f3f3f3f;
-const double EPS = 1e-7;
-const double PI = acos(-1.0);
-const int MOD = 998244353;
-
-// #define int long long
-
-long long qmi(long long m, long long k, long long p = 2e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
+void algorithm_1(int n, int k, vector<int> &s) {
+    for(int pos = 0; pos < n; ++ pos) {
+        if(s[pos] == k) {
+            return ;
+        }
     }
-    return res;
+    return ;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
-
-void solve() {
-
-}
-signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    int n, m, b, ans = 0;
-    cin>> n >> m;
-    for(int i = 0; i < m; ++ i) {
-        cin>> b;
-        if((b % 4 == 0 || b % 4 == 3 || b == 1 || b == 0) && b <= n) ans ++;
+void algorithm_2(int n, int k, vector<int> &s) {
+    int l = 0, r = n - 1, mid;
+    while(r - l > 0) {
+        mid = l + r + 1 >> 1;
+        if(s[mid] <= k) l = mid;
+        else r = mid - 1;
     }
-    cout<< ans <<endl;
-  return 0;
+    return ;
+}
+signed main () {
+    cout<< setiosflags(ios::fixed) << setprecision(10);
+    // 数据组数为 100
+    int times = 100;
+    while(times --) {
+        // 数据生成
+        int n = myRand(5000000), k = 1000000000;
+        vector<int> s(n);
+        for(int i = 0; i < n; ++ i) 
+            s[i] = myRand(1000000000);
+
+        sort(s.begin(), s.end());
+
+        // 算法一运行和时间统计
+        auto bt1 = steady_clock::now();
+        algorithm_1(n, k, s);
+        auto at1 = steady_clock::now();
+
+        // 算法二运行和时间统计
+        auto bt2 = steady_clock::now();
+        algorithm_2(n, k, s);
+        auto at2 = steady_clock::now();
+
+        double algo1 = duration<double, milli>(at1 - bt1).count();
+        double algo2 = duration<double, milli>(at2 - bt2).count();
+        cout<< n << " " << algo1 << " " << algo2 << endl;
+    }
 }

@@ -1,108 +1,311 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
-// #include <bits/stdc++.h>
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-using namespace std;
+#include <bits/stdc++.h>
 
-using ll = long long;
-using Ld = long double;
-using uint = unsigned int;
-using ull = unsigned long long;
-template <typename T>
-using pair2 = pair<T, T>;
-using PII = pair<int, int>;
-using PLI = pair<ll, int>;
-using PLL = pair<ll, ll>;
-
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B) { 
-    return (ull)rng() % B; 
-}
-
-#define endl '\n'
-#define debug(x) cout << #x << " = " << (x) << endl
-#define abs(a) ((a) >= 0 ? (a) : -(a))
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-#define mem(a, b) memset(a, b, sizeof(a))
-#define max(a, b) ((a) > (b) ? (a) : (b))
-#define min(a, b) ((a) < (b) ? (a) : (b))
-#define rep(i, a, n) for (int i = a; i <= n; ++i)
-#define per(i, n, a) for (int i = n; i >= a; --i)
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
-#define lowbit(x) ((x) & (-x))
-
-const int N = 1000005; // 1e6 + 5
-const int INF = 0x3f3f3f3f;
-const long long LNF = 0x3f3f3f3f3f3f3f3f;
-const double EPS = 1e-7;
-const double PI = acos(-1.0);
-const int MOD = 998244353;
-
-// #define int long long
-
-long long qmi(long long m, long long k, long long p = 2e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
+using i64 = long long;
+template<class T>
+constexpr T power(T a, i64 b) {
+    T res = 1;
+    for (; b; b /= 2, a *= a) {
+        if (b % 2) {
+            res *= a;
+        }
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {
-    return b ? gcd(b, a % b) : a;
-}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
 
-void solve() {
-
+constexpr i64 mul(i64 a, i64 b, i64 p) {
+    i64 res = a * b - i64(1.L * a * b / p) * p;
+    res %= p;
+    if (res < 0) {
+        res += p;
+    }
+    return res;
 }
-signed main() {
-    int n, x = 1;
-    cin>> n;
-    map<int, int> mp;
-    for(int i = 2; i <= n; ++ i) {
-        x ^= i;
-        mp[x] ++;
+template<i64 P>
+struct MLong {
+    i64 x;
+    constexpr MLong() : x{} {}
+    constexpr MLong(i64 x) : x{norm(x % getMod())} {}
+    
+    static i64 Mod;
+    constexpr static i64 getMod() {
+        if (P > 0) {
+            return P;
+        } else {
+            return Mod;
+        }
     }
-    for(auto [a, b] : mp) {
-        cout<< a << " " << a % 4 <<endl;
+    constexpr static void setMod(i64 Mod_) {
+        Mod = Mod_;
     }
+    constexpr i64 norm(i64 x) const {
+        if (x < 0) {
+            x += getMod();
+        }
+        if (x >= getMod()) {
+            x -= getMod();
+        }
+        return x;
+    }
+    constexpr i64 val() const {
+        return x;
+    }
+    explicit constexpr operator i64() const {
+        return x;
+    }
+    constexpr MLong operator-() const {
+        MLong res;
+        res.x = norm(getMod() - x);
+        return res;
+    }
+    constexpr MLong inv() const {
+        assert(x != 0);
+        return power(*this, getMod() - 2);
+    }
+    constexpr MLong &operator*=(MLong rhs) & {
+        x = mul(x, rhs.x, getMod());
+        return *this;
+    }
+    constexpr MLong &operator+=(MLong rhs) & {
+        x = norm(x + rhs.x);
+        return *this;
+    }
+    constexpr MLong &operator-=(MLong rhs) & {
+        x = norm(x - rhs.x);
+        return *this;
+    }
+    constexpr MLong &operator/=(MLong rhs) & {
+        return *this *= rhs.inv();
+    }
+    friend constexpr MLong operator*(MLong lhs, MLong rhs) {
+        MLong res = lhs;
+        res *= rhs;
+        return res;
+    }
+    friend constexpr MLong operator+(MLong lhs, MLong rhs) {
+        MLong res = lhs;
+        res += rhs;
+        return res;
+    }
+    friend constexpr MLong operator-(MLong lhs, MLong rhs) {
+        MLong res = lhs;
+        res -= rhs;
+        return res;
+    }
+    friend constexpr MLong operator/(MLong lhs, MLong rhs) {
+        MLong res = lhs;
+        res /= rhs;
+        return res;
+    }
+    friend constexpr std::istream &operator>>(std::istream &is, MLong &a) {
+        i64 v;
+        is >> v;
+        a = MLong(v);
+        return is;
+    }
+    friend constexpr std::ostream &operator<<(std::ostream &os, const MLong &a) {
+        return os << a.val();
+    }
+    friend constexpr bool operator==(MLong lhs, MLong rhs) {
+        return lhs.val() == rhs.val();
+    }
+    friend constexpr bool operator!=(MLong lhs, MLong rhs) {
+        return lhs.val() != rhs.val();
+    }
+};
+
+template<>
+i64 MLong<0LL>::Mod = i64(1E18) + 9;
+
+template<int P>
+struct MInt {
+    int x;
+    constexpr MInt() : x{} {}
+    constexpr MInt(i64 x) : x{norm(x % getMod())} {}
+    
+    static int Mod;
+    constexpr static int getMod() {
+        if (P > 0) {
+            return P;
+        } else {
+            return Mod;
+        }
+    }
+    constexpr static void setMod(int Mod_) {
+        Mod = Mod_;
+    }
+    constexpr int norm(int x) const {
+        if (x < 0) {
+            x += getMod();
+        }
+        if (x >= getMod()) {
+            x -= getMod();
+        }
+        return x;
+    }
+    constexpr int val() const {
+        return x;
+    }
+    explicit constexpr operator int() const {
+        return x;
+    }
+    constexpr MInt operator-() const {
+        MInt res;
+        res.x = norm(getMod() - x);
+        return res;
+    }
+    constexpr MInt inv() const {
+        assert(x != 0);
+        return power(*this, getMod() - 2);
+    }
+    constexpr MInt &operator*=(MInt rhs) & {
+        x = 1LL * x * rhs.x % getMod();
+        return *this;
+    }
+    constexpr MInt &operator+=(MInt rhs) & {
+        x = norm(x + rhs.x);
+        return *this;
+    }
+    constexpr MInt &operator-=(MInt rhs) & {
+        x = norm(x - rhs.x);
+        return *this;
+    }
+    constexpr MInt &operator/=(MInt rhs) & {
+        return *this *= rhs.inv();
+    }
+    friend constexpr MInt operator*(MInt lhs, MInt rhs) {
+        MInt res = lhs;
+        res *= rhs;
+        return res;
+    }
+    friend constexpr MInt operator+(MInt lhs, MInt rhs) {
+        MInt res = lhs;
+        res += rhs;
+        return res;
+    }
+    friend constexpr MInt operator-(MInt lhs, MInt rhs) {
+        MInt res = lhs;
+        res -= rhs;
+        return res;
+    }
+    friend constexpr MInt operator/(MInt lhs, MInt rhs) {
+        MInt res = lhs;
+        res /= rhs;
+        return res;
+    }
+    friend constexpr std::istream &operator>>(std::istream &is, MInt &a) {
+        i64 v;
+        is >> v;
+        a = MInt(v);
+        return is;
+    }
+    friend constexpr std::ostream &operator<<(std::ostream &os, const MInt &a) {
+        return os << a.val();
+    }
+    friend constexpr bool operator==(MInt lhs, MInt rhs) {
+        return lhs.val() == rhs.val();
+    }
+    friend constexpr bool operator!=(MInt lhs, MInt rhs) {
+        return lhs.val() != rhs.val();
+    }
+};
+
+template<>
+int MInt<0>::Mod = 998244353;
+
+template<int V, int P>
+constexpr MInt<P> CInv = MInt<P>(V).inv();
+
+constexpr int P = 998244353;
+using Z = MInt<P>;
+
+struct Comb {
+    int n;
+    std::vector<Z> _fac;
+    std::vector<Z> _invfac;
+    std::vector<Z> _inv;
+    
+    Comb() : n{0}, _fac{1}, _invfac{1}, _inv{0} {}
+    Comb(int n) : Comb() {
+        init(n);
+    }
+    
+    void init(int m) {
+        m = std::min(m, Z::getMod() - 1);
+        if (m <= n) return;
+        _fac.resize(m + 1);
+        _invfac.resize(m + 1);
+        _inv.resize(m + 1);
+        
+        for (int i = n + 1; i <= m; i++) {
+            _fac[i] = _fac[i - 1] * i;
+        }
+        _invfac[m] = _fac[m].inv();
+        for (int i = m; i > n; i--) {
+            _invfac[i - 1] = _invfac[i] * i;
+            _inv[i] = _invfac[i] * _fac[i - 1];
+        }
+        n = m;
+    }
+    
+    Z fac(int m) {
+        if (m > n) init(2 * m);
+        return _fac[m];
+    }
+    Z invfac(int m) {
+        if (m > n) init(2 * m);
+        return _invfac[m];
+    }
+    Z inv(int m) {
+        if (m > n) init(2 * m);
+        return _inv[m];
+    }
+    Z binom(int n, int m) {
+        if (n < m || m < 0) return 0;
+        return fac(n) * invfac(m) * invfac(n - m);
+    }
+} comb;
+
+int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    
+    int n, m;
+    std::cin >> n >> m;
+    n--;
+    
+    Z ans = 1;
+    std::string s;
+    std::cin >> s;
+    
+    for (int i = 1; i < n; i++) {
+        if (s[i] == '?') {
+            ans *= i;
+        }
+    }
+    
+    auto query = [&]() {
+        if (s[0] == '?') {
+            std::cout << 0 << "\n";
+        } else {
+            std::cout << ans << "\n";
+        }
+    };
+    
+    query();
+    while (m--) {
+        int x;
+        char y;
+        std::cin >> x >> y;
+        x--;
+        if (x && s[x] == '?') {
+            ans *= comb.inv(x);
+        }
+        s[x] = y;
+        if (x && y == '?') {
+            ans *= x;
+        }
+        query();
+    }
+    
     return 0;
 }

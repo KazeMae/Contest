@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Perfect Square
+| Contest: Codeforces Round 903 (Div. 3)
+| URL:     https://codeforces.com/contest/1881/problem/C
+| When:    2023-10-12 22:51:19
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 // #include <bits/stdc++.h>
@@ -101,7 +101,36 @@ long long Sqrt(long long N) {
 // #define int long long
 
 void solve() {
-
+    int n;
+    cin>> n;
+    vector<string> s1(n), s2(n), s3(n), s4(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> s1[i];
+        s4[i] = s2[i] = s3[i] = s1[i];
+    }
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < n; ++ j) {
+            s2[i][n - j - 1] = s1[j][i];
+        }
+    }
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < n; ++ j) {
+            s3[i][n - j - 1] = s2[j][i];
+        }
+    }
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < n; ++ j) {
+            s4[i][n - j - 1] = s3[j][i];
+        }
+    }
+    int ans = 0;
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < n; ++ j) {
+            int mx = max({s1[i][j], s2[i][j], s3[i][j], s4[i][j]});
+            ans += (mx - s1[i][j]) + (mx - s2[i][j]) + (mx - s3[i][j]) + (mx - s4[i][j]);
+        }
+    }
+    cout<< ans / 4 <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);

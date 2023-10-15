@@ -1,15 +1,9 @@
-/*******************************
-| Author:  KAZE_mae
-| Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
-| 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
-*******************************/
-
+/**
+ * @Author      KAZE_mae
+ * @Website     https://cloudfall.top/
+ * @Url         
+ * @DateTime    
+ */
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -76,6 +70,7 @@ const int MOD = 998244353;
 
 // #define int long long
 
+
 long long qmi(long long m, long long k, long long p = 9e18) {
     int res = 1 % p, t = m;
     while (k) {
@@ -84,7 +79,6 @@ long long qmi(long long m, long long k, long long p = 9e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -92,16 +86,17 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
-
 // #define int long long
 
 void solve() {
-
+    int a, b, c;
+    cin>> a >> b >> c;
+    int mn = min({a, b, c});
+    int cnt = 0;
+    if(a % mn == 0 && b % mn == 0 && c % mn == 0) {
+        cnt += a / mn - 1 + b / mn - 1 + c / mn - 1;
+        cout<< (cnt <= 3 ? "YES" : "NO") <<endl;
+    }else cout<< "NO" <<endl;
 }
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
@@ -110,3 +105,4 @@ signed main() {
         solve();
   return 0;
 }
+
