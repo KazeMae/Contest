@@ -53,6 +53,7 @@ using PLL = pair<ll, ll>;
 
 vector<long long> v;
 vector<pair<long long, int>> bl;
+
 int getbit(long long m) {
     int k = 0;
     while(m) {
@@ -94,7 +95,7 @@ signed main() {
     }
     for(int i = 0; i <= 16384; ++ i) 
         bl.push_back(getsum(i));
-    
+
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
