@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. String Generation
+| Contest: Codeforces Round 689 (Div. 2, based on Zed Code Competition)
+| URL:     https://codeforces.com/contest/1461/problem/A
+| When:    2023-10-24 21:36:45
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -128,5 +128,14 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, k;
+    cin>> n >> k;
+    for(int i = 0; i < k; ++ i) {
+        cout<< 'a';
+    }
+    for(int i = 0; i < n - k; ++ i) {
+        if(i % 3 == 0) cout<< 'b';
+        if(i % 3 == 1) cout<< 'c';
+        if(i % 3 == 2) cout<< 'a';
+    }cout<<endl;
 } 

@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D. Number into Sequence
+| Contest: Codeforces - Codeforces Round 686 (Div. 3)
+| URL:     https://codeforces.com/contest/1454/problem/D
+| When:    2023-10-23 15:07:21
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    3000 ms
 *******************************/
 
 /*
@@ -115,7 +115,20 @@ long long Sqrt(long long N) {
     return sqrtN;
 }
 
-// #define int long long
+#define int long long
+
+vector<int> divide(int x) {
+    vector<int> res;
+    for (int i = 2; i <= x / i; i ++ )
+        if (x % i == 0)
+        {
+            int s = 0;
+            while (x % i == 0) x /= i, s ++ ;
+            res.push_back(i);
+        }
+    if (x > 1) res.push_back(x);
+    return res;
+}
 
 void solve() ;
 signed main() {
@@ -125,8 +138,36 @@ signed main() {
         solve();
   return 0;
 }
+
 // #define int long long
 
 void solve() {
-    
+    int n, k = 0, mx = 1;
+    cin>> n;
+    vector<long long> ans, ka;
+    auto C = divide(n);
+    // for(auto i:C) cout << i << " "; cout <<endl;
+    for(auto c : C) {
+        int m = n;
+        while(1) {
+            if(m % c != 0) {
+                if(ka.empty()) break;
+                ka.pop_back();
+                ka.push_back(m * c);
+                break;
+            }else {
+                ka.push_back(c);
+                m /= c;
+            }
+        }
+        if(ans.empty()) ans = ka;
+        else if(ka.size() > ans.size()) ans = ka;
+        ka.clear();
+    }
+    if(ans.size() == 0) {
+        cout << 1 << endl << n <<endl;
+    }else {
+        cout<< ans.size() <<endl;
+        for(auto i:ans) cout << i << " "; cout <<endl;
+    }
 } 

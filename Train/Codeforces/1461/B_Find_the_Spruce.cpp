@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Find the Spruce
+| Contest: Codeforces - Codeforces Round 689 (Div. 2, based on Zed Code Competition)
+| URL:     https://codeforces.com/contest/1461/problem/B
+| When:    2023-10-24 21:42:51
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -125,8 +125,46 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    int n, m, ans = 0;
+    cin>> n >> m;
+    vector<string> mp(n);
+    map<pair<int, int> ,int> cnt;
+    for(int i = 0; i < n; ++ i) 
+        cin>> mp[i];
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0, flag = 0, zy = 0, bi = 0; j < m; ++ j) {
+            if(!flag && mp[i][j] == '*') 
+                flag = 1, cnt[{i, j}] = 1, bi = j, zy ++;
+            else if(flag && mp[i][j] == '*') cnt[{i, j}] = 1, zy ++;
+            else {
+                if(i != 0 && zy > 1) 
+                    for(int k = bi, cl = 1, cr = j - bi; k < j; ++ k, ++ cl, -- cr) 
+                        if(min(cl, cr) - 1 >= cnt[{i - 1, k}])
+                            cnt[{i, k}] = cnt[{i - 1, k}] + 1;
+                        else if(cnt[{i - 1, k}] >= min(cl, cr)) 
+                            cnt[{i, k}] = max(min(cl, cr), cnt[{i, k}]);
+                flag = 0, zy = 0;
+            }
+            if(j == m - 1 && i != 0 && flag && zy > 1) {
+                j += 1;
+                for(int k = bi, cl = 1, cr = j - bi; k < j; ++ k, ++ cl, -- cr) 
+                    if(min(cl, cr) - 1 >= cnt[{i - 1, k}])
+                        cnt[{i, k}] = cnt[{i - 1, k}] + 1;
+                    else if(cnt[{i - 1, k}] >= min(cl, cr)) 
+                        cnt[{i, k}] = max(min(cl, cr), cnt[{i, k}]);
+                break;
+            }
+        }
+    }
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < m; ++ j) {
+            // cout<< cnt[{i, j}] << " ";
+            ans += cnt[{i, j}];
+        }
+        // cout <<endl;
+    }
+    cout<< ans << endl;
 } 

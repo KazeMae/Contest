@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Suffix Operations
+| Contest: Codeforces - Codeforces Round 688 (Div. 2)
+| URL:     https://codeforces.com/contest/1453/problem/B
+| When:    2023-10-20 23:43:09
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -115,9 +115,24 @@ long long Sqrt(long long N) {
     return sqrtN;
 }
 
-// #define int long long
+#define int long long
 
-void solve() ;
+void solve() {
+    int n, ans = 0, mx = 0;
+    cin >> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+    }
+    for(int i = 1; i < n; ++ i) {
+        ans += abs(a[i] - a[i - 1]);
+    }
+    for(int i = 1; i < n - 1; ++ i) {
+        mx = max(mx, abs(a[i] - a[i - 1]) + abs(a[i + 1] - a[i]) - abs(a[i + 1] - a[i - 1]));
+    }
+    // cout<< ans << " " << max({mx, abs(a[n - 1] - a[n - 2]), abs(a[0] - a[1])}) <<endl;
+    cout<< ans - max({mx, abs(a[n - 1] - a[n - 2]), abs(a[0] - a[1])}) <<endl;
+} 
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
@@ -125,8 +140,3 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
-
-void solve() {
-    
-} 

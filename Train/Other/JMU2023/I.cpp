@@ -1,15 +1,3 @@
-/*******************************
-| Author:  KAZE_mae
-| Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
-| 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
-*******************************/
-
 /*
 * ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷
 * ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇
@@ -121,12 +109,29 @@ void solve() ;
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    int x0, x1, x2;
+    cin >> x0 >> x1 >> x2;
+    int a0, a1, b0, b1;
+    cin >> a0 >> a1 >> b0 >> b1;
+    int ans = 0;
+    if(a0 != b0){
+        for(int i = a1; i < 8; ++ i) {
+            if(i == x0 || i == x1 || i == x2);
+            else ans ++;
+        }
+        for(int i = 1; i < b1; ++ i) {
+            if(i == x0 || i == x1 || i == x2);
+            else ans ++;
+        }
+    }else for(int i = a1; i < b1; ++ i) 
+        if(i == x0 || i == x1 || i == x2);
+            else ans ++;
+    cout<< (a0 == b0 ? ans : ans + (b0 - a0 - 1) * 4) <<endl;
 } 

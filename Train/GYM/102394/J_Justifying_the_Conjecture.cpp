@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: J. Justifying the Conjecture
+| Contest: Codeforces - The 2019 China Collegiate Programming Contest Harbin Site
+| URL:     https://codeforces.com/gym/102394/problem/J
+| When:    2023-10-21 13:18:40
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -117,7 +117,22 @@ long long Sqrt(long long N) {
 
 // #define int long long
 
-void solve() ;
+bool is_prime(int x)
+{
+    if (x < 2) return false;
+    for (int i = 2; i <= x / i; i ++ )
+        if (x % i == 0)
+            return false;
+    return true;
+}
+
+void solve() {
+    int n;
+    cin>> n;
+    if(n <= 5) cout<< -1 <<endl;
+    else if(!is_prime(n - 2)) cout<< 2 << " " << n - 2 <<endl;
+    else cout<< 3 << " " << n - 3 <<endl;
+ } 
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
@@ -125,8 +140,3 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
-
-void solve() {
-    
-} 

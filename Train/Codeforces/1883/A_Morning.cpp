@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Morning
+| Contest: Codeforces - Codeforces Round 905 (Div. 3)
+| URL:     https://codeforces.com/contest/1883/problem/A
+| When:    2023-10-22 19:14:48
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -128,5 +128,16 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    string s;
+    cin>> s;
+    int q[4];
+    for(int i = 0; i < 4; ++ i) {
+        q[i] = s[i] - '0';
+        if(q[i] == 0) q[i] = 10;
+    }
+    int ans = (q[0] - 1);
+    for(int i = 1; i < 4; ++ i) {
+        ans += abs(q[i] - q[i - 1]);
+    }
+    cout<< ans + 4 <<endl;
 } 

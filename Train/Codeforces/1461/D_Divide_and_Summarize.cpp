@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D. Divide and Summarize
+| Contest: Codeforces - Codeforces Round 689 (Div. 2, based on Zed Code Competition)
+| URL:     https://codeforces.com/contest/1461/problem/D
+| When:    2023-10-24 23:40:44
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -79,7 +79,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-#define mp make_pair
+// #define mp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
@@ -115,7 +115,21 @@ long long Sqrt(long long N) {
     return sqrtN;
 }
 
-// #define int long long
+#define int long long
+int n, m, q;
+int a[N], pre[N];
+map<int, bool> mp;
+
+void init(int l, int r) {
+    if(l >= r) return;
+    mp[pre[r] - pre[l - 1]] = 1;
+    if(a[l] == a[r]) return;
+    int mid = upper_bound(a + 1, a + n + 1, (a[l] + a[r] >> 1)) - a - 1;
+    mp[pre[mid] - pre[l - 1]] = 1;
+    init(l, mid);
+    mp[pre[r] - pre[mid]] = 1;
+    init(mid + 1, r);
+}
 
 void solve() ;
 signed main() {
@@ -128,5 +142,16 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    cin>> n >> m;
+    for(int i = 1; i <= n; ++ i) 
+        cin>> a[i];
+    mp.clear();
+    sort(a + 1, a + n + 1);
+    for(int i = 1; i <= n; ++ i) 
+        pre[i] = pre[i - 1] + a[i];
+    init(1, n);
+    while(m --) {
+        cin>> q;
+        cout<< (mp[q] ? "Yes" : "No") <<endl;
+    }
 } 

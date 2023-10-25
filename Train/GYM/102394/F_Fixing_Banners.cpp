@@ -91,31 +91,29 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-// #define int long long
 
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
+// #define int long long
+vector<bool> st(6);
+string ans = "harbin";
+bool flag = 0;
+void dfs(int x, vector<vector<char>> &as) {
+    if(x == 6) {
+        int k = 0;
+        for(int i = 0; i < 6; ++ i) 
+            if(st[i]) k ++;
+        if(k == 6) flag = 1;
+        return;
     }
-    return res;
+    for(auto i:as[x]) {
+        for(int j = 0; j < ans.size(); ++ j) {
+            if(i == ans[j] && !st[j]) {
+                st[j] = 1;
+                dfs(x + 1, as);
+                st[j] = 0;
+            }
+        }
+    }
 }
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
-
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
-
-// #define int long long
 
 void solve() ;
 signed main() {
@@ -128,5 +126,20 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    vector<string> s(6);
+    vector<vector<char>> as(6);
+    map<char, int> mp;
+    for(int i = 0; i < 6; ++ i) as[i].clear();
+    for(int i = 0; i < 6; ++ i) {
+        cin>> s[i];
+        for(auto j:s[i]) mp[j] ++;
+        for(auto j:ans) if(mp[j]) as[i].push_back(j);
+        mp.clear();
+    }
+    // for(int i = 0; i < 6; ++ i) {
+    //     for(auto I:as[i]) cout<< I <<" "; cout <<endl;
+    // }
+    dfs(0, as);
+    cout<< (flag ? "Yes" : "No") <<endl;
+    flag = 0;
 } 

@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Chemistry
+| Contest: Codeforces - Codeforces Round 905 (Div. 3)
+| URL:     https://codeforces.com/contest/1883/problem/B
+| When:    2023-10-22 19:24:28
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -128,5 +128,23 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    string s;
+    int n, k;
+    cin>> n >> k;
+    cin>> s;
+    map<char, int> mp;
+    for(auto i:s) mp[i] ++;
+    int j = 0, o = 0;
+    for(auto &[a, b]:mp) {
+        if(k != 0) {
+            if(b & 1) b -= 1, k -= 1;
+        }
+    }
+    for(auto [a, b] :mp) {
+        // cout<< a << " " << b <<endl;
+        if(b & 1) j ++;
+        else o ++;
+    }
+    // cout<< j << " " << o <<endl;
+    cout<< (j <= 1 ? "YES" : "NO") <<endl;
 } 

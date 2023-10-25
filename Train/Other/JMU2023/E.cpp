@@ -1,32 +1,9 @@
-/*******************************
-| Author:  KAZE_mae
-| Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
-| 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
-*******************************/
-
-/*
-* ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷
-* ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇
-* ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽
-* ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕
-* ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕
-* ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕
-* ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄
-* ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕
-* ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿
-* ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-* ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟
-* ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠
-* ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙
-* ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣
-*/
-
+/**
+ * @Author      KAZE_mae
+ * @Website     https://cloudfall.top/
+ * @Url         
+ * @DateTime    
+ */
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -101,7 +78,6 @@ long long qmi(long long m, long long k, long long p = 9e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -109,24 +85,36 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
 
-// #define int long long
-
-void solve() ;
-signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
-        solve();
-  return 0;
-}
 // #define int long long
 
 void solve() {
-    
-} 
+    int n;
+    cin>> n;
+    vector<int> k(n);
+    vector<vector<int> > t(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> k[i];
+        t[i].resize(k[i]);
+        for(int j = 0; j < k[i]; ++ j) {
+            cin>> t[i][j];
+        }
+    }
+    int m, ans = 0;
+    cin>> m;
+    for(int i = 0; i < n; ++ i) {
+        for(int j = 0; j < k[i] && j < m; ++ j) {
+            ans = max(ans, t[i][j]);
+        }
+    }
+    cout<< ans <<endl;
+
+}
+signed main() {
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // cout<< setiosflags(ios::fixed) << setprecision(10);
+    // int _ = 1; cin>> _; while(_ --)
+        solve();
+  return 0;
+}
+

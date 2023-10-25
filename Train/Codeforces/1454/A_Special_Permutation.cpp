@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Special Permutation
+| Contest: Codeforces Round 686 (Div. 3)
+| URL:     https://codeforces.com/contest/1454/problem/A
+| When:    2023-10-23 14:31:46
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -128,5 +128,8 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n;
+    cin>> n;
+    cout<< n << " ";
+    for(int i = 1; i < n; ++ i) cout<< i << " "; cout<<endl;
 } 

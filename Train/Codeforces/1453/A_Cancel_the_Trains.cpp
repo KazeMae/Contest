@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Cancel the Trains
+| Contest: Codeforces - Codeforces Round 688 (Div. 2)
+| URL:     https://codeforces.com/contest/1453/problem/A
+| When:    2023-10-20 22:35:49
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -117,7 +117,24 @@ long long Sqrt(long long N) {
 
 // #define int long long
 
-void solve() ;
+void solve() {
+    int n, m, a, b;
+    cin>> n >> m;
+    map<int, int> mp;
+    for(int i = 0; i < n; ++ i) {
+        cin>> a;
+        mp[a] ++;
+    }
+    for(int i = 0; i < m; ++ i) {
+        cin>> b;
+        mp[b] ++;
+    }
+    int ans = 0;
+    for(auto [a, b] : mp) {
+        if(b > 1) ans ++;
+    }
+    cout<< ans <<endl;
+} 
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
@@ -125,8 +142,3 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
-
-void solve() {
-    
-} 

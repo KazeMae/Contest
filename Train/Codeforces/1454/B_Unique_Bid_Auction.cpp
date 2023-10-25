@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Unique Bid Auction
+| Contest: Codeforces Round 686 (Div. 3)
+| URL:     https://codeforces.com/contest/1454/problem/B
+| When:    2023-10-23 14:33:26
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -128,5 +128,24 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, key = 1e9, ans = 0;
+    cin>> n;
+    vector<int> a(n);
+    map<int, int> mp;
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        mp[a[i]] ++;
+    }
+    for(auto [a, b] : mp) {
+        if(b == 1) key = min(key, a);
+    }
+    if(key != (int)1e9) {
+        for(int i = 0; i < n; ++ i) {
+            if(a[i] == key) {
+                ans = i + 1;
+                break;
+            }
+        }
+    }else ans = -1;
+    cout<< ans <<endl;
 } 

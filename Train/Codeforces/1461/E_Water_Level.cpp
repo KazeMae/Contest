@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: E. Water Level
+| Contest: Codeforces - Codeforces Round 689 (Div. 2, based on Zed Code Competition)
+| URL:     https://codeforces.com/contest/1461/problem/E
+| When:    2023-10-25 02:01:43
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -117,16 +117,22 @@ long long Sqrt(long long N) {
 
 // #define int long long
 
-void solve() ;
+signed solve() ;
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-// #define int long long
 
-void solve() {
-    
+#define int long long
+
+signed solve() {
+    int k, l, r, t, x, y;
+    cin>> k >> l >> r >> t >> x >> y;
+    if(k > r || k < l) return cout<< "NO" <<endl, 0;
+    if(x > y) {
+        
+    }
 } 

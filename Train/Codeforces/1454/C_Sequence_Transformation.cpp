@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Sequence Transformation
+| Contest: Codeforces - Codeforces Round 686 (Div. 3)
+| URL:     https://codeforces.com/contest/1454/problem/C
+| When:    2023-10-23 14:38:46
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -128,5 +128,20 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, ans = 1000000000;
+    cin>> n;
+    vector<int> a(n);
+    map<int, int> mp;
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        if(i == 0) mp[a[i]] ++;
+        if(i != 0 && a[i] != a[i - 1]) mp[a[i]] ++;
+    }
+    if(mp.size() == 1) ans = 0;
+    else {
+        mp[a[0]] --, mp[a[n - 1]] --;
+        for(auto &[a, b] : mp) b ++;
+        for(auto [a, b] : mp) ans = min(ans, b);
+    }
+    cout<< ans <<endl;
 } 

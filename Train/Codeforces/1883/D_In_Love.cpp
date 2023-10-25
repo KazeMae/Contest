@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D. In Love
+| Contest: Codeforces - Codeforces Round 905 (Div. 3)
+| URL:     https://codeforces.com/contest/1883/problem/D
+| When:    2023-10-22 19:58:10
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -119,14 +119,33 @@ long long Sqrt(long long N) {
 
 void solve() ;
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    int q;
+    cin>> q;
+    set <int> sx;
+    set <int> sy;
+    map<int, int> mpx;
+    map<int, int> mpy;
+    for(int i = 0; i < q; ++ i) {
+        string asd;
+        int x, y;
+        cin>> asd >> x >> y;
+        if(asd[0] == '+') sx.insert(x), sy.insert(y), mpx[x] ++, mpy[y] ++;
+        else {
+            mpx[x] --, mpy[y]--;
+            if(mpx[x] == 0) sx.erase(x);
+            if(mpy[y] == 0) sy.erase(y);
+        }
+        bool ans = false;
+        if(!sy.empty()) if(*sy.begin() < *sx.rbegin()) ans = true;
+        cout<< (ans ? "YES" : "NO") <<endl;
+    }
 } 

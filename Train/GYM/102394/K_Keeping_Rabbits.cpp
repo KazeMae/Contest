@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: K. Keeping Rabbits
+| Contest: Codeforces - The 2019 China Collegiate Programming Contest Harbin Site
+| URL:     https://codeforces.com/gym/102394/problem/K
+| When:    2023-10-21 13:29:07
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    1500 ms
 *******************************/
 
 /*
@@ -118,15 +118,28 @@ long long Sqrt(long long N) {
 // #define int long long
 
 void solve() ;
+
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
+    cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-// #define int long long
+
+#define int long long
 
 void solve() {
-    
-} 
+    int n, k, sum = 0;
+    cin>> n >> k;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        sum += a[i];
+    }
+    for(int i = 0; i < n; ++ i) {
+        cout<< (a[i] + (a[i] * k * 1.0) / sum) <<" ";
+    }
+    cout<<endl;
+
+}

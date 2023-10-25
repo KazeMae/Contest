@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Random Events
+| Contest: Codeforces - Codeforces Round 689 (Div. 2, based on Zed Code Competition)
+| URL:     https://codeforces.com/contest/1461/problem/C
+| When:    2023-10-24 22:49:08
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -120,7 +120,7 @@ long long Sqrt(long long N) {
 void solve() ;
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
+    cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
@@ -128,5 +128,21 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, m, s, srd = 0;
+    cin>> n >> m;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+    }
+    for(int i = n - 1; i >= 0; -- i) {
+        if(a[i] == i + 1) srd ++;
+        else break;
+    }
+    long double ans = 0, k, una = 1;
+    while(m --) {
+        cin>> s >> k;
+        if(s + srd >= n) 
+            ans += una * k, una *= (1 - k);
+    }
+    cout<< (srd == n ? 1 : ans) <<endl;
 } 

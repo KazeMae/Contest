@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Raspberries
+| Contest: Codeforces - Codeforces Round 905 (Div. 3)
+| URL:     https://codeforces.com/contest/1883/problem/C
+| When:    2023-10-22 19:44:58
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -128,5 +128,29 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, k, ans = 1e9;
+    cin>> n >> k;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        if(a[i] % k == 0) ans = 0;
+        ans = min(ans, k - a[i] % k);
+        a[i] %= k;
+    }
+    if(k == 4) {
+        int k1 = 0;
+        for(int i = 0; i < n; ++ i) {
+            if(a[i] == 1) k1 ++;
+        }
+        if(k1 >= 2) ans = min(ans, 2);
+        int k2 = 0;
+        for(int i = 0; i < n; ++ i) {
+            if(a[i] == 2) k2 ++;
+        }
+        // cout<< k1 << " " << k2 <<endl;
+        if(k2 >= 2) ans = 0;
+        else if(k1 >= 1 && k2 == 1) ans = min(ans, 1);
+    }
+    cout<< ans <<endl;
+
 } 

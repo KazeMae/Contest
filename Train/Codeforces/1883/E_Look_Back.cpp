@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: E. Look Back
+| Contest: Codeforces - Codeforces Round 905 (Div. 3)
+| URL:     https://codeforces.com/contest/1883/problem/E
+| When:    2023-10-24 12:15:32
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /*
@@ -128,5 +128,18 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, ans = 0;
+    cin>> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) { 
+        cin>> a[i];
+    }
+
+    for(int i = 1; i < n; ++ i) {
+        int k = 0;
+        while((a[i] << k) < a[i - 1]) k ++;
+        ans += k * (n - i);
+    }
+
+    cout<< ans <<endl;
 } 

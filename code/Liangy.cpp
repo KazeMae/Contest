@@ -2,21 +2,43 @@
 #include <vector>
 using namespace std;
 
+const int N = 1e5 + 10;
+
+int a[N], tmp[N];
+
+void merge_sort_r(vector<int> &a, vector<int> &tmp, int l, int r)
+{
+    if (l >= r) return;
+    int mid = l + r >> 1;
+    merge_sort_r(a, tmp, l, mid), merge_sort_r(a, tmp, mid + 1, r);
+
+    int k = 0, i = l, j = mid + 1;
+    while (i <= mid && j <= r)
+        if (a[i] <= a[j]) tmp[k ++] = a[i ++];
+        else tmp[k ++] = a[j ++];
+    while (i <= mid) tmp[k ++]  = a[i ++];
+    while (j <= r) tmp[k ++] = a[j ++];
+
+    for (i = l, j = 0; i <= r; ++ i, ++ j ) a[i] = tmp[j];
+}
+
+void merge_sort(vector<int> &a, int n) {
+    vector<int> tmp(n);
+    merge_sort_r(a, tmp, 0, n - 1);
+}
+
 int main()
 {
-    int n, k;
-    cin>> n >> k;
-    vector<int> s(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> s[i];
-    }
-    int l = 0, r = n - 1, mid;
-    while(r - l > 0) {
-        mid = l + r + 1 >> 1;
-        if(s[mid] <= k) l = mid;
-        else r = mid - 1;
-    }
-    if(s[l] == k) cout<< l + 1 <<endl;
-    else cout<< -1 <<endl;
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++ i)
+        cin >> a[i];
+
+    merge_sort(a, n);
+
+    for (int i = 0; i < n; ++ i)
+        cout << a[i] << " ";
+
     return 0;
 }
