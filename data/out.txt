@@ -1,0 +1,5 @@
+Hello Kitty!
+Hello Kitty!
+
+------------------------------
+Time used: 0.000000 ms.

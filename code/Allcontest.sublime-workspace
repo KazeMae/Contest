@@ -268,7 +268,7 @@
 	"buffers":
 	[
 		{
-			"file": "code/Liangy.cpp",
+			"file": "Liangy.cpp",
 			"settings":
 			{
 				"buffer_size": 2424,
@@ -592,7 +592,6 @@
 	],
 	"file_history":
 	[
-		"/C/Users/风前絮/OneDrive/Code/Contest/Liangy.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Data/in.txt",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Data/out.txt",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/codeforces/1883/E_Look_Back.cpp",
@@ -719,7 +718,8 @@
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/2023_ICPC_Online_s/I2.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_898_(Div_4)/G_ABBC_or_BACB.cpp",
 		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Codeforces_Round_898_(Div_4)/F_Money_Trees.cpp",
-		"/C/Users/风前絮/OneDrive/Code/Contest/Train/2023_ICPC_Online_f/D.cpp"
+		"/C/Users/风前絮/OneDrive/Code/Contest/Train/2023_ICPC_Online_f/D.cpp",
+		"/C/Users/风前絮/OneDrive/Code/Contest/Train/Luogu/P1168_中位数.cpp"
 	],
 	"find":
 	{
@@ -766,9 +766,9 @@
 			[
 				{
 					"buffer": 0,
-					"file": "code/Liangy.cpp",
+					"file": "Liangy.cpp",
 					"selected": true,
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 2424,
@@ -778,8 +778,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								2424,
+								2424
 							]
 						],
 						"settings":
@@ -858,6 +858,8 @@
 								"bh_square_close",
 								"bh_square_content"
 							],
+							"color_scheme": "Packages/Monokai++/themes/Monokai++.tmTheme",
+							"is_init_dirty_state": false,
 							"lsp_uri": "file:///C:/Users/%E9%A3%8E%E5%89%8D%E7%B5%AE/OneDrive/Code/Contest/code/Liangy.cpp",
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/C++/C++.sublime-syntax",
@@ -865,7 +867,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1519.2,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
