@@ -1,101 +1,86 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
-// #include <bits/stdc++.h>
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include <bits/stdc++.h>
+#include <string.h>
+
 using namespace std;
+#define int long long
+typedef pair<int, int> PII;
+#define fr(i, a, n) for(int i = a; i <= n; i ++)
+const int N = 100000 + 5;
+int a, b, c, d, e, ans, n;
+int q[N];
+__int128 p[N];
 
-using ll = long long;
-using Ld = long double;
-using uint = unsigned int;
-using ull = unsigned long long;
-template <typename T>
-using pair2 = pair<T, T>;
-using PII = pair<int, int>;
-using PLI = pair<ll, int>;
-using PLL = pair<ll, ll>;
+struct node
+{
+    __int128 a;
+    int b, c;
+}str[N];
 
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B){ return (ull)rng() % B; }
+int cmp(node x, node y)
+{
+    if(x.b != y.b) return x.b < y.b;
+    else return x.a < y.a;
+}
 
-#define endl '\n'
-#define debug(x) cout << #x << " = " << (x) << endl
-#define abs(a) ((a) >= 0 ? (a) : -(a))
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-#define mem(a, b) memset(a, b, sizeof(a))
-// #define max(a, b) ((a) > (b) ? (a) : (b))
-// #define min(a, b) ((a) < (b) ? (a) : (b))
-#define rep(i, a, n) for (int i = a; i <= n; ++i)
-#define per(i, n, a) for (int i = n; i >= a; --i)
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
-#define lowbit(x) (x&(-x))
-
-const int N = 1000005; // 1e6 + 5
-const int INF = 0x3f3f3f3f;
-const long long LNF = 0x3f3f3f3f3f3f3f3f;
-const double EPS = 1e-7;
-const double PI = acos(-1.0);
-const int MOD = 998244353;
-
-// #define int long long
-
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
+inline void print(__int128 x)
+{
+    if(x<0){
+        putchar('-');
+        x=-x;
     }
-    return res;
-}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
+    if(x>9) print(x/10);
+    putchar(x%10+'0');
 }
 
-
-// #define int long long
-
-void solve() {
-    
+void solve()
+{
+    cin >> n;
+    fr(i, 1, n)
+{
+    __int128 sum = 0;
+    cin >> a >> b >> c >> d >> e;
+    sum += 3 * a + 2 * b + c;
+    ans = c + d + e;
+    if(ans == 0)
+    {
+        sum += 1145141919810114514;
+    }
+    sum -= ans * 5;
+    if(sum < 0) sum = 0;
+    str[i].a = sum;
+    str[i].b = ans;
+    str[i].c = i;
 }
-signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
-        solve();
-  return 0;
+    sort(str + 1, str + 1 + n, cmp);
+    int idx = 0;
+    str[0].a = -1;
+    fr(i, 1, n)
+{
+    //      print(str[i].a);
+    //      cout << ' ' << str[i].b << ' ' << str[i].c << endl;
+    p[str[i].c] = str[i].a;
+    if(str[i - 1].b != str[i].b || str[i - 1].a != str[i].a)
+    {
+        //          cout << 'y';
+        q[str[i].c] = ++ idx;
+    }else
+    {
+        q[str[i].c] = idx;
+    }
+}
+    fr(i, 1, n)
+{
+    print(str[q[i]].a);
+    cout << ' ' << q[i] << endl;
+}
 }
 
+signed main()
+{
+    //ios::sync_with_stdio(false);
+    //cin.tie(0),cout.tie(0);
+    //  cin >> T;
+    //  while(T -- )
+    solve();
+    return 0;
+} 
