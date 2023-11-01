@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: B. 终焉之茧
-| Contest: Codeforces - 2023年中国大学生程序设计竞赛女生专场
-| URL:     https://codeforces.com/gym/104725/problem/B
-| When:    2023-10-29 17:07:03
+| Problem: C. Smilo and Monsters
+| Contest: Codeforces Round 907 (Div. 2)
+| URL:     https://codeforces.com/contest/1891/problem/C
+| When:    2023-10-30 22:59:44
 | 
 | Memory:  256 MB
 | Time:    1000 ms
@@ -68,7 +68,7 @@ using PLL = pair<ll, ll>;
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll myRand(ll B){ return (ull)rng() % B; }
 
-// #define endl '\n'
+#define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
 #define abs(a) ((a) >= 0 ? (a) : -(a))
 #define sz(x) ((int)(x).size())
@@ -119,42 +119,36 @@ long long Sqrt(long long N) {
 
 void solve() ;
 signed main() {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-// #define int long long
 
+#define int long long
 void solve() {
-    int d, d1, d2;
-    cin>> d;
-    if(d == 0) {
-        cout << 0 << " " << 0 <<endl;
-        return;
+    int n, ans = 0;
+    cin >> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
     }
-    int x = 0, y = 0, tep = 0;
-    int l = -1000, r = 1000;
-    while(l < r) {
-        int mid = l + r >> 1;
-        cout << mid - x << " " 0 <<endl;
-        cin>> d1;
-        if(d < d1) 
+    sort(a.begin(), a.end());
+    for(int i = 0, j = n - 1, x = 0; i <= j;) {
+        // cout << i << " " << j <<endl;
+        if(i == j) {
+            if(a[j] == 1 && x != 1) ans += 1;
+            else if(a[j] == x) ans += 1;
+            else if(x <= a[j]) 
+                ans += (a[j] - x) / 2 + (a[j] - x) % 2 + 1;
+            else ans += a[j];
+            break;
+        }else if(x + a[i] == a[j]) 
+            ans += a[i] + 1, x = 0, ++ i, -- j;
+        else if(x + a[i] > a[j])
+            x += a[i] - a[j], ans += 1 + a[i], ++ i, -- j;
+        else x += a[i], ans += a[i], ++ i;
     }
-    l = -2000, r = 2000, tep = 0;
-    while(l < r) {
-        int q = (2 * l + r) / 3;
-        int w = (2 * r + l) / 3;
-        cout << 0 << " " << q - y <<endl;
-        y = q;
-        cin>> d1;
-        if(d1 == 0) return;
-        cout << 0 << " " << w - y <<endl;
-        y = w;
-        cin>> d2;
-        if(d2 == 0) return;
-        if(d1 < d2) r = w;
-        else l = q;
-    }
+    cout << ans <<endl;
 } 

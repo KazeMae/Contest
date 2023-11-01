@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: B. 终焉之茧
-| Contest: Codeforces - 2023年中国大学生程序设计竞赛女生专场
-| URL:     https://codeforces.com/gym/104725/problem/B
-| When:    2023-10-29 17:07:03
+| Problem: A. Sorting with Twos
+| Contest: Codeforces Round 907 (Div. 2)
+| URL:     https://codeforces.com/contest/1891/problem/A
+| When:    2023-10-30 22:35:11
 | 
 | Memory:  256 MB
-| Time:    1000 ms
+| Time:    2000 ms
 *******************************/
 
 /*
@@ -68,7 +68,7 @@ using PLL = pair<ll, ll>;
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll myRand(ll B){ return (ull)rng() % B; }
 
-// #define endl '\n'
+#define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
 #define abs(a) ((a) >= 0 ? (a) : -(a))
 #define sz(x) ((int)(x).size())
@@ -119,42 +119,30 @@ long long Sqrt(long long N) {
 
 void solve() ;
 signed main() {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    int d, d1, d2;
-    cin>> d;
-    if(d == 0) {
-        cout << 0 << " " << 0 <<endl;
-        return;
+    int n;
+    cin>> n;
+    vector<int> a(n + 1);
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i + 1];
     }
-    int x = 0, y = 0, tep = 0;
-    int l = -1000, r = 1000;
-    while(l < r) {
-        int mid = l + r >> 1;
-        cout << mid - x << " " 0 <<endl;
-        cin>> d1;
-        if(d < d1) 
+    bool flag = 1;
+    for(int i = 0; i <= 10; ++ i) {
+        // cout << (i == 0 ? 1 : qmi(2, i - 1) + 1) << " " << qmi(2, i) <<endl;
+        for(int j = (i == 0 ? 1 : qmi(2, i - 1) + 1); j + 1 <= qmi(2, i) && j + 1 <= n; ++ j) {
+            if(a[j] > a[j + 1]) {
+                flag = 0;
+                break;
+            }
+        }
     }
-    l = -2000, r = 2000, tep = 0;
-    while(l < r) {
-        int q = (2 * l + r) / 3;
-        int w = (2 * r + l) / 3;
-        cout << 0 << " " << q - y <<endl;
-        y = q;
-        cin>> d1;
-        if(d1 == 0) return;
-        cout << 0 << " " << w - y <<endl;
-        y = w;
-        cin>> d2;
-        if(d2 == 0) return;
-        if(d1 < d2) r = w;
-        else l = q;
-    }
+    cout << (flag ? "YES" : "NO") <<endl;
 } 
