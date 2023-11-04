@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: C. Smilo and Monsters
-| Contest: Codeforces Round 907 (Div. 2)
-| URL:     https://codeforces.com/contest/1891/problem/C
-| When:    2023-10-30 22:59:44
+| Problem: B. Diameter of Graph
+| Contest: Codeforces - Codeforces Round 745 (Div. 2)
+| URL:     https://codeforces.com/contest/1581/problem/B
+| When:    2023-11-05 00:51:55
 | 
 | Memory:  256 MB
 | Time:    1000 ms
@@ -83,6 +83,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
+#define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -114,10 +115,10 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-
 // #define int long long
 
-void solve() ;
+
+void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
@@ -128,19 +129,13 @@ signed main() {
 #define int long long
 
 void solve() {
-    int n, ans = 0, sum = 0;
-    cin >> n;
-    vector<int> a(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
-        sum += a[i];
+    int n, m, k;
+    cin>> n >> m >> k;
+    if(m < n - 1 || m > n * (n - 1) / 2) cout<< "NO" <<endl;
+    else {
+        if(k >= 4) cout << "YES" <<endl;
+        else if(k == 3 && m == n * (n - 1) / 2) cout << "YES" <<endl;
+        else if(k == 2 && n == 1 && m == 0) cout << "YES" <<endl;
+        else cout << "NO" <<endl;
     }
-    ans = 0;
-    sort(a.begin(), a.end());
-    for(int i = n - 1; i >= 0 && sum > 0; -- i) {
-        if(a[i] * 2 <= sum) sum -= a[i] * 2, ans += a[i] + 1;
-        else if(sum == 1) ++ ans, sum = 0;
-        else ans += (sum / 2 + sum % 2 + 1), sum = 0;
-    }
-    cout << ans <<endl;
 } 

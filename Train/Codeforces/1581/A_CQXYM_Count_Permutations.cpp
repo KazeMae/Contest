@@ -1,9 +1,32 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: A. CQXYM Count Permutations
+| Contest: Codeforces - Codeforces Round 745 (Div. 2)
+| URL:     https://codeforces.com/contest/1581/problem/A
+| When:    2023-11-05 01:43:24
+| 
+| Memory:  256 MB
+| Time:    1000 ms
+*******************************/
+
+/*
+* ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷
+* ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇
+* ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽
+* ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕
+* ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕
+* ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕
+* ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄
+* ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕
+* ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿
+* ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+* ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟
+* ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠
+* ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙
+* ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣
+*/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -56,10 +79,11 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-// #define mp make_pair
+#define mp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
+#define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -78,6 +102,7 @@ long long qmi(long long m, long long k, long long p = 9e18) {
     }
     return res;
 }
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -85,39 +110,30 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-
+long long Sqrt(long long N) {
+    __int128 sqrtN = sqrtl(N) - 1;
+    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
+    return sqrtN;
+}
 // #define int long long
+
+long long jc(long long n, long long k = 1, long long p = 1e9 + 7) {
+    for(int i = 3; i <= n; k *= i ++, k %= p);
+    return k % p;
+}
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-
 // #define int long long
+
 void solve() {
-    set<long long> s;
-    int op;
-    while(cin>> op) {
-        if(op == 1) {
-            long long x;
-            cin>> x;
-            s.insert(x);
-        }else if(op == 2) {
-            long long x;
-            cin>> x;
-            cout << s.count(x) <<endl;
-        }else if(op == 3) {
-            cout << s.size() <<endl;
-        }else if(op == 4) {
-            cout << s.empty() <<endl;
-        }else if(op == 5) {
-            long long a;
-            cin>> a;
-            s.erase(a);
-        }else s.clear();
-    }
-}
+    int n, ans = 0;
+    cin>> n;
+    cout<< jc(2 * n) <<endl;
+} 
