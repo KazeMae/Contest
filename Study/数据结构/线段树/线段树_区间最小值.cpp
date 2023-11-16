@@ -37,7 +37,7 @@ struct SEGT{
         }
     }
 
-    // 节点为id, 对应的区间为[l, r], 修改 a[pos] -> val
+    // 单点修改, 修改 a[pos] -> val
     void change(int id, int l, int r, int pos, int val) {
         if(l == r) {
             seg[id].minv = val;

@@ -1,0 +1,9 @@
+[
+	{
+		"correct_answers":
+		[
+			"2\n1"
+		],
+		"test": "4\nabcd\ncdf\nabc\nbbc\n2\nab\ncd\n"
+	}
+]

@@ -23,12 +23,11 @@ struct SEGT {
     vector<int> a;
     vector<Zhenen> seg;
     SEGT(int n) : a(n + 1), seg(n * 4) {}
-
+    // 更新
     void update(int id) {
         seg[id].val = seg[ls].val + seg[rs].val;
     }
-
-
+    // 标记下传
     void pushdown(int id) {
         if(seg[id].t != 0) {
             seg[ls].val += seg[ls].sz * seg[id].t;
@@ -49,7 +48,7 @@ struct SEGT {
             update(id);
         }
     }
-
+    // 区间修改 [ql, qr] += t
     void modify(int id, int l, int r, int ql, int qr, long long t) {
         if(l == ql && r == qr) {
             seg[id].val += seg[id].sz * t;
@@ -66,7 +65,7 @@ struct SEGT {
         }
         update(id);
     }
-
+    // 查询 [ql, qr] 的区间和
     long long query(int id, int l, int r, int ql, int qr) {
         if(l == ql && r == qr) return seg[id].val;
         pushdown(id);

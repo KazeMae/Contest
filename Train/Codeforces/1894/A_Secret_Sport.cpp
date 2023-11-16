@@ -1,9 +1,32 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
+/*******************************
+| Author:  KAZE_mae
+| Website: https://cloudfall.top
+| Problem: A. Secret Sport
+| Contest: Codeforces - Codeforces Round 908 (Div. 2)
+| URL:     https://codeforces.com/contest/1894/problem/0
+| When:    2023-11-07 22:35:22
+| 
+| Memory:  512 MB
+| Time:    3000 ms
+*******************************/
+
+/*
+* ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷
+* ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇
+* ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽
+* ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕
+* ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕
+* ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕
+* ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄
+* ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕
+* ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿
+* ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+* ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟
+* ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠
+* ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙
+* ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣
+*/
+
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -56,10 +79,11 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-// #define mp make_pair
+#define mp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
+#define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -78,6 +102,7 @@ long long qmi(long long m, long long k, long long p = 9e18) {
     }
     return res;
 }
+inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -85,8 +110,13 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-
+long long Sqrt(long long N) {
+    __int128 sqrtN = sqrtl(N) - 1;
+    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
+    return sqrtN;
+}
 // #define int long long
+
 
 void solve();
 signed main() {
@@ -96,8 +126,18 @@ signed main() {
         solve();
   return 0;
 }
-
 // #define int long long
+
 void solve() {
-    
-}
+    int n, a = 0, b = 0, wa = 0, wb = 0;
+    cin>> n;
+    string s;
+    cin>> s;
+    for(auto i : s) {
+        if(i == 'A') ++ a;
+        else ++ b;
+        if(a == 2) a = 0, b = 0, ++ wa;
+        if(b == 2) a = 0, b = 0, ++ wb;
+    }
+    cout<< (wa >= wb ? "A" : "B") <<endl;
+} 

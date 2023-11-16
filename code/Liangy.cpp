@@ -1,123 +1,55 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         
- * @DateTime    
- */
-// #include <bits/stdc++.h>
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
-using namespace std;
-
-using ll = long long;
-using Ld = long double;
-using uint = unsigned int;
-using ull = unsigned long long;
-template <typename T>
-using pair2 = pair<T, T>;
-using PII = pair<int, int>;
-using PLI = pair<ll, int>;
-using PLL = pair<ll, ll>;
-
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B){ return (ull)rng() % B; }
-
-#define endl '\n'
-#define debug(x) cout << #x << " = " << (x) << endl
-#define abs(a) ((a) >= 0 ? (a) : -(a))
-#define sz(x) ((int)(x).size())
-#define all(x) (x).begin(), (x).end()
-#define mem(a, b) memset(a, b, sizeof(a))
-// #define max(a, b) ((a) > (b) ? (a) : (b))
-// #define min(a, b) ((a) < (b) ? (a) : (b))
-#define rep(i, a, n) for (int i = a; i <= n; ++i)
-#define per(i, n, a) for (int i = n; i >= a; --i)
-#define pb push_back
-// #define mp make_pair
-#define fi first
-#define se second
-#define lowbit(x) (x&(-x))
-
-const int N = 1000005; // 1e6 + 5
-const int INF = 0x3f3f3f3f;
-const long long LNF = 0x3f3f3f3f3f3f3f3f;
-const double EPS = 1e-7;
-const double PI = acos(-1.0);
-const int MOD = 998244353;
-
-// #define int long long
-
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
+#include <stdio.h>
+#include <string.h>
+const int M=300005;
+struct treeNode{int l,r,sum,lazy;}t[M*50];
+int root=1,cnt=1;
+void push_down(int now,int tl,int tr) {
+    if (t[now].lazy==-1) return ;
+    if (!t[now].l) t[t[now].l=++cnt]=(treeNode){0,0,0,-1};
+    if (!t[now].r) t[t[now].r=++cnt]=(treeNode){0,0,0,-1};
+    int mid=(tl+tr)>>1;
+    t[t[now].l].lazy=t[t[now].r].lazy=t[now].lazy;
+    t[t[now].l].sum=(mid-tl+1)*t[now].lazy;
+    t[t[now].r].sum=(tr-mid)*t[now].lazy;
+    t[now].lazy=-1;
+}
+void modify(int &now,int tl,int tr,int l,int r,int v) {
+    if (!now) t[now=++cnt]=(treeNode){0,0,0,-1};
+    if (tl==l&&tr==r) {
+        t[now].sum=(r-l+1)*v;
+        t[now].lazy=v;
+        return ;
     }
-    return res;
-}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
-
-
-// #define int long long
-
-void solve();
-signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
-        solve();
-  return 0;
-}
-
-// #define int long long
-void solve() {
-    set<long long> s;
-    int op;
-    while(cin>> op) {
-        if(op == 1) {
-            long long x;
-            cin>> x;
-            s.insert(x);
-        }else if(op == 2) {
-            long long x;
-            cin>> x;
-            cout << s.count(x) <<endl;
-        }else if(op == 3) {
-            cout << s.size() <<endl;
-        }else if(op == 4) {
-            cout << s.empty() <<endl;
-        }else if(op == 5) {
-            long long a;
-            cin>> a;
-            s.erase(a);
-        }else s.clear();
+    push_down(now,tl,tr);
+    int mid=(tl+tr)>>1;
+    if (r<=mid) modify(t[now].l,tl,mid,l,r,v);
+    else if (l>mid) modify(t[now].r,mid+1,tr,l,r,v);
+    else {
+        modify(t[now].l,tl,mid,l,mid,v);
+        modify(t[now].r,mid+1,tr,mid+1,r,v);
     }
+    t[now].sum=t[t[now].l].sum+t[t[now].r].sum;
+}
+int query(int now,int tl,int tr,int l,int r) {
+    if (!now) return 0;
+    if (tl==l&&tr==r) return t[now].sum;
+    push_down(now,tl,tr);
+    int mid=(tl+tr)>>1;
+    if (r<=mid) return query(t[now].l,tl,mid,l,r);
+    else if (l>mid) return query(t[now].r,mid+1,tr,l,r);
+    else return query(t[now].l,tl,mid,l,mid)+query(t[now].r,mid+1,tr,mid+1,r);
+}
+int main(void) {
+    int n,m; scanf("%d%d",&n,&m);
+    t[root].sum=n; t[root].lazy=1;
+    while (m--) {
+        int l,r,k; scanf("%d%d%d",&l,&r,&k);
+        if (k==1) {
+            modify(root,1,n,l,r,k-1);
+        } else if (k==2) {
+            modify(root,1,n,l,r,k-1);
+        }
+        printf("%d\n", query(root,1,n,1,n));
+    }
+    return 0;
 }
