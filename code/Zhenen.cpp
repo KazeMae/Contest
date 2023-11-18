@@ -1,79 +1,57 @@
-#include<iostream>
-#include<algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
-long long ch[N];
-struct t
-{
-    int lson, rson;
-    long long value;
-    long long tag;
-}tree[2 * N];
-int tot = 0, add;
-void push_up(int root) { tree[root].value = tree[tree[root].lson].value + tree[tree[root].rson].value; }
-void bulid(int& root, int L, int R)
-{
-    if (!root)root = ++tot;
-    if (L == R) { tree[root].value = ch[L]; return; }
-    int mid = (L + R) / 2;
 
-    bulid(tree[root].lson, L, mid);
-    bulid(tree[root].rson, mid + 1, R);
-    push_up(root);
-}
-void push_tag(int root, int L, int R, int k)
-{
-    tree[root].value += (R - L + 1) * k;
-    tree[root].tag += k;
-}
-void push_down(int root, int L, int R)
-{
-    int mid = (L + R) / 2;
-    push_tag(tree[root].lson, L, mid, tree[root].tag);
-    push_tag(tree[root].rson, mid + 1, R, tree[root].tag);
-    tree[root].tag = 0;
-    return;
-}
-void update(int root, int l, int r, int L, int R)
-{
-    if (!root)root = ++tot;
-    if (l <= L && r >= R) { push_tag(root, L, R, add); return; }
-    int mid = (L + R) / 2;
+// #define int long long
+#define endl '\n'
 
-    if(tree[root].tag)push_down(root, L ,R);
-    if (l <= mid)update(tree[root].lson, l, r, L, mid);
-    if (r > mid)update(tree[root].rson, l, r, mid + 1, R);
-    push_up(root);
-}
-long long query(int root, int l, int r, int L, int R)
-{
-    long long ans = 0;
-    if (l <= L && r >= R)return tree[root].value;
-    int mid = (L + R) / 2;
-    if(tree[root].tag)push_down(root, L, R);
 
-    if (l <= mid)ans += query(tree[root].lson, l, r, L, mid);
-    if (r > mid)ans += query(tree[root].rson, l, r, mid + 1, R);
-    return ans;
+void solve();
+signed main() {
+    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    // int t = 0; cin >> t; while(t --)
+        solve();
 }
-int main()
-{
-    ios::sync_with_stdio(false);cin.tie(0); cout.tie(0);
-    int n, m, root = 0;
-    cin >> n >> m;
-    for (int i = 1; i <= n; i++)cin >> ch[i];
-    bulid(root, 1, n);
-    while (m--)
-    {
-        //char op;
-        int op, x, y;
-        cin >> op >> x >> y;
-        if (op == 1)cin >> add, update(1, x, y, 1, n);
-        else
-        {
-            long long ans = query(1, x, y, 1, n);
-            cout << ans << endl;
-        }
+
+void solve() {
+    int x, y, di, dv, ma, mb, da, db;
+    cin>> x >> y >> di >> dv;
+    int gd = __gcd(di, dv);
+    int lm = di / gd * dv;
+    if(gd != 1) {
+        int ca = max(x, y) / (di - 1);
+        int ta = di * ca - 1;
+        ma = ta;
+        for(int i = ta, cnt = ca; cnt < max(x, y); ++ i, ++ cnt, ma = i);
+        cout << ma <<endl;
+    }else {
+        int ca = y / (dv - 1); // !di
+        int ta = dv * ca - 1;
+        ma = ta;
+        for(int i = (ta < 1 ? 1 : ta), cnt = ca; cnt < y; ma = max(ma, i ++), ++ cnt);
+        da = ma;
+        // cout << ma <<endl;
+        int cb = x / (di - 1); // !dv
+        int tb = di * cb - 1;
+        mb = tb;
+        for(int i = (tb < 1 ? 1 : tb), cnt = cb; cnt < x; mb = max(mb, i ++), ++ cnt);
+        db = mb;
+        // cout << mb <<endl;
+        // cout << "ma, mb : " << ma << " " << mb <<endl;
+        // di
+        int kca = x / di;
+        int kta = di * kca - 1;
+        ma = max(ma, kta);
+        // cout << "ka : " << kta << " " << dv <<endl;
+        for(int i = (kta < 1 ? dv : kta), cnt = kca; cnt < x; ma = max(ma, i), (i >= da ? ((i + 1) % di == 0 ? i += 2 : i ++) : i += dv), ++ cnt);
+
+        // dv
+        int kcb = y / dv;
+        int ktb = dv * kcb - 1;
+        // cout << "kb : " << ktb << " " << db <<endl;
+        mb = max(mb, ktb);
+        for(int i = (ktb < 1 ? di : ktb), cnt = kcb; cnt < y; mb = max(mb, i), (i >= db ? ((i + 1) % dv == 0 ? i += 2 : i ++) : i += di), ++ cnt); //{cout << mb <<endl;};
+        // cout << "ma, mb : " << ma << " " << mb <<endl;
+
+        cout << min(ma, mb) <<endl;
     }
-    return 0;
 }
