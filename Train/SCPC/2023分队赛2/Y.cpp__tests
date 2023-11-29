@@ -1,0 +1,12 @@
+[
+	{
+		"correct_answers":
+		[
+			"yaa\naay\ns"
+		],
+		"test": "3\nayaa\naaya\nshameimaru\n"
+	},
+	{
+		"test": "3\nayaayaa\naaya\nshameimaru\n"
+	}
+]
