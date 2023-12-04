@@ -1,3 +1,4 @@
+// AC自动机_拓扑排序优化建图
 // 输出包含 n 行，其中第 i 行包含一个非负整数表示 T_i 在 S 中出现的次数。
 #include <bits/stdc++.h>
 using namespace std;

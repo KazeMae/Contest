@@ -1,17 +1,7 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         https://www.luogu.com.cn/problem/solution/P3375
- * @DateTime    2023-11-19 03:21:47
- */
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 1000005; // 1e6 + 5
-
-// #define int long long
-
-// int nxt[N];
 
 vector<int> kmp(string t) {
     vector<int> nxt(t.size() + 5);
@@ -25,9 +15,6 @@ vector<int> kmp(string t) {
 
 void solve();
 signed main() {
-    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
     string s, t;
     cin>> s >> t;
     s = " " + s;
@@ -46,9 +33,4 @@ signed main() {
         cout << nxt[i] << " ";
     cout <<endl;
   return 0;
-}
-
-// #define int long long
-void solve() {
-    
 }

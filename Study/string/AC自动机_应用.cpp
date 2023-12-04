@@ -1,3 +1,4 @@
+// AC自动机 应用
 // 求模式串出现次数最多的次数, 求出现次数最多的模式串
 #include <bits/stdc++.h>
 using namespace std;

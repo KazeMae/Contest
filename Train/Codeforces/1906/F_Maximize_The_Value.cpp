@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: M. Triangle Construction
+| Problem: F. Maximize The Value
 | Contest: Codeforces - 2023-2024 ICPC, Asia Jakarta Regional Contest (Online Mirror, Unrated, ICPC Rules, Teams Preferred)
-| URL:     https://codeforces.com/contest/1906/problem/M
-| When:    2023-12-03 13:30:17
+| URL:     https://codeforces.com/contest/1906/problem/F
+| When:    2023-12-03 15:55:25
 | 
 | Memory:  1024 MB
 | Time:    1000 ms
@@ -126,30 +126,19 @@ signed main() {
         solve();
   return 0;
 }
-#define int long long
+// #define int long long
 
 void solve() {
-    int n, ans = 0, s = 0, k = 0, j = -1;
-    cin>> n;
-    vector<int> a(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
+    int n, m;
+    cin>> n >> m;
+    vector<int> a(n + 5), pre(n + 5);
+    for(int i = 0, l, r, x; i < m; ++ i) {
+        cin>> l >> r >> x;
+        a[l] += x, a[r + 1] -= x;
     }
-    sort(a.begin(), a.end(), greater<int>());
-    for(int i = 0; i < n; ++ i) {
-        if(k != 0) {
-            if(k >= a[i]) ans += a[i], k -= a[i];
-            else {
-                ans += k, a[i] -= k, s += a[j] % 2;
-                ans += s / 3, s %= 3;
-                k = a[i] / 2, j = i;
-                if(i == n - 1) ans += min(s, k);
-            }
-        }else {
-            k = a[i] / 2, j = i;
-            if(i == n - 1) ans += min(s, k);
-        }
-        if(k == 0) s += a[j] % 2, ans += s / 3, s %= 3;
+    for(int i = 1; i <= n; ++ i) {
+        pre[i] = a[i] + pre[i - 1];
+        cout << pre[i] << " ";
     }
-    cout << ans <<endl;
+
 } 

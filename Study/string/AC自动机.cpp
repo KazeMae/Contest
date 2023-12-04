@@ -1,9 +1,3 @@
-/**
- * @Author      KAZE_mae
- * @Website     https://cloudfall.top/
- * @Url         https://www.luogu.com.cn/problem/P3808
- * @DateTime    2023-11-20 22:01:18
- */
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;

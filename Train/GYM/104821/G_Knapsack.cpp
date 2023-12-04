@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: M. Triangle Construction
-| Contest: Codeforces - 2023-2024 ICPC, Asia Jakarta Regional Contest (Online Mirror, Unrated, ICPC Rules, Teams Preferred)
-| URL:     https://codeforces.com/contest/1906/problem/M
-| When:    2023-12-03 13:30:17
+| Problem: G. Knapsack
+| Contest: Codeforces - The 2023 ICPC Asia Nanjing Regional Contest (The 2nd Universal Cup. Stage 11: Nanjing)
+| URL:     https://codeforces.com/gym/104821/problem/G
+| When:    2023-11-29 18:02:55
 | 
 | Memory:  1024 MB
 | Time:    1000 ms
@@ -115,8 +115,23 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-// #define int long long
+#define int long long
 
+struct Zhenen{
+    int w, v;
+    double k;
+    bool isf = 0;
+};
+
+bool cmpk(Zhenen a, Zhenen b) {
+    return a.k > b.k;
+}
+bool cmpw(Zhenen a, Zhenen b) {
+    return a.w > b.w;
+}
+bool cmpv(Zhenen a, Zhenen b) {
+    return a.v > b.v;
+}
 
 void solve();
 signed main() {
@@ -129,27 +144,25 @@ signed main() {
 #define int long long
 
 void solve() {
-    int n, ans = 0, s = 0, k = 0, j = -1;
-    cin>> n;
-    vector<int> a(n);
+    int n, w, k, sum = 0;
+    cin>> n >> w >> k;
+
+    vector<Zhenen> a(n);
+    vector<int> dp(w + 5);
     for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
+        cin>> a[i].v >> a[i].w;
+        a[i].k = a[i].w * 1.0 / a[i].v;
     }
-    sort(a.begin(), a.end(), greater<int>());
-    for(int i = 0; i < n; ++ i) {
-        if(k != 0) {
-            if(k >= a[i]) ans += a[i], k -= a[i];
-            else {
-                ans += k, a[i] -= k, s += a[j] % 2;
-                ans += s / 3, s %= 3;
-                k = a[i] / 2, j = i;
-                if(i == n - 1) ans += min(s, k);
-            }
-        }else {
-            k = a[i] / 2, j = i;
-            if(i == n - 1) ans += min(s, k);
-        }
-        if(k == 0) s += a[j] % 2, ans += s / 3, s %= 3;
+    
+    sort(a.begin(), a.end(), cmpv);
+    for(int i = n - 1; i >= 0; -- i) 
+        for(int j = w; j >= a[i].v; -- j) 
+            if(dp[j - a[i].v] + a[i].w > dp[j]) 
+                dp[j] = dp[j - a[i].v] + a[i].w, a[i].isf = 1;
+
+    sort(a.begin(), a.end(), cmpw);
+    for(int i = n - 1; i >= 0 && k > 0; -- i) {
+        if(!a[i].isf) sum += a[i].w, -- k;
     }
-    cout << ans <<endl;
+    cout<< sum + (*max_element(dp.begin(), dp.end())); 
 } 

@@ -1,10 +1,10 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: M. Triangle Construction
-| Contest: Codeforces - 2023-2024 ICPC, Asia Jakarta Regional Contest (Online Mirror, Unrated, ICPC Rules, Teams Preferred)
-| URL:     https://codeforces.com/contest/1906/problem/M
-| When:    2023-12-03 13:30:17
+| Problem: C. Primitive Root
+| Contest: Codeforces - The 2023 ICPC Asia Nanjing Regional Contest (The 2nd Universal Cup. Stage 11: Nanjing)
+| URL:     https://codeforces.com/gym/104821/problem/C
+| When:    2023-12-02 15:03:22
 | 
 | Memory:  1024 MB
 | Time:    1000 ms
@@ -122,34 +122,25 @@ void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 #define int long long
 
 void solve() {
-    int n, ans = 0, s = 0, k = 0, j = -1;
-    cin>> n;
-    vector<int> a(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
+    int p, m, ans = 0;
+    cin>> p >> m;
+    __int128 l = 0, r = 1e18;
+    while(l < r) {
+        __int128 mid = l + r + 1 >> 1;
+        if(((p - 1) ^ (mid * p + 1)) <= m) l = mid;
+        else r = mid - 1;
     }
-    sort(a.begin(), a.end(), greater<int>());
-    for(int i = 0; i < n; ++ i) {
-        if(k != 0) {
-            if(k >= a[i]) ans += a[i], k -= a[i];
-            else {
-                ans += k, a[i] -= k, s += a[j] % 2;
-                ans += s / 3, s %= 3;
-                k = a[i] / 2, j = i;
-                if(i == n - 1) ans += min(s, k);
-            }
-        }else {
-            k = a[i] / 2, j = i;
-            if(i == n - 1) ans += min(s, k);
-        }
-        if(k == 0) s += a[j] % 2, ans += s / 3, s %= 3;
+    ans = (long long) l;
+    for(__int128 i = max((__int128)0, l - 100), n = l + 100; i <= n; ++ i) {
+        if(((p - 1) ^ (i * p + 1)) <= m) {if(i > l) ++ ans;}
+        else {if(i <= l) -- ans;}
     }
-    cout << ans <<endl;
+    cout << (long long) ans + 1 <<endl;
 } 

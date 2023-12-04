@@ -1,0 +1,94 @@
+[
+	{
+		"correct_answers":
+		[
+			"4"
+		],
+		"test": "4\n3 1 4 6\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "6\n1 2 1 2 1 2\n"
+	},
+	{
+		"correct_answers":
+		[
+			"1"
+		],
+		"test": "3\n1 1 1\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "4\n4 4 1 1\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "3\n3 3 3\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "4\n2 2 3 4\n"
+	},
+	{
+		"correct_answers":
+		[
+			"1"
+		],
+		"test": "3\n2 2 1\n"
+	},
+	{
+		"correct_answers":
+		[
+			"2"
+		],
+		"test": "3\n2 2 2\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3"
+		],
+		"test": "3\n3 4 2\n"
+	},
+	{
+		"correct_answers":
+		[
+			"2"
+		],
+		"test": "3\n1 1 100\n"
+	},
+	{
+		"correct_answers":
+		[
+			"3",
+			"2"
+		],
+		"test": "3\n1 2 100\n"
+	},
+	{
+		"correct_answers":
+		[
+			"5"
+		],
+		"test": "3\n4 4 7\n"
+	},
+	{
+		"correct_answers":
+		[
+			"4"
+		],
+		"test": "3\n3 4 7\n"
+	}
+]

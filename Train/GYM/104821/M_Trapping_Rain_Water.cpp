@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: M. Triangle Construction
-| Contest: Codeforces - 2023-2024 ICPC, Asia Jakarta Regional Contest (Online Mirror, Unrated, ICPC Rules, Teams Preferred)
-| URL:     https://codeforces.com/contest/1906/problem/M
-| When:    2023-12-03 13:30:17
+| Problem: M. Trapping Rain Water
+| Contest: Codeforces - The 2023 ICPC Asia Nanjing Regional Contest (The 2nd Universal Cup. Stage 11: Nanjing)
+| URL:     https://codeforces.com/gym/104821/problem/M
+| When:    2023-11-29 16:11:16
 | 
 | Memory:  1024 MB
-| Time:    1000 ms
+| Time:    5000 ms
 *******************************/
 
 /*
@@ -117,39 +117,78 @@ long long Sqrt(long long N) {
 }
 // #define int long long
 
+struct SEGT{
+    int n;
+    struct node{
+        int minv;
+    };
+    vector<node> seg;
+    SEGT(int len) : n(len), seg(n * 4) {}
+
+    void update(int id) {
+        seg[id].minv = max(seg[id * 2].minv, seg[id * 2 + 1].minv);
+    }
+
+    // 初始化
+    void init(int id, int l, int r, vector<int> &a) {
+        if(l == r) {
+            seg[id].minv = a[l];
+        }else {
+            int mid = l + r >> 1;
+            init(id * 2, l, mid, a);
+            init(id * 2 + 1, mid + 1, r, a);
+            update(id);
+        }
+    }
+
+    // 单点修改, 修改 a[pos] -> val
+    void change(int id, int l, int r, int pos, int val) {
+        if(l == r) {
+            seg[id].minv += val;
+        }else {
+            int mid = l + r >> 1;
+            if(pos <= mid) change(id * 2, l, mid, pos, val);
+            else change(id * 2 + 1, mid + 1, r, pos, val);
+            update(id);
+        }
+    }
+    // [ql, qr] 表示查询区间
+    int query(int id, int l, int r, int ql, int qr) {
+        if(l == ql && r == qr) return seg[id].max;
+        int mid = l + r >> 1;
+        // [l, mid] , [mid + 1, r]
+        if(qr <= mid) return query(id * 2, l, mid, ql, qr); 
+        else if(ql > mid) return query(id * 2 + 1, mid + 1, r, ql, qr);
+        else {
+            // qr > mid, ql <= mid
+            // [ql, mid], [mid + 1, qr]
+            return max(
+                query(id * 2, l, mid, ql, mid), 
+                query(id * 2 + 1, mid + 1, r, mid + 1, qr)
+            );
+        }
+        // update(id);
+    }
+};
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-#define int long long
+// #define int long long
 
 void solve() {
-    int n, ans = 0, s = 0, k = 0, j = -1;
+    int n, q;
     cin>> n;
-    vector<int> a(n);
+    SEGT tr(n + 5);
+    vector<int> a(n + 1);
     for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
+        cin>> a[i + 1];
     }
-    sort(a.begin(), a.end(), greater<int>());
-    for(int i = 0; i < n; ++ i) {
-        if(k != 0) {
-            if(k >= a[i]) ans += a[i], k -= a[i];
-            else {
-                ans += k, a[i] -= k, s += a[j] % 2;
-                ans += s / 3, s %= 3;
-                k = a[i] / 2, j = i;
-                if(i == n - 1) ans += min(s, k);
-            }
-        }else {
-            k = a[i] / 2, j = i;
-            if(i == n - 1) ans += min(s, k);
-        }
-        if(k == 0) s += a[j] % 2, ans += s / 3, s %= 3;
-    }
-    cout << ans <<endl;
+    cin>> q;
+    
 } 
