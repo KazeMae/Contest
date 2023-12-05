@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: E. Collapsing Strings
-| Contest: Codeforces - Educational Codeforces Round 159 (Rated for Div. 2)
-| URL:     https://codeforces.com/contest/1902/problem/E
-| When:    2023-12-04 14:02:10
+| Problem: A. Rook
+| Contest: Codeforces - Codeforces Round 913 (Div. 3)
+| URL:     https://codeforces.com/contest/1907/problem/0
+| When:    2023-12-05 22:46:59
 | 
 | Memory:  256 MB
-| Time:    2000 ms
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -88,7 +88,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
-// #define size(x) ((int)x.size())
+#define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -122,48 +122,24 @@ long long Sqrt(long long N) {
 }
 // #define int long long
 
-struct Tire{
-    int nxt[30];
-    int cnt = 0;
-};
-vector<Tire> t(N);
-int tot = 0;
-void insert(string s) {
-    int now = 0;
-    for(int i = 0; i < s.size(); ++ i) {
-        int x = s[i] - 'a';
-        if(!t[now].nxt[x]) t[now].nxt[x] = ++ tot;
-        now = t[now].nxt[x], t[now].cnt ++;
-    }
-}
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    // int _ = 1; cin>> _; while(_ --)
+    int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-#define int long long
+// #define int long long
 
 void solve() {
-    int n, ans = 0, sum = 0;
-    cin>> n;
-    vector<string> s(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> s[i];
-        sum += s[i].size() * n * 2; 
-        insert(s[i]);
+    string s;
+    cin>> s;
+    for(char a = '1'; a <= '8'; ++ a) {
+        if(a != s[1]) cout << s[0] << a<<endl;
     }
-    ans = sum;
-    for(int i = 0, now = 0, cnt = 0; i < n; ++ i, now = 0, cnt = 0) {
-        for(int j = s[i].size() - 1; j >= 0; -- j) {
-            int x = s[i][j] - 'a';
-            if(!t[now].nxt[x]) break;
-            else now = t[now].nxt[x], cnt += t[now].cnt;
-        }
-        ans -= cnt * 2;
+    for(char a = 'a'; a <= 'h'; ++ a) {
+        if(a != s[0]) cout << a << s[1] <<endl;
     }
-    cout << ans <<endl;
-}
+} 
