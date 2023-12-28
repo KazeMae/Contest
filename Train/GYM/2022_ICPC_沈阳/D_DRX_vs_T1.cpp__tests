@@ -1,0 +1,16 @@
+[
+	{
+		"correct_answers":
+		[
+			"T1"
+		],
+		"test": "TDTT?\n"
+	},
+	{
+		"correct_answers":
+		[
+			"DRX"
+		],
+		"test": "DTDD?\n"
+	}
+]

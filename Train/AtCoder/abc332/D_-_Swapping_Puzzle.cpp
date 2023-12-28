@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D - Swapping Puzzle
+| Contest: AtCoder - AtCoder Beginner Contest 332
+| URL:     https://atcoder.jp/contests/abc332/tasks/abc332_d
+| When:    2023-12-11 02:16:30
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  1024 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -121,18 +121,66 @@ long long Sqrt(long long N) {
     return sqrtN;
 }
 // #define int long long
+int ans = -1;
+int h, w;
 
+void bfs(vector<int> sa, vector<int> b) {
+    queue<pair<vector<int>, int> > q;
+    q.push({sa, 0});
+    set<vector<int>> st;
+    st.insert(sa);
+    while(!q.empty()) {
+        auto [t, m] = q.front();
+        q.pop();
+        // cout<< m << " " << (t == b) <<endl;
+        if(t == b) {
+            ans = m;
+            return;
+        }
+        for(int i = 0, j = 1; j < h; ++ i, ++ j) {
+            auto tt = t;
+            for(int k = 0; k < w; ++ k) {
+                swap(tt[i * w + k], tt[j * w + k]);
+            }
+            if(tt == b) {
+                ans = m + 1;
+                return;
+            }
+            if(!st.count(tt)) q.push({tt, m + 1}), st.insert(tt);
+        }
+        for(int i = 0, j = 1; j < w; ++ i, ++ j) {
+            auto tt = t;
+            for(int k = 0; k < h; ++ k) {
+                swap(tt[k * w + i], tt[k * w + j]);
+            }
+            if(tt == b) {
+                ans = m + 1;
+                return;
+            }
+            if(!st.count(tt)) q.push({tt, m + 1}), st.insert(tt);
+        }
+    }
+}
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    cin>> h >> w;
+    vector<int> a(h * w), b(h * w);
+    for(int i = 0; i < h * w; ++ i) {
+            cin>> a[i];
+    }
+    for(int i = 0; i < h * w; ++ i) {
+            cin>> b[i];
+    }
+    bfs(a, b);
+    cout<< ans <<endl;
 } 

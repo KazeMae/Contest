@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: F - Random Update Query
+| Contest: AtCoder - AtCoder Beginner Contest 332
+| URL:     https://atcoder.jp/contests/abc332/tasks/abc332_f
+| When:    2023-12-20 23:44:24
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  1024 MB
+| Time:    3000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -99,8 +99,8 @@ const int MOD = 998244353;
 
 // #define int long long
 
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
+long long qmi(long long m, long long k, long long p = MOD) {
+    long long res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
         t = t * t % p, k >>= 1;
@@ -120,19 +120,100 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-// #define int long long
+#define int long long
+
+
+struct SEGT {
+    #define ls id << 1
+    #define rs id << 1 | 1
+    struct Zhenen {
+        long long val, tp = 1, ts = 0;
+        int sz;
+    };
+    vector<int> a;
+    vector<Zhenen> seg;
+    SEGT(int n) : a(n + 1), seg(n * 4) {}
+    // 更新
+    void update(int id) {
+        seg[id].val = seg[ls].val + seg[rs].val;
+    }
+    // 标记下传
+    void pushdown(int id) {
+        if(seg[id].tp != 1 || seg[id].ts != 0) {
+            seg[ls].tp = seg[id].tp * seg[ls].tp % MOD;
+            seg[rs].tp = seg[id].tp * seg[rs].tp % MOD;
+            seg[ls].ts = (seg[id].ts + seg[id].tp * seg[ls].ts) % MOD;
+            seg[rs].ts = (seg[id].ts + seg[id].tp * seg[rs].ts) % MOD;
+            seg[id].tp = 1, seg[id].ts = 0;
+        }
+    }
+
+    void build(int id, int l, int r) {
+        seg[id].sz = r - l + 1;
+        if(l == r) seg[id].tp = a[l] % MOD;
+        else {
+            int mid = l + r >> 1;
+            build(ls, l, mid);
+            build(rs, mid + 1, r);
+            // update(id);
+        }
+    }
+    // 区间修改 [ql, qr] += t
+    void modify(int id, int l, int r, int ql, int qr, long long s, long long p) {
+        if(l == ql && r == qr) {
+            seg[id].ts = (seg[id].ts * p + s) % MOD;
+            seg[id].tp = seg[id].tp * p % MOD;
+            return;
+        }
+        pushdown(id);
+        int mid = l + r >> 1;
+        if(qr <= mid) modify(ls, l , mid, ql, qr, s, p);
+        else if(ql > mid) modify(rs, mid + 1, r, ql, qr, s, p);
+        else {
+            modify(ls, l, mid, ql, mid, s, p);
+            modify(rs, mid + 1, r, mid + 1, qr, s, p);
+        }
+        // update(id);
+    }
+    // 查询 [ql, qr] 的区间和
+    long long query(int id, int l, int r, int ql, int qr) {
+        if(l == ql && r == qr) return seg[id].ts + seg[id].tp;
+        pushdown(id);
+        int mid = l + r >> 1;
+        if(qr <= mid) return query(ls, l, mid, ql, qr);
+        else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+        else return (query(ls, l, mid, ql, mid) + query(rs, mid + 1, r, mid + 1, qr));
+    }
+    #undef ls
+    #undef rs
+};
 
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    int n, m;
+    cin>> n >> m;
+    SEGT tr(n);
+    for(int i = 0; i < n; ++ i) {
+        cin>> tr.a[i + 1];
+    }
+    tr.build(1, 1, n);
+    while(m --) {
+        int l, r, x;
+        cin>> l >> r >> x;
+        int q = qmi(r - l + 1, MOD - 2);
+        tr.modify(1, 1, n, l, r, (x * q % MOD), ((r - l) * q % MOD));
+    }
+    for(int i = 1; i <= n; ++ i) {
+        cout << tr.query(1, 1, n, i, i) % MOD <<" ";
+    }
 } 

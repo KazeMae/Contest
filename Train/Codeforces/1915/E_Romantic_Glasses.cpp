@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: E. Romantic Glasses
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/E
+| When:    2023-12-28 22:57:32
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -120,7 +120,63 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-// #define int long long
+#define int long long
+
+struct SEGT {
+    #define ls id << 1
+    #define rs id << 1 | 1
+    struct Zhenen {
+        long long j = 0, o = 0;
+    };
+    vector<int> a;
+    vector<Zhenen> seg;
+    SEGT(int n) : a(n + 1), seg(n * 4) {}
+    // 更新
+    void update(int id) {
+        seg[id].j = seg[ls].j + seg[rs].j;
+        seg[id].o = seg[ls].o + seg[rs].o;
+    }
+    // 标记下传
+    void pushdown(int id) {
+        
+    }
+
+    void build(int id, int l, int r) {
+        if(l == r) if(l & 1) seg[id].j = a[l];
+            else seg[id].o = a[l];
+        else {
+            int mid = l + r >> 1;
+            build(ls, l, mid);
+            build(rs, mid + 1, r);
+            update(id);
+        }
+    }
+    // 区间修改 [ql, qr] += t
+    void modify(int id, int l, int r, int ql, int qr, long long t) {
+        if(l == ql && r == qr) {
+            return;
+        }
+        pushdown(id);
+        int mid = l + r >> 1;
+        if(qr <= mid) modify(ls, l , mid, ql, qr, t);
+        else if(ql > mid) modify(rs, mid + 1, r, ql, qr, t);
+        else {
+            modify(ls, l, mid, ql, mid, t);
+            modify(rs, mid + 1, r, mid + 1, qr, t);
+        }
+        update(id);
+    }
+    // 查询 [ql, qr] 的区间和
+    pair<long long, long long> query(int id, int l, int r, int ql, int qr) {
+        if(l == ql && r == qr) return make_pair(seg[id].j, seg[id].o);
+        int mid = l + r >> 1;
+        if(qr <= mid) return query(ls, l, mid, ql, qr);
+        else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
+        else return make_pair(query(ls, l, mid, ql, mid).first + query(rs, mid + 1, r, mid + 1, qr).first, query(ls, l, mid, ql, mid).second + query(rs, mid + 1, r, mid + 1, qr).second);
+    }
+    #undef ls
+    #undef rs
+};
 
 
 void solve();
@@ -131,8 +187,39 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    int n, d = 0, o = 0;
+    cin>> n;
+    SEGT tr(n);
+    vector<int> a(n + 1);
+    for(int i = 1; i <= n; ++ i) {
+        cin>> a[i];
+        tr.a[i] = a[i];
+        if(i & 1) d += a[i];
+        else o += a[i];
+    }
+    if(o == d) {
+        cout << "YES" <<endl;
+        return;
+    }
+    for(int i = 1, j = n; i < j && o != d;) {
+        if(o > d) {
+            if(!(i & 1) && j & 1) o -= a[i ++];
+            else if(!(j & 1) && i & 1) o -= a[j --];
+            else if(!(j & 1) && !(i & 1)) a[j] < a[i] ? o -= a[j --] : o -= a[i ++];
+            else if(j & 1 && i & 1) a[j] > a[i] ? d -= a[j --] : d -= a[i ++];
+        }else {
+            if(!(i & 1) && j & 1) d -= a[j --];
+            else if(!(j & 1) && i & 1) d -= a[i ++];
+            else if(!(j & 1) && !(i & 1)) a[j] > a[i] ? o -= a[i ++] : o -= a[j --];
+            else if(j & 1 && i & 1) a[j] < a[i] ?  d -= a[i ++] : d -= a[j --];
+        }
+        if(o == d) {
+            cout << "YES" <<endl;
+            return;
+        }
+    }
+    cout << "NO" <<endl;
 } 

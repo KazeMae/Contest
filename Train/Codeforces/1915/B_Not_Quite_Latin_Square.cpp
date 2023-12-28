@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: B. Not Quite Latin Square
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/B
+| When:    2023-12-28 22:38:52
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -134,5 +134,17 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    string s;
+    for(int i = 0; i < 3; ++ i) {
+        cin>> s;
+        int a = 0, b = 0, c = 0;
+        for(auto i : s) {
+            if(i == 'A') a ++;
+            else if(i == 'B') b ++;
+            else if(i == 'C') c ++;
+        }
+        if(a == 0) cout << "A" <<endl;
+        else if(b == 0) cout << "B" <<endl;
+        else if(c == 0) cout << "C" <<endl;
+    }
 } 

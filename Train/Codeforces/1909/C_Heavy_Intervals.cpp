@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Heavy Intervals
+| Contest: Codeforces - Pinely Round 3 (Div. 1 + Div. 2)
+| URL:     https://codeforces.com/contest/1909/problem/C
+| When:    2023-12-23 23:23:59
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -76,7 +76,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
 #define abs(a) ((a) >= 0 ? (a) : -(a))
-#define sz(x) ((int)(x).size())
+// #define sz(x) ((int)(x).size())
 #define all(x) (x).begin(), (x).end()
 #define mem(a, b) memset(a, b, sizeof(a))
 // #define max(a, b) ((a) > (b) ? (a) : (b))
@@ -88,7 +88,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
-#define size(x) ((int)x.size())
+// #define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -116,8 +116,8 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
 }
 
 long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
+    auto sqrtN = sqrtl(N) - 1;
+    while (sqrtN + 1 <= N / (sqrtN + 1)) sqrtN++;
     return sqrtN;
 }
 // #define int long long
@@ -131,8 +131,26 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    int n, ans = 0;
+    cin>> n;
+    vector<int> l(n), r(n), c(n), sz(n);
+    for(int i = 0; i < n; ++ i) cin >> l[i];
+    for(int i = 0; i < n; ++ i) cin >> r[i];
+    for(int i = 0; i < n; ++ i) cin >> c[i];
+    sort(l.begin(), l.end());
+    sort(r.begin(), r.end(), greater<int> ());
+    sort(c.begin(), c.end());
+
+    int rn = n;
+    for(int i = 0, j = 0, k = 0; i < n && k < rn; ++ i) {
+        if(i < n - 1) if(r[k] > l[j + 1]) sz[i] = r[-- rn] - l[j ++];
+        else sz[i] = r[k ++] - l[j ++];
+        else sz[i] = r[k ++] - l[j ++];
+    }
+    sort(sz.begin(), sz.end(), greater<int> ());
+    for(int i = 0; i < n; ++ i) ans += c[i] * sz[i];
+    cout << ans <<endl;
 } 

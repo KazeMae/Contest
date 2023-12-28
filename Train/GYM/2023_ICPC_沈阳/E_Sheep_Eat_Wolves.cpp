@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: E. Sheep Eat Wolves
+| Contest: Codeforces - The 2023 ICPC Asia Shenyang Regional Contest (The 2nd Universal Cup. Stage 13: Shenyang)
+| URL:     https://codeforces.com/gym/104869/problem/E
+| When:    2023-12-14 13:10:39
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -84,7 +84,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-#define mp make_pair
+// #define mp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
@@ -121,18 +121,74 @@ long long Sqrt(long long N) {
     return sqrtN;
 }
 // #define int long long
+int x, y, p, qq, ans = -1;
+map<pair<pair<int, int>, pair<int, int> >, bool> mp;
+struct Zhenen{
+    int lw = 0, ls = 0, rw = 0, rs = 0, t = 0;
+    bool st = 0;
+};
 
+void bfs() {
+    queue<Zhenen> q;
+    Zhenen lis;
+    lis.ls = x, lis.lw = y;
+    mp[{{x, y}, {0, 0}}] = 1;
+    q.push(lis);
+    while(!q.empty()) {
+        auto t = q.front();
+        q.pop();
+        // cout<< t.ls << " " << t.lw << " " << t.rs << " " << t.rw << " " << t.t <<endl;
+        if(!t.st) {
+            for(int i = 0; i <= t.lw; ++ i) {
+                if(i > p) break;
+                for(int j = 0; j <= t.ls; ++ j) {
+                    if(i + j > p) break;
+                    if(t.ls - j == 0) {
+                        ans = t.t + 1;
+                        return;
+                    }
+                    if(t.lw - i > t.ls - j + qq || mp[{{t.ls - j, t.lw - i}, {t.rs + j, t.rw + i}}]) 
+                        continue;
+                    mp[{{t.ls - j, t.lw - i}, {t.rs + j, t.rw + i}}] = 1;
+                    auto tt = t;
+                    tt.lw -= i, tt.ls -= j, tt.rw += i, tt.rs += j, tt.st = !t.st, tt.t = t.t + 1;
+                    q.push(tt);
+                }
+            }
+        }else {
+            if(t.rw <= t.rs + qq || t.rs == 0) {
+                auto tt = t;
+                tt.st = !t.st, tt.t = t.t + 1;
+                q.push(tt);
+            }
+            for(int i = 0; i <= t.rw; ++ i) {
+                if(i > p) break;
+                for(int j = 0; j <= t.rs; ++ j) {
+                    if(i + j > p) break;
+                    if(t.rw - i > t.rs - j + qq || mp[{{t.ls + j, t.lw + i}, {t.rs - j, t.rw - i}}]) 
+                        continue;
+                    mp[{{t.ls + j, t.lw + i}, {t.rs - j, t.rw - i}}] = 1;
+                    auto tt = t;
+                    tt.lw += i, tt.ls += j, tt.rw -= i, tt.rs -= j, tt.st = !t.st, tt.t = t.t + 1;
+                    q.push(tt);
+                }
+            }
+        }
+    }
+}
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    cin>> x >> y >> p >> qq;
+    bfs();
+    cout << ans <<endl;
 } 

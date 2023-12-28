@@ -1,16 +1,5 @@
 [
 	{
-		"correct_answers":
-		[
-			"2"
-		],
-		"test": "3\n100 1 1\n"
-	},
-	{
-		"correct_answers":
-		[
-			"3"
-		],
-		"test": "3\n1 2 100\n"
+		"test": ""
 	}
 ]

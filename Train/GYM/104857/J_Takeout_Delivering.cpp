@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: J. Takeout Delivering
+| Contest: Codeforces - The 2023 ICPC Asia Hefei Regional Contest (The 2nd Universal Cup. Stage 12: Hefei)
+| URL:     https://codeforces.com/gym/104857/problem/j
+| When:    2023-12-23 13:46:43
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  128 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿ 
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -90,7 +90,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define lowbit(x) (x&(-x))
 #define size(x) ((int)x.size())
 
-const int N = 1000005; // 1e6 + 5
+const int N = 300005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -122,17 +122,50 @@ long long Sqrt(long long N) {
 }
 // #define int long long
 
+vector<pair<int, int> > e[N];
+vector<pair<int, int> > dist(N);
+int n, m;
+
+void bfs() {
+    priority_queue <pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > q;
+    q.push({0, 1});
+    while(!q.empty()) {
+        auto t = q.top();
+        q.pop();
+        for(auto i : e[t.second]) {
+            if(dist[i.first].first + dist[i.first].second < max(dist[t.second].first, dist[t.second].second) + i.second 
+                && (dist[i.first].first != 0 || dist[i.first].second != 0)) 
+                continue;
+            if(i.second > min(dist[t.second].first, dist[t.second].second)) {
+                dist[i.first].first = max(dist[t.second].first, dist[t.second].second);
+                dist[i.first].second = i.second;
+            }else dist[i.first] = dist[t.second];
+            q.push({(dist[i.first].first + dist[i.first].second), i.first});
+        }
+    }
+}
 
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    cin>> n >> m;
+    for(int i = 0; i < m; ++ i) {
+        int u, v, w;
+        cin>> u >> v >> w;
+        e[u].push_back({v, w});
+        e[v].push_back({u, w});
+    }
+    bfs();
+    // for(int i = 1; i <= n; ++ i) {
+    //     cout << i << " : " << dist[i].first << " " << dist[i].second <<endl;
+    // }
+    cout << dist[n].first + dist[n].second <<endl;
 } 

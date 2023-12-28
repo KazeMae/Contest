@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: F. Greetings
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/F
+| When:    2023-12-28 23:31:20
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    5000 ms
 *******************************/
 
 /********************************************
@@ -71,7 +71,7 @@ using PLI = pair<ll, int>;
 using PLL = pair<ll, ll>;
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
-ll myRand(ll B){ return (ull)rng() % B; }
+ll myRand(ll B){ return (ull)rng() % B;}
 
 #define endl '\n'
 #define debug(x) cout << #x << " = " << (x) << endl
@@ -90,7 +90,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define lowbit(x) (x&(-x))
 #define size(x) ((int)x.size())
 
-const int N = 1000005; // 1e6 + 5
+const int N = 400005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
@@ -115,13 +115,51 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
 // #define int long long
 
+template<class T>
+struct BIT {
+    int n;
+    vector<T> c;
+    // 定义树状数组
+    BIT(int len) : n(len), c(n + 1) {}
+    // 初始化
+    void init(vector<int> &a) {
+        for(int i = 1, j = 0; i <= n; ++ i) {
+            c[i] += a[i], j = i + ((i) & (-i));
+            if(j <= n) c[j] += c[i];
+        }
+    }
+    // 修改 a[x] += s
+    void add(int x, T s) {
+        assert(x != 0);
+        for(; x <= n; x += ((x) & (- x)))
+            c[x] += s;
+    }
+    // 查询 a[1]...a[x] 的和
+    T sum(int x) {
+        assert(x <= n);
+        T sum = 0;
+        for(; x; x -= ((x) & (- x))) 
+            sum += c[x];
+        return sum;
+    }
+    // 查询 a[l]...a[r] 的和
+    T getsum(int l, int r) {
+        // if(r < l) swap(l, r);
+        return sum(r) - sum(l - 1);
+    }
+    // 查询最大的 pos, 满足 a[1]+...+a[pos] <= k
+    int find(T k) {
+        int l = 0, r = n;
+        while(l < r) {
+            int mid = l + r >> 1;
+            if(sum(mid) >= k) r = mid;
+            else l = mid + 1;
+        }
+        return l;
+    }
+};
 
 void solve();
 signed main() {
@@ -134,5 +172,29 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, q = 0;
+    long long ans = 0;
+    cin>> n;
+    BIT<int> tree(n * 2);
+    vector<pair<int, int> > da(n);
+    vector<pair<int, int> > a(1);
+    vector<int> rank(n * 2 + 10);
+    for(int i = 0; i < n; ++ i) {
+        cin>> da[i].first >> da[i].second;
+    }
+    sort(da.begin(), da.end(), greater<pair<int, int>>());
+    for(auto i : da) {
+        a.push_back({i.first,  ++ q});
+        a.push_back({i.second, ++ q});
+    }
+    sort(a.begin() + 1, a.end());
+    for(int i = 1; i <= n * 2; ++ i) {
+        rank[a[i].second] = i;
+    }
+    for(int i = 1; i <= n; ++ i) {
+        // cout << a[rank[i * 2 - 1]].first << " " << a[rank[i * 2]].first << " " << tree.getsum(rank[i * 2 - 1], rank[i * 2]) - 1 <<endl;
+        ans += tree.getsum(rank[i * 2 - 1], rank[i * 2]);
+        tree.add(rank[i * 2], 1);
+    }
+    cout << ans <<endl;
 } 

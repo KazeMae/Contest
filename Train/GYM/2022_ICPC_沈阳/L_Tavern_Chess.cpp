@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: L. Tavern Chess
+| Contest: Codeforces - The 2022 ICPC Asia Shenyang Regional Contest (The 1st Universal Cup, Stage 1: Shenyang)
+| URL:     https://codeforces.com/gym/104160/problem/L
+| When:    2023-12-06 17:37:33
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  512 MB
+| Time:    4000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -97,42 +97,94 @@ const double EPS = 1e-7;
 const double PI = acos(-1.0);
 const int MOD = 998244353;
 
-// #define int long long
+#define int long long
 
-long long qmi(long long m, long long k, long long p = 9e18) {
-    int res = 1 % p, t = m;
-    while (k) {
-        if (k&1) res = res * t % p;
-        t = t * t % p, k >>= 1;
-    }
-    return res;
-}
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
-long long exgcd(long long a, long long b, long long &x, long long &y) {  
-    if (!b) { x = 1; y = 0; return a; }  
-    int d = exgcd(b, a % b, y, x);
-    y -= (a/b) * x;  
-    return d;
-}
-
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
-}
-// #define int long long
-
-
+int n, m;
+double aa = 0, bb = 0, pp = 0;
+vector<int> a, b, atka, atkb, cnta(10, 0), cntb(10, 0);
 void solve();
+void dfs(bool xs, double p);
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    cout<< setiosflags(ios::fixed) << setprecision(10);
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
+
 // #define int long long
 
+void dfs(bool xs, double p) {
+
+    // cout << xs << " : " <<endl;
+    // for(int i = 0; i < n; ++ i) cout << a[i] << " "; cout <<endl;
+    // for(int i = 0; i < n; ++ i) cout << cnta[i] << " "; cout <<endl;
+    // for(int i = 0; i < m; ++ i) cout << b[i] << " "; cout <<endl;
+    // for(int i = 0; i < m; ++ i) cout << cntb[i] << " "; cout <<endl;
+
+    bool wa = 1, wb = 1;
+    for(auto i : a) if(i > 0) wa = 0;
+    for(auto i : b) if(i > 0) wb = 0;
+    // cout << wa << " " << wb <<endl;
+    if(wa && wb) pp += p;
+    else if(wa) bb += p;
+    else if(wb) aa += p;
+    if(wa || wb) return;
+
+    int ati = -1, siz = 0;
+    if(xs) {
+        for(int i = 0; i < m; (b[i ++] > 0 ? ++ siz : 0));
+        p /= siz;
+        for(int i = 0; i < n; ++ i) {
+            if(a[i] <= 0) continue;
+            if(ati == -1) {
+                ati = i;
+            }else if(cnta[ati] > cnta[i]) ati = i;
+        }
+        for(int i = 0; i < m; ++ i) {
+            if(b[i] <= 0) continue;
+            b[i] -= atka[ati], a[ati] -= atkb[i], ++ cnta[ati]; //, ++ cntb[i];
+            dfs(!xs, p);
+            b[i] += atka[ati], a[ati] += atkb[i], -- cnta[ati]; //, -- cntb[i];
+        }
+    }else {
+        for(int i = 0; i < n; (a[i ++] > 0 ? ++ siz : 0));
+        p /= siz;
+        for(int i = 0; i < m; ++ i) {
+            if(b[i] <= 0) continue;
+            if(ati == -1) {
+                ati = i;
+            }else if(cntb[ati] > cntb[i]) ati = i;
+        }
+        for(int i = 0; i < n; ++ i) {
+            if(a[i] <= 0) continue;
+            a[i] -= atkb[ati], b[ati] -= atka[i], ++ cntb[ati]; //, ++ cnta[i];
+            dfs(!xs, p);
+            a[i] += atkb[ati], b[ati] += atka[i], -- cntb[ati]; //, -- cnta[i];
+        }
+    }
+}
+
 void solve() {
-    
+    cin>> n >> m;
+    for(int i = 0, k; i < n; ++ i) {
+        cin>> k;
+        a.push_back(k);
+        atka.push_back(k);
+    }
+    for(int i = 0, k; i < m; ++ i) {
+        cin>> k;
+        b.push_back(k);
+        atkb.push_back(k);
+    }
+    for(int i = 0; i < 8; ++ i) cnta[i] = 0, cntb[i] = 0;
+    if(n > m) dfs(1, 1);
+    else if(m > n) dfs(0, 1);
+    else {
+        dfs(0, 0.5);
+        dfs(1, 0.5);
+    }
+    // for(int i = 0; i < n; ++ i) cout << a[i] << " "; cout <<endl;
+    // for(int i = 0; i < m; ++ i) cout << b[i] << " "; cout <<endl;
+    cout << aa << endl << bb << endl << pp <<endl;
 } 

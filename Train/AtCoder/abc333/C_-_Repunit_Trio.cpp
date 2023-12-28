@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C - Repunit Trio
+| Contest: AtCoder - Toyota Programming Contest 2023#8（AtCoder Beginner Contest 333）
+| URL:     https://atcoder.jp/contests/abc333/tasks/abc333_c
+| When:    2023-12-23 16:04:49
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  1024 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -88,7 +88,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
-#define size(x) ((int)x.size())
+// #define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -125,14 +125,36 @@ long long Sqrt(long long N) {
 
 void solve();
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    int n, k1 = 1, k2 = 1, k3 = 1, cnt = 0;
+    cin>> n;
+    for(int i = 1;; ++ i) {
+        for(int j = 1; j <= i; ++ j) {
+            for(int k = 1; k <= j; ++ k) {
+                cnt ++;
+                if(cnt == n) {
+                    k1 = i, k2 = j, k3 = k;
+                    break;
+                }
+            }
+            if(cnt == n) break;
+        }
+        if(cnt == n) break;
+    }
+    vector<int> a;
+    while(max({k1, k2, k3})) {
+        a.push_back((int)(!!k1) + (!!k2) + (!!k3));
+        if(k1 > 0) -- k1;
+        if(k2 > 0) -- k2;
+        if(k3 > 0) -- k3;
+    }
+    for(int i = a.size() - 1; i >= 0; -- i) cout << a[i];
 } 

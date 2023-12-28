@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D - Erase Leaves
+| Contest: AtCoder - Toyota Programming Contest 2023#8（AtCoder Beginner Contest 333）
+| URL:     https://atcoder.jp/contests/abc333/tasks/abc333_d
+| When:    2023-12-23 16:18:42
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  1024 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -120,19 +120,50 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-// #define int long long
+#define int long long
 
-
+// p数组存储父节点， siz数组存储集合元素个数
+int p[N], siz[N];
+int find(int x) {
+    return x == p[x] ? p[x] : p[x] = find(p[x]);
+}
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
 // #define int long long
 
 void solve() {
-    
+    int n;
+    cin>> n;
+    vector<pair<int, int> > a;
+    vector<int> g1;
+    for(int i = 0; i <= n; ++ i) siz[i] = 1, p[i] = i;
+    for(int i = 0; i < n - 1; ++ i) {
+        int u, v;
+        cin>> u >> v;
+        a.push_back({min(u, v), max(u, v)});
+    }
+    sort(a.begin(), a.end());
+    for(int i = 0; i < n - 1; ++ i) {
+        if(a[i].first == 1) g1.push_back(a[i].second);
+        else {
+            if(find(a[i].first) != find(a[i].second)) {
+                // 将 x, y 集合的元素数相加
+                siz[find(a[i].first)] += siz[find(a[i].second)];
+                // 将 x 集合的祖宗节点指向 y 集合的祖宗节点
+                p[find(a[i].second)] = find(a[i].first);
+            }
+        }
+    }
+    int sum = 0;
+    for(auto &i : g1) {
+        i = siz[find(i)];
+        sum += i;
+    }
+    cout << (sum - *max_element(g1.begin(), g1.end())) + 1;
 } 

@@ -66,11 +66,11 @@ const int INF = 0x3f3f3f3f;
 const long long LNF = 0x3f3f3f3f3f3f3f3f;
 const double EPS = 1e-7;
 const double PI = acos(-1.0);
-const int MOD = 998244353;
+const int MOD = 1e9+7;
 
-// #define int long long
+#define int long long
 
-long long qmi(long long m, long long k, long long p = 9e18) {
+long long qmi(long long m, long long k, long long p = MOD) {
     int res = 1 % p, t = m;
     while (k) {
         if (k&1) res = res * t % p;
@@ -84,14 +84,18 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     y -= (a/b) * x;  
     return d;
 }
-
-
+// int fact[N], infact[N];
 // #define int long long
 
 void solve();
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
+    // fact[0] = infact[0] = 1;
+    // for (int i = 1; i < N; i++) {
+    //     fact[i] = (ll)fact[i - 1] * i % MOD;
+    //     infact[i] = (ll)infact[i - 1] * qmi(i, MOD - 2) % MOD;
+    // }
     // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
@@ -99,7 +103,9 @@ signed main() {
 
 // #define int long long
 void solve() {
-    int a[] = {1, 4, 12, 62, 3};
-    qsort(a, a + 5);
-    for(auto i : a) cout << i << " ";
+    for(int i = INT_MAX; i >= 0; -- i) {
+        for(int j = INT_MAX; j >= 0; -- j) {
+            if((double)i + (double)j != (double)(i + j)) cout << i << " " << j <<endl;
+        }
+    }
 }

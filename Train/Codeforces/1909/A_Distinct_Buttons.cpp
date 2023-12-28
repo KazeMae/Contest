@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Distinct Buttons
+| Contest: Codeforces - Pinely Round 3 (Div. 1 + Div. 2)
+| URL:     https://codeforces.com/contest/1909/problem/0
+| When:    2023-12-23 22:37:07
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -134,5 +134,28 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n, lu = 0, ru = 0, ld = 0, rd = 0, xu = 0, yu = 0, xd = 0, yd = 0;
+    cin>> n;
+    for(int i = 0; i <n; ++ i) {
+        int x, y;
+        cin>> x >> y;
+        if(x == 0 && y == 0) continue;
+        if(!x || !y) {
+            if(x > 0) xu = 1;
+            if(x < 0) xd = 1;
+            if(y > 0) yu = 1;
+            if(y < 0) yd = 1;
+        }else {
+            if(x < 0 && y < 0) ld = 1;
+            if(x < 0 && y > 0) lu = 1;
+            if(x > 0 && y < 0) rd = 1;
+            if(x > 0 && y > 0) ru = 1;
+        }
+    }
+    if(lu + ru + ld + rd + xu + yu + xd + yd == 0 || (lu + ld + ru + rd == 0 && xu + xd + yu + yd <= 3)) cout << "YES" <<endl;
+    else if((ru || rd) && xd == 0 && lu == 0 && ld == 0) cout << "YES" <<endl;
+    else if((lu || ld) && xu == 0 && ru == 0 && rd == 0) cout << "YES" <<endl;
+    else if((lu || ru) && yd == 0 && rd == 0 && ld == 0) cout << "YES" <<endl;
+    else if((ld || rd) && yu == 0 && ru == 0 && lu == 0) cout << "YES" <<endl;
+    else cout << "NO" <<endl;
 } 

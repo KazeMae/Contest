@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: E - Lucky bag
+| Contest: AtCoder - AtCoder Beginner Contest 332
+| URL:     https://atcoder.jp/contests/abc332/tasks/abc332_e
+| When:    2023-12-11 12:21:35
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  1024 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -21,7 +21,7 @@
 |⣿⣿⠋⠀⣿⣿⣿⣿⠋⠀⠈⢿⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣿⠉⠀⠈⣿⣿⣿⣿⡆⠈⣿⣿⣿⣿
 |⣿⣿⠀⠸⠿⠿⣿⣿⠀⠀⠀⣸⣿⣿⡁⠀⠀⠀⠀⢙⣿⣿⣧⠀⠀⠀ ⢠⣿⡿⠿⠿ ⢹⣿⣿⣿
 |⣟⠀⠀⠀⣀⠀⠀⠀⢙⣶⣾⣿⣿⣿⣿⣶⡄⢀⣴⣿⣿⣿⣿⣷⣶⡶⠁⠀⢀⠀⣀⠀⠀ ⢙⣿⣿
-|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿
+|⣿⠀⠻⠿⠛⠛⠛⠷⢾⣿⣿⣿⣿⣿⣿⣿⠇⠙⣿⣿⣿⣿⣿⣿⣿⣿⠒⠛⠛⠻⠿⢿⠀⢿⣿⣿         
 |⠟⠀⢀⢀⣤⣶⣶⣦⣾⣿⣿⣿⣿⣿⣿⢀⣶⣶⣀⠙⣿⣿⣿⣿⣿⣿⣦⣤⣶⣦⣄⠀⠀⠘⣿⣿
 |⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣶⣿⣿
 |⣿⣆⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢠⣿⣿⣿
@@ -126,13 +126,72 @@ long long Sqrt(long long N) {
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-    // cout<< setiosflags(ios::fixed) << setprecision(10);
-    int _ = 1; cin>> _; while(_ --)
+    cout<< setiosflags(ios::fixed) << setprecision(18);
+    // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    srand(time(0));
+    int n, d, sum = 0, tot = 0;
+    double ans = 1e18, anss = 0;
+    cin>> n >> d;
+    vector<int> a(n);
+    priority_queue<int, vector<int>, greater<int> > q;
+    for(int i = 0; i < n; ++ i) {
+        cin>> a[i];
+        sum += a[i];
+    }
+    double p = sum * 1.0 / d;
+    for(int i = 0; i < d; ++ i) q.push(0);
+    sort(a.begin(), a.end());
+    for(int i = 0; i < n; ++ i) {
+        int t = q.top();
+        q.pop();
+        q.push(t + a[i]);
+    }
+    anss = 0;
+    while(!q.empty()) {
+        anss += ((p - q.top()) * (p - q.top()));
+        // cout << q.top() << " ";
+        q.pop();
+    }
+    ans = min(anss / d, ans);
+    for(int i = 0; i < d; ++ i) q.push(0);
+    sort(a.begin(), a.end(), greater<int> ());
+    for(int i = 0; i < n; ++ i) {
+        int t = q.top();
+        q.pop();
+        q.push(t + a[i]);
+    }
+    anss = 0;
+    while(!q.empty()) {
+        anss += ((p - q.top()) * (p - q.top()));
+        // cout << q.top() << " ";
+        q.pop();
+    }
+    ans = min(anss / d, ans);
+    int timess = 1500000;
+    while(timess --) {
+        for(int i = 0; i < d; ++ i) q.push(0);
+        random_shuffle(a.begin(), a.end());
+        for(int i = 0; i < n; ++ i) {
+            int t = q.top();
+            q.pop();
+            q.push(t + a[i]);
+        }
+        double anss = 0;
+        while(!q.empty()) {
+            anss += ((p - q.top()) * (p - q.top()));
+            // cout << q.top() << " ";
+            q.pop();
+        }
+        // cout << endl;
+        ans = min(anss / d, ans);
+    }
+    cout<< ans <<endl;
 } 
+// 3 3 3 5 6
+// 3 // 20 / 3 = 6.66 , 3 + 3 = 6, 3 + 5 = 8, 6

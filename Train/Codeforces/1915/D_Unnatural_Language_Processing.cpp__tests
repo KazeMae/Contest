@@ -1,0 +1,9 @@
+[
+	{
+		"correct_answers":
+		[
+			"ba.ced.bab\nba.ba\ndad.de.ca.bed.dad\ndac\ndac.dac\nda.bab.ba.ba.bab.bab.ba.bab.ba"
+		],
+		"test": "6\n8\nbacedbab\n4\nbaba\n13\ndaddecabeddad\n3\ndac\n6\ndacdac\n22\ndababbabababbabbababba\n"
+	}
+]

@@ -1,32 +1,9 @@
-/*******************************
-| Author:  KAZE_mae
-| Website: https://cloudfall.top
-| Problem: M. Triangle Construction
-| Contest: Codeforces - 2023-2024 ICPC, Asia Jakarta Regional Contest (Online Mirror, Unrated, ICPC Rules, Teams Preferred)
-| URL:     https://codeforces.com/contest/1906/problem/M
-| When:    2023-12-03 13:30:17
-| 
-| Memory:  1024 MB
-| Time:    1000 ms
-*******************************/
-
-/*
-* ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷
-* ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇
-* ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽
-* ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕
-* ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕
-* ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕
-* ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄
-* ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕
-* ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿
-* ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-* ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟
-* ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠
-* ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙
-* ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣
-*/
-
+/**
+ * @Author      KAZE_mae
+ * @Website     https://cloudfall.top/
+ * @Url         
+ * @DateTime    
+ */
 // #include <bits/stdc++.h>
 #include <algorithm>
 #include <array>
@@ -79,11 +56,10 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define rep(i, a, n) for (int i = a; i <= n; ++i)
 #define per(i, n, a) for (int i = n; i >= a; --i)
 #define pb push_back
-#define mp make_pair
+// #define mp make_pair
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
-#define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -102,7 +78,6 @@ long long qmi(long long m, long long k, long long p = 9e18) {
     }
     return res;
 }
-inline long long gcd(long long a, long long b) {return b ? gcd(b, a % b) : a;}
 long long exgcd(long long a, long long b, long long &x, long long &y) {  
     if (!b) { x = 1; y = 0; return a; }  
     int d = exgcd(b, a % b, y, x);
@@ -110,46 +85,30 @@ long long exgcd(long long a, long long b, long long &x, long long &y) {
     return d;
 }
 
-long long Sqrt(long long N) {
-    __int128 sqrtN = sqrtl(N) - 1;
-    while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
-    return sqrtN;
+bool is_prime(int x)
+{
+    if (x < 2) return false;
+    for (int i = 2; i <= x / i; i ++ )
+        if (x % i == 0)
+            return false;
+    return true;
 }
 // #define int long long
 
-
 void solve();
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
     // int _ = 1; cin>> _; while(_ --)
         solve();
   return 0;
 }
-#define int long long
 
+// #define int long long
 void solve() {
-    int n, ans = 0, s = 0, k = 0, j = -1;
-    cin>> n;
-    vector<int> a(n);
-    for(int i = 0; i < n; ++ i) {
-        cin>> a[i];
-    }
-    sort(a.begin(), a.end(), greater<int>());
-    for(int i = 0; i < n; ++ i) {
-        if(k != 0) {
-            if(k >= a[i]) ans += a[i], k -= a[i];
-            else {
-                ans += k, a[i] -= k, s += a[j] % 2;
-                ans += s / 3, s %= 3;
-                k = a[i] / 2, j = i;
-                if(i == n - 1) ans += min(s, k);
-            }
-        }else {
-            k = a[i] / 2, j = i;
-            if(i == n - 1) ans += min(s, k);
-        }
-        if(k == 0) s += a[j] % 2, ans += s / 3, s %= 3;
+    int ans  = 0;
+    for(int i = 0; i <= 1000; ++ i) {
+        ans += is_prime(i);
     }
     cout << ans <<endl;
-} 
+}

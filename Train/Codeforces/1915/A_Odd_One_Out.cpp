@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: A. Odd One Out
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/A
+| When:    2023-12-28 22:35:24
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -134,5 +134,9 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int a, b, c;
+    cin>> a >> b >> c;
+    if(a == b) cout << c <<endl;
+    else if(a == c) cout << b <<endl;
+    else cout<< a <<endl;
 } 

@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: C. Can I Square?
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/c
+| When:    2023-12-28 22:39:53
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -131,8 +131,16 @@ signed main() {
         solve();
   return 0;
 }
-// #define int long long
+#define int long long
 
 void solve() {
-    
+    int n, x, sum = 0;
+    cin>> n;
+    for(int i = 0; i < n; ++ i) {
+        cin>> x;
+        sum += x;
+    }    
+    int q = Sqrt(sum);
+    if(sum / q == q && sum % q == 0) cout << "YES" <<endl;
+    else cout << "NO" <<endl;
 } 

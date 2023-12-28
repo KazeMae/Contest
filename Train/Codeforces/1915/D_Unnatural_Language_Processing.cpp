@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: %$Problem$%
-| Contest: %$Contest$%
-| URL:     %$URL$%
-| When:    %$Time$%
+| Problem: D. Unnatural Language Processing
+| Contest: Codeforces - Codeforces Round 918 (Div. 4)
+| URL:     https://codeforces.com/contest/1915/problem/D
+| When:    2023-12-28 22:43:33
 | 
-| Memory:  %$MemoryL$% MB
-| Time:    %$TimeL$% ms
+| Memory:  256 MB
+| Time:    1000 ms
 *******************************/
 
 /********************************************
@@ -88,7 +88,7 @@ ll myRand(ll B){ return (ull)rng() % B; }
 #define fi first
 #define se second
 #define lowbit(x) (x&(-x))
-#define size(x) ((int)x.size())
+// #define size(x) ((int)x.size())
 
 const int N = 1000005; // 1e6 + 5
 const int INF = 0x3f3f3f3f;
@@ -123,6 +123,7 @@ long long Sqrt(long long N) {
 // #define int long long
 
 
+
 void solve();
 signed main() {
     std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
@@ -134,5 +135,21 @@ signed main() {
 // #define int long long
 
 void solve() {
-    
+    int n;
+    string s, k;
+    cin>> n >> s;
+    vector<string> ans;
+    for(int i = 0; i < n; ++ i) {
+        if(s[i] == 'a' || s[i] == 'e') {
+            k += s[i];
+            if(i != n - 1 && s[i + 1] != 'a' && s[i + 1] != 'e' && i != n - 2 && s[i + 2] != 'a' && s[i + 2] != 'e') 
+                k += s[++ i];
+            ans.push_back(k);
+            k = "";
+        } else {
+            k += s[i];
+        }
+    }
+    if(s.back() != 'a' && s.back() != 'e') ans.back() += s.back();
+    for(int i = 0; i < ans.size(); ++ i) cout << ans[i] << ".\n"[i == ans.size() - 1];
 } 
