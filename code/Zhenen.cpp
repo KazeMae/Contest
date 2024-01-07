@@ -95,6 +95,13 @@ bool is_prime(int x)
 }
 // #define int long long
 
+void func(int *xptr, int *yptr, int *zptr) {
+    int *x = xptr, *y = yptr, *z = zptr;
+    yptr = x;
+    zptr = y;
+    xptr = z;
+}
+
 void solve();
 signed main() {
     // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
@@ -106,9 +113,8 @@ signed main() {
 
 // #define int long long
 void solve() {
-    int ans  = 0;
-    for(int i = 0; i <= 1000; ++ i) {
-        ans += is_prime(i);
-    }
-    cout << ans <<endl;
+    long long a = 0x7FFFFFFFFFFFFFFF;
+    int b = (int)a;
+    cout<< a <<endl;
+    cout << b <<endl;
 }

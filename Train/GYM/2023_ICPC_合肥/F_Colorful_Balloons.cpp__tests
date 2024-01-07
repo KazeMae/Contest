@@ -1,0 +1,16 @@
+[
+	{
+		"correct_answers":
+		[
+			"red"
+		],
+		"test": "5\nred\ngreen\nred\nred\nblue\n"
+	},
+	{
+		"correct_answers":
+		[
+			"uh-oh"
+		],
+		"test": "3\nred\nblue\nyellow\n"
+	}
+]
