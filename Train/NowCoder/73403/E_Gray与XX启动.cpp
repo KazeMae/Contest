@@ -1,13 +1,13 @@
 /*******************************
 | Author:  KAZE_mae
 | Website: https://cloudfall.top
-| Problem: D. 01 Tree
-| Contest: Codeforces - Hello 2024
-| URL:     https://codeforces.com/contest/1919/problem/D
-| When:    2024-01-07 00:02:11
+| Problem: E_Gray与XX启动
+| Contest: NowCoder
+| URL:     https://ac.nowcoder.com/acm/contest/73403/E
+| When:    2024-01-08 15:42:30
 | 
-| Memory:  256 MB
-| Time:    1000 ms
+| Memory:  524288 MB
+| Time:    2000 ms
 *******************************/
 
 /********************************************
@@ -120,108 +120,53 @@ long long Sqrt(long long N) {
     while (sqrtN + 1 <= N / (sqrtN + 1))sqrtN++;
     return sqrtN;
 }
-
 // #define int long long
-struct SEGT {
-    #define ls id << 1
-    #define rs id << 1 | 1
-    struct Zhenen {
-        long long val;
-    };
-    vector<int> a;
-    vector<Zhenen> seg;
-    SEGT(int n) : a(n + 1), seg(n * 4) {}
 
-    void update(int id) {
-        seg[id].val = max(seg[ls].val, seg[rs].val);
-    }
-
-
-    void pushdown(int id) {
-        
-    }
-
-    void build(int id, int l, int r) {
-        if(l == r) seg[id].val = a[l];
-        else {
-            int mid = l + r >> 1;
-            build(ls, l, mid);
-            build(rs, mid + 1, r);
-            update(id);
-        }
-    }
-    // 修改 [ql, qr] 为 t
-    void modify(int id, int l, int r, int ql, int qr, long long t) {
-        if(l == ql && r == qr) {
-            seg[id].val = t;
-            return;
-        }
-        // pushdown(id);
-        int mid = l + r >> 1;
-        if(qr <= mid) modify(ls, l , mid, ql, qr, t);
-        else if(ql > mid) modify(rs, mid + 1, r, ql, qr, t);
-        else {
-            modify(ls, l, mid, ql, mid, t);
-            modify(rs, mid + 1, r, mid + 1, qr, t);
-        }
-        update(id);
-    }
-    
-    long long query(int id, int l, int r, int ql, int qr) {
-        if(l == ql && r == qr) return seg[id].val;
-        pushdown(id);
-        int mid = l + r >> 1;
-        if(qr <= mid) return query(ls, l, mid, ql, qr);
-        else if(ql > mid) return query(rs, mid + 1, r, ql, qr);
-        else return (query(ls, l, mid, ql, mid) + query(rs, mid + 1, r, mid + 1, qr));
-    }
-    // 寻找 [ql, qr] 大于等于 d 的第一个数的下标, 不存在返回 -1
-    int search(int id, int l, int r, int ql, int qr, int d) {
-        if(l == ql && r == qr) {
-            if(seg[id].val < d) return -1;
-            else {
-                if(l == r) return l;
-                int mid = l + r >> 1;
-                if(seg[ls].val >= d) return search(ls, l, mid, ql, mid, d);
-                else return search(rs, mid + 1, r, mid + 1, qr, d);
+int bfs(vector<int> s, vector<int> e) {
+    if(s == e) return 0;
+    queue<pair<int, vector<int>>> q;
+    q.push({0, s});
+    map<vector<int>, bool> st;
+    st[s] = 1;
+    while(!q.empty()) {
+        auto t = q.front();
+        q.pop();
+        for(int i = 0; i < 5; ++ i) {
+            if(t.second[i] == 0) {
+                t.second[i] = 1;
+                t.second[(i + 2) % 5] = (t.second[(i + 2) % 5] ? 0 : 1);
+                t.second[(i + 3) % 5] = (t.second[(i + 3) % 5] ? 0 : 1);
+                // cout << i << " " << (t.second == e) <<endl;
+                if(t.second == e) return t.first + 1;
+                if(st[t.second]);
+                else {
+                    st[t.second] = 1;
+                    q.push({t.first + 1, t.second});
+                }
+                t.second[i] = 0;
+                t.second[(i + 2) % 5] = (t.second[(i + 2) % 5] ? 0 : 1);
+                t.second[(i + 3) % 5] = (t.second[(i + 3) % 5] ? 0 : 1);
             }
         }
-        // pushdown(id);
-        int mid = l + r >> 1;
-        if(qr <= mid) return search(ls, l, mid, ql, qr, d);
-        else if(ql > mid) return search(rs, mid + 1, r, ql, qr, d);
-        else {
-            int pos = search(ls, l, mid, ql, mid, d);
-            if(pos == -1) return search(rs, mid + 1, r, mid + 1, qr, d);
-            else return pos;
-        }
     }
-    #undef ls
-    #undef rs
-};
+    return -1;
+}
 
-string solve();
+void solve();
 signed main() {
-    std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+    // std::ios::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     // cout<< setiosflags(ios::fixed) << setprecision(10);
     int _ = 1; cin>> _; while(_ --)
-        cout << solve() <<endl;
+        solve();
   return 0;
 }
 // #define int long long
 
-string solve() {
-    int n, t;
-    cin>> n;
-    SEGT tr(n);
-    for(int i = 0, x; i < n; ++ i) 
-        cin>> x, tr.a[i + 1] = -x;
-    tr.build(1, 1, n);
-    for(int i = 1; i <= n; ++ i) {
-        auto l = tr.search(1, 1, n, 1, i, tr.a[i]), r = tr.search(1, 1, n, i, n, tr.a[i]);
-        if(l != -1 && r != -1 && tr.a[i] - tr.a[l] < -1 && tr.a[i] - tr.a[r] < -1) return "NO";
-        else if(l != -1 && tr.a[i] - tr.a[l] < -1) return "NO";
-        else if(r != -1 && tr.a[i] - tr.a[r] < -1) return "NO";
-    }
-    return "YES";
+void solve() {
+    vector<int> s(5), e(5);
+    for(int i = 0; i < 5; ++ i) cin>> s[i];
+    for(int i = 0; i < 5; ++ i) cin>> e[i];
+
+    cout<< bfs(s, e) <<endl;
+
 } 
